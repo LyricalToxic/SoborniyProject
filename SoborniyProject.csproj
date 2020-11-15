@@ -270,8 +270,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\algorithms\FirstAlgorithm.cs" />
+    <Compile Include="src\database\Configurations\CarConfiguration.cs" />
+    <Compile Include="src\database\Configurations\SessionConfiguration.cs" />
     <Compile Include="src\database\Connection.cs" />
-    <Compile Include="src\database\Context\SessionContext.cs" />
+    <Compile Include="src\database\Context\SoborniyContext.cs" />
     <Compile Include="src\database\Models\Car.cs" />
     <Compile Include="src\database\Models\Session.cs" />
     <Compile Include="src\interfaces\test.cs">
