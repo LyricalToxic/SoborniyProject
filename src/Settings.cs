@@ -23,6 +23,13 @@ namespace SoborniyProject
         public static string MYSQL_USER { get; set; }
         public static string MYSQL_PASSWORD { get; set; }
         public static string MYSQL_DATABASE { get; set; }
+
+         public  enum LightTrafficColorEnum
+        {
+            Red = 1,
+            Yellow = 2,
+            Green = 3
+        }
         public static string envFile = "../../.env";
     }
 }
