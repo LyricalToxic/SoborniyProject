@@ -4,7 +4,7 @@ using SoborniyProject.database.Models;
 
 namespace SoborniyProject.database.Configurations
 {
-    public class LightTrafficConfiguration
+    public class LightTrafficConfiguration: IEntityTypeConfiguration<LightTraffic>
     {
         public void Configure(EntityTypeBuilder<LightTraffic> builder)
         {
@@ -16,6 +16,7 @@ namespace SoborniyProject.database.Configurations
             builder.Property(c => c.YellowLightDurationSec).IsRequired();
             builder.Property(c => c.GreenLightDurationSec).IsRequired();
             builder.Property(c => c.StartColor).IsRequired();
+            builder.Property(c => c.NextColor).IsRequired();
             builder.Property(c => c.CreatedAt)
                 .IsRowVersion();
             builder.Property(c => c.UpdatedAt)

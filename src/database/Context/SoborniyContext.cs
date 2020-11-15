@@ -20,6 +20,8 @@ namespace SoborniyProject.database.Context
         {
             modelBuilder.ApplyConfiguration(new SessionConfiguration());
             modelBuilder.ApplyConfiguration(new CarConfiguration());
+            modelBuilder.ApplyConfiguration(new LightTrafficConfiguration());
+            modelBuilder.ApplyConfiguration(new SessionStatisticConfiguration());
         }
         public DbSet<Session> Session { get; set; }
         public DbSet<Car> Car { get; set; }
