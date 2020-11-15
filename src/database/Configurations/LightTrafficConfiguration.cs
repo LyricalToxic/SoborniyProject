@@ -15,6 +15,7 @@ namespace SoborniyProject.database.Configurations
             builder.Property(c => c.RedLightDurationSec).IsRequired();
             builder.Property(c => c.YellowLightDurationSec).IsRequired();
             builder.Property(c => c.GreenLightDurationSec).IsRequired();
+            builder.Property(c => c.Status).HasDefaultValue(0);
             builder.Property(c => c.StartColor).IsRequired();
             builder.Property(c => c.NextColor).IsRequired();
             builder.Property(c => c.CreatedAt)

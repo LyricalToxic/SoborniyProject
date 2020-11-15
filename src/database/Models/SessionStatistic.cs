@@ -8,6 +8,7 @@ namespace SoborniyProject.database.Models
         public int PositionId { get; set; }
         public short LightColor { get; set; }
         public short NextLightColor { get; set; }
+        public short LightTrafficStatus { get; set; }
         public int DurationLeftSec { get; set; }
         public int CarSpeed { get; set; }
         public int SessionTime { get; set; }

@@ -15,6 +15,7 @@ namespace SoborniyProject.database.Configurations
             builder.Property(c => c.DurationLeftSec).IsRequired();
             builder.Property(c => c.NextLightColor).IsRequired();
             builder.Property(c => c.LightColor).IsRequired();
+            builder.Property(c => c.LightTrafficStatus).HasDefaultValue(0);
             builder.Property(c => c.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate();
         }
