@@ -56,6 +56,7 @@
             this.button1.TabIndex = 29;
             this.button1.Text = "Характеристика";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label7
             // 
@@ -179,7 +180,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(156)))), ((int)(((byte)(113)))));
             this.ClientSize = new System.Drawing.Size(1350, 643);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);

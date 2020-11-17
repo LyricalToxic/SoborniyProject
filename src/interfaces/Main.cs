@@ -16,5 +16,12 @@ namespace SoborniyProject.src.interfaces
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var options = new Options();
+            Hide();
+            options.Show();
+        }
     }
 }

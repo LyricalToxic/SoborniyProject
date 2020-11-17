@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SoborniyProject.src.interfaces
 {
-    public partial class SpecificationCar : Form
+    public partial class SpecifiactionCar : Form
     {
-        public SpecificationCar()
+        public SpecifiactionCar()
         {
             InitializeComponent();
         }

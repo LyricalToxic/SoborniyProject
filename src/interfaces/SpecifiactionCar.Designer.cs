@@ -1,6 +1,6 @@
 ﻿namespace SoborniyProject.src.interfaces
 {
-    partial class SpecificationCar
+    partial class SpecifiactionCar
     {
         /// <summary>
         /// Required designer variable.
@@ -80,19 +80,18 @@
             this.button1.Text = "ОК";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // SpecificationCar
+            // SpecifiactionCar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(156)))), ((int)(((byte)(113)))));
             this.ClientSize = new System.Drawing.Size(469, 224);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Name = "SpecificationCar";
-            this.Text = "SpecificationCar";
+            this.Name = "SpecifiactionCar";
+            this.Text = "SpecifiactionCar";
             this.ResumeLayout(false);
             this.PerformLayout();
 
