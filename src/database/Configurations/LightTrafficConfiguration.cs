@@ -12,16 +12,18 @@ namespace SoborniyProject.database.Configurations
             builder.Property(c => c.SessionId).HasColumnType("bigint").IsRequired();
             builder.Property(c => c.PositionId).HasColumnType("bigint").IsRequired();
             builder.Property(c => c.PreviousDistance).HasColumnType("decimal(6, 2)").IsRequired();
-            builder.Property(c => c.RedLightDurationSec).IsRequired();
-            builder.Property(c => c.YellowLightDurationSec).IsRequired();
-            builder.Property(c => c.GreenLightDurationSec).IsRequired();
-            builder.Property(c => c.Status).HasDefaultValue(0);
-            builder.Property(c => c.StartColor).IsRequired();
-            builder.Property(c => c.NextColor).IsRequired();
+            builder.Property(c => c.RedLightDurationSec);
+            builder.Property(c => c.YellowLightDurationSec);
+            builder.Property(c => c.GreenLightDurationSec);
+            builder.Property(c => c.Status).HasDefaultValue(0).IsRequired();
+            builder.Property(c => c.StartColor);
+            builder.Property(c => c.NextColor);
             builder.Property(c => c.CreatedAt)
-                .IsRowVersion();
+                .IsRowVersion().IsRequired();
             builder.Property(c => c.UpdatedAt)
-                .ValueGeneratedOnAddOrUpdate();
+                .ValueGeneratedOnAddOrUpdate().IsRequired();
+            builder.HasIndex(c => c.UpdatedAt);
+            builder.HasIndex(c => new {c.SessionId, c.PositionId}).IsUnique();
         }
     }
 }

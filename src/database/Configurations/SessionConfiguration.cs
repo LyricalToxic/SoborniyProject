@@ -10,12 +10,14 @@ namespace SoborniyProject.database.Configurations
         {
             builder.Property(c => c.Id).HasColumnType("bigint");
             builder.Property(c => c.Key).IsRequired().HasMaxLength(32);
-            builder.Property(c => c.TotalTime).HasDefaultValue("0");
-            builder.Property(c => c.Status).HasDefaultValue(0);
+            builder.Property(c => c.TotalTime).HasDefaultValue(0).IsRequired();
+            builder.Property(c => c.Status).HasDefaultValue(0).IsRequired();
             builder.Property(c => c.CreatedAt)
-                .IsRowVersion();
+                .IsRowVersion().IsRequired();
             builder.Property(c => c.UpdatedAt)
-                .ValueGeneratedOnAddOrUpdate();
+                .ValueGeneratedOnAddOrUpdate().IsRequired();
+            builder.HasIndex(c => c.Key).IsUnique();
+            builder.HasIndex(c => c.UpdatedAt);
         }
     }
 }

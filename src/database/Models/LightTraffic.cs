@@ -5,7 +5,7 @@ namespace SoborniyProject.database.Models
     public class LightTraffic
     {
         public Int64 Id { get; set; }
-        public Int64 SessionId { get; set; }
+        public Int64? SessionId { get; set; }
         public int PositionId { get; set; }
         public int RedLightDurationSec { get; set; }
         public int YellowLightDurationSec { get; set; }
@@ -16,5 +16,7 @@ namespace SoborniyProject.database.Models
         public float PreviousDistance  { get; set; }
         public DateTime CreatedAt{ get; set; } 
         public DateTime UpdatedAt{ get; set; } 
+        
+        public Session Session { get; set; } 
     }
 }
