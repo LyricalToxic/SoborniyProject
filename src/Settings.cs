@@ -1,6 +1,7 @@
 ﻿using DotNetEnv;
 using System;
 using System.IO;
+using System.Windows.Forms;
 
 
 namespace SoborniyProject
@@ -24,12 +25,13 @@ namespace SoborniyProject
         public static string MYSQL_PASSWORD { get; set; }
         public static string MYSQL_DATABASE { get; set; }
 
+        public static string ROOT_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Application.StartupPath));
          public  enum LightTrafficColorEnum
         {
             Red = 1,
             Yellow = 2,
             Green = 3
         }
-        public static string envFile = "../../.env";
+        public static string envFile = Path.Combine(ROOT_PATH, ".env");
     }
 }

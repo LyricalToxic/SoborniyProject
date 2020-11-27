@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=16.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823">
+      <HintPath>packages\CsvHelper.16.2.0\lib\net47\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DotNetEnv, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>packages\DotNetEnv.1.4.0\lib\netstandard1.3\DotNetEnv.dll</HintPath>
       <Private>True</Private>
@@ -276,10 +280,13 @@
     <Compile Include="src\database\Configurations\SessionStatisticConfiguration.cs" />
     <Compile Include="src\database\Connection.cs" />
     <Compile Include="src\database\Context\SoborniyContext.cs" />
+    <Compile Include="src\database\helpers\Exporter.cs" />
     <Compile Include="src\database\Models\Car.cs" />
     <Compile Include="src\database\Models\LightTraffic.cs" />
     <Compile Include="src\database\Models\Session.cs" />
     <Compile Include="src\database\Models\SessionStatistic.cs" />
+    <Compile Include="src\exceptions\Base.cs" />
+    <Compile Include="src\exceptions\invalid\InvalidSessionKey.cs" />
     <Compile Include="src\interfaces\test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -315,11 +322,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\database\" />
-    <Folder Include="src\entities\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".env" />
     <Content Include=".env.example" />
+    <Content Include="src\exports\.gitignore" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
