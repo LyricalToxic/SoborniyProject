@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SoborniyProject.interfaces;
+using SoborniyProject.src.interfaces;
+
 
 namespace SoborniyProject
 {
@@ -17,7 +18,7 @@ namespace SoborniyProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new test());
+            Application.Run(new Form1());
         }
     }
 }
