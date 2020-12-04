@@ -25,25 +25,19 @@ namespace SoborniyProject.src.interfaces
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            List<Road_Inf> roads = new List<Road_Inf>();
-            List<Car_Sessions> car_sessions = new List<Car_Sessions>();
-            car_sessions.Add(new Car_Sessions() { });
-            roads.Add(new Road_Inf() { });
-            roads[0].Inf_from_BD(roads);
-            car_sessions[0].start_convert_data(car_sessions, roads);
-            Boost_Algorithm algoritm = new Boost_Algorithm();
-            algoritm.Boost_Way(car_sessions, roads, algoritm);
-
-
-
+            int key=0;
+            List<RoadInf> roads = new List<RoadInf>();
+            List<CarSessions> car_sessions = new List<CarSessions>();
+            car_sessions.Add(new CarSessions() { });
+            roads.Add(new RoadInf() { });
+            roads[0].Inf_from_BD(roads,key);
+            car_sessions[0].StartConvertData(car_sessions, roads,key);
+            BoostAlgorithm algoritm = new BoostAlgorithm();
+            algoritm.BoostWay(car_sessions, roads, algoritm,key);
+            car_sessions
 
 
 
-
-            Session session = new Session();
-            var firstsession { }= context.Session
-                .Select(p: Session => new { p.id ,p.Key}).SingleorDefault(p)
         }
     }
 }

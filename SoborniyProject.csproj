@@ -53,12 +53,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\algorithms\Algorithms\Boost_Algorithm.cs" />
-    <Compile Include="src\algorithms\Algorithms\Break_Algorithm.cs" />
-    <Compile Include="src\algorithms\Algorithms\RegroupAndCheck.cs" />
-    <Compile Include="src\algorithms\CarAndRoads\Car_Inf.cs" />
-    <Compile Include="src\algorithms\CarAndRoads\Car_Sessions.cs" />
-    <Compile Include="src\algorithms\CarAndRoads\Road_Inf.cs" />
+    <Compile Include="src\algorithms\Algorithms\BoostAlgorithm.cs" />
+    <Compile Include="src\algorithms\Algorithms\BreakAlgorithm.cs" />
+    <Compile Include="src\algorithms\Algorithms\RegroupAndVarification.cs" />
+    <Compile Include="src\algorithms\CarAndRoads\CarInf.cs" />
+    <Compile Include="src\algorithms\CarAndRoads\CarSessions.cs" />
+    <Compile Include="src\algorithms\CarAndRoads\RoadInf.cs" />
     <Compile Include="src\algorithms\IClasses\ChangeOfLigts.cs" />
     <Compile Include="src\algorithms\TrafficLights\GreenLight.cs" />
     <Compile Include="src\algorithms\TrafficLights\RedLight.cs" />

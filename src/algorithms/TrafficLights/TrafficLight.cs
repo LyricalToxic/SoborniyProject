@@ -8,15 +8,15 @@ namespace SoborniyProject.src.algorithms.TrafficLights
 {
     public abstract class TrafficLight<T>
     {
-        public int Current_light { get; set; }
+        public int CurrentLight { get; set; }
 
-        public double Current_time_of_light { get; set; }
+        public double CurrentLightSeconds { get; set; }
 
-        public double Seconds_of_light { get; set; }
+        public double LightDuration { get; set; }
 
         public int id { get; set; }
 
-        public abstract void In_from_BD(List<T> obj);
+        public abstract void DB_Inf(List<T> obj,int key);
 
     }
 }
