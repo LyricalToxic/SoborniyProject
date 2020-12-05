@@ -23,14 +23,7 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
             {
                 var inf_car = db.Car.FirstOrDefault(p => p.Id == key);
                 car.Acceleration = inf_car.Acceleration;
-                if (inf_car.MaxSpeed < 70)
-                {
-                    car.CarMaxSpeed = 70;
-                }
-                else 
-                {
-                    car.CarMaxSpeed = inf_car.MaxSpeed;
-                }
+                car.CarMaxSpeed = inf_car.MaxSpeed;
                 car.Decelaration = inf_car.Deceleration;
                    
             }

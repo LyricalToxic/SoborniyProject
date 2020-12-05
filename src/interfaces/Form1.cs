@@ -25,7 +25,7 @@ namespace SoborniyProject.src.interfaces
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int key=0;
+            int key=1;
             List<RoadInf> roads = new List<RoadInf>();
             List<CarSessions> car_sessions = new List<CarSessions>();
             car_sessions.Add(new CarSessions() { });
@@ -34,7 +34,7 @@ namespace SoborniyProject.src.interfaces
             car_sessions[0].StartConvertData(car_sessions, roads,key);
             BoostAlgorithm algoritm = new BoostAlgorithm();
             algoritm.BoostWay(car_sessions, roads, algoritm,key);
-            car_sessions
+        
 
 
 
