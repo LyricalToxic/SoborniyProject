@@ -91,6 +91,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "SpecifiactionCar";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SpecifiactionCar";
             this.ResumeLayout(false);
             this.PerformLayout();

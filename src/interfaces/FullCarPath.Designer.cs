@@ -139,6 +139,7 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
             this.Name = "FullCarPath";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FullCarPath";
             this.ResumeLayout(false);
             this.PerformLayout();
