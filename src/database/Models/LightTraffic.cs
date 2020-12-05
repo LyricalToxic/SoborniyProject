@@ -10,9 +10,9 @@ namespace SoborniyProject.database.Models
         public int RedLightDurationSec { get; set; }
         public int YellowLightDurationSec { get; set; }
         public int GreenLightDurationSec { get; set; }
-        public short StartColor { get; set; }
-        public short NextColor { get; set; }
-        public short Status { get; set; }
+        public int StartColor { get; set; }
+        public int NextColor { get; set; }
+        public int Status { get; set; }
         public float PreviousDistance  { get; set; }
         public DateTime CreatedAt{ get; set; } 
         public DateTime UpdatedAt{ get; set; } 

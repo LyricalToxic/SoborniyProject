@@ -66,12 +66,13 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "Характеристика авто(необов’язково)";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(20, 31);
+            this.label1.Location = new System.Drawing.Point(43, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(634, 64);
             this.label1.TabIndex = 5;

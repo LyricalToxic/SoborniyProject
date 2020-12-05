@@ -63,8 +63,8 @@
     <Compile Include="src\database\Models\LightTraffic.cs" />
     <Compile Include="src\database\Models\Session.cs" />
     <Compile Include="src\database\Models\SessionStatistic.cs" />
+    <Compile Include="src\interfaces\AnimationTrafficLight.cs" />
     <Compile Include="src\Settings.cs" />
-
     <Compile Include="src\algorithms\Algorithms\BoostAlgorithm.cs" />
     <Compile Include="src\algorithms\Algorithms\BreakAlgorithm.cs" />
     <Compile Include="src\algorithms\Algorithms\RegroupAndVarification.cs" />
@@ -76,8 +76,7 @@
     <Compile Include="src\algorithms\TrafficLights\RedLight.cs" />
     <Compile Include="src\algorithms\TrafficLights\TrafficLight.cs" />
     <Compile Include="src\algorithms\TrafficLights\YellowLight.cs" />
-
-     <Compile Include="src\interfaces\FullCarPath.cs">
+    <Compile Include="src\interfaces\FullCarPath.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\interfaces\FullCarPath.Designer.cs">
@@ -101,13 +100,12 @@
     <Compile Include="src\interfaces\SpecifiactionCar.Designer.cs">
       <DependentUpon>SpecifiactionCar.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\interfaces\TrafficLight.cs">
+    <Compile Include="src\interfaces\ITrafficLight.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\interfaces\TrafficLight.Designer.cs">
-      <DependentUpon>TrafficLight.cs</DependentUpon>
+    <Compile Include="src\interfaces\ITrafficLight.Designer.cs">
+      <DependentUpon>ITrafficLight.cs</DependentUpon>
     </Compile>
-
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -129,10 +127,9 @@
     <EmbeddedResource Include="src\interfaces\SpecifiactionCar.resx">
       <DependentUpon>SpecifiactionCar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\interfaces\TrafficLight.resx">
-      <DependentUpon>TrafficLight.cs</DependentUpon>
+    <EmbeddedResource Include="src\interfaces\ITrafficLight.resx">
+      <DependentUpon>ITrafficLight.cs</DependentUpon>
     </EmbeddedResource>
-    
     <None Include=".env" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -154,8 +151,6 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql">
       <Version>3.2.4</Version>
     </PackageReference>
-
-    <Folder Include="src\entities\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".env.example" />
@@ -167,6 +162,9 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql">
       <Version>3.2.4</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
