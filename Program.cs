@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SoborniyProject.src.interfaces;
 
+
 namespace SoborniyProject
 {
     static class Program
@@ -17,6 +18,7 @@ namespace SoborniyProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Application.Run(new Main());
 
         }
