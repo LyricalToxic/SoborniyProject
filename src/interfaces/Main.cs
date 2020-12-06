@@ -61,15 +61,17 @@ namespace SoborniyProject.src.interfaces
             lightTraffic.SessionId = store.session.Id;
             lightTraffic.PositionId = countLightTraffic;
             lightTraffic.StartColor = 1;//convertToInt(currentColor)
+
             if (lightTraffic.StartColor == 2)
             {
                 lightTraffic.NextColor = 1;//convertToInt(nextColor)
             }
+
             lightTraffic.Status = 20;// convertToInt(currentTime)
             lightTraffic.PreviousDistance = 200;//convertToInt(distance)
-            lightTraffic.RedLightDurationSec = 30;//convertToInt(redColor)
-            lightTraffic.YellowLightDurationSec = 20;// convertToInt(yellowColor)
-            lightTraffic.GreenLightDurationSec = 30;// convertToInt(greenColor)
+            lightTraffic.RedLightDuration = 30;//convertToInt(redColor)
+            lightTraffic.YellowLightDuration = 20;// convertToInt(yellowColor)
+            lightTraffic.GreenLightDuration = 30;// convertToInt(greenColor)
             store.addNewLightTraffic(lightTraffic);
             countLightTraffic++;
 
@@ -117,16 +119,36 @@ namespace SoborniyProject.src.interfaces
 
         private async void button3_Click_1(object sender, EventArgs e)
         {
+            
             store.startProgram();
-            for (int i = 0; i < 200; i++)
+            float distance = 0;
+            int i = 0;
+            int indexTime = 0;
+            foreach (var item in store.context.LightTraffic.ToArray())
             {
-
-                carModel.Location = new Point(i, 233);
-             
-                await Task.Delay(13);
-
+                distance += item.PreviousDistance;
+                for (; i < distance; i++)
+                {
+                        carModel.Location = new Point(i, 233);
+                        await Task.Delay(Convert.ToInt32(item.PreviousDistance / store.FullTime[indexTime]));
+                }
+                indexTime++;
+                
 
             }
+
+
+
+
+
+           
+
+                
+             
+              
+
+
+            
         }
     }
 }

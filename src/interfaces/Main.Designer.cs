@@ -194,7 +194,7 @@
             // color2
             // 
             this.color2.Image = ((System.Drawing.Image)(resources.GetObject("color2.Image")));
-            this.color2.Location = new System.Drawing.Point(463, 48);
+            this.color2.Location = new System.Drawing.Point(440, 49);
             this.color2.Name = "color2";
             this.color2.Size = new System.Drawing.Size(32, 33);
             this.color2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -204,7 +204,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(474, 76);
+            this.pictureBox5.Location = new System.Drawing.Point(451, 77);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(11, 77);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -214,7 +214,7 @@
             // color1
             // 
             this.color1.Image = ((System.Drawing.Image)(resources.GetObject("color1.Image")));
-            this.color1.Location = new System.Drawing.Point(237, 49);
+            this.color1.Location = new System.Drawing.Point(241, 48);
             this.color1.Name = "color1";
             this.color1.Size = new System.Drawing.Size(33, 33);
             this.color1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -224,7 +224,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(250, 77);
+            this.pictureBox2.Location = new System.Drawing.Point(254, 76);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(11, 77);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -563,7 +563,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1347, 610);
+            this.ClientSize = new System.Drawing.Size(1348, 610);
             this.Controls.Add(this.tabControl1);
             this.Name = "Main";
             this.Text = "Main";

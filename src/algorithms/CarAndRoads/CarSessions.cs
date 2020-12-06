@@ -46,7 +46,7 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
 
         public SoborniyContext Context;
 
-        public void StartConvertData(List<CarSessions> car_sessions, List<RoadInf> roads,long key)//вызывает другие методы
+        public void StartConvertData(List<CarSessions> car_sessions, List<RoadInf> roads,string key)//вызывает другие методы
         {
             CarInf car_Inf = new CarInf();
             car_Inf.DB_Inf(car_Inf,key,car_sessions);
@@ -84,24 +84,33 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
             (car_sessions[iter].AccelerationPerSecond * Math.Pow(car_sessions[iter].BoostTime, 2)) / 2;
         }
 
-        public void SaveSessions(List<CarSessions> car_sessions,long key) 
+        public void SaveSessions(List<CarSessions> car_sessions,string key) 
         {
-            Session session = new Session();
-            session.Status = car_sessions[0].SessionLose;
-            session.TotalTime = Convert.ToInt32(Math.Round(car_sessions[0].FullSessionTime));
+            var session = from p in car_sessions[0].Context.Session where p.Key == key select p;
+            foreach (var item in session)
+            {
+                item.Status = car_sessions[0].SessionLose;
+                item.TotalTime = Convert.ToInt32(Math.Round(car_sessions[0].FullSessionTime));
+            }
+
             for (int i = 0; i < car_sessions.Count; i++)
             {
                 SessionStatistic sessionStatistic = new SessionStatistic();
-                sessionStatistic.SessionId = key;
-                sessionStatistic.CarSpeed = Convert.ToInt32(Math.Round(car_sessions[i].SpeedLimit));
-                sessionStatistic.SessionTime = Convert.ToInt32(Math.Round(car_sessions[i].FullSessionTime));
-                //add datas
+                sessionStatistic.PositionId = i+1;
+                sessionStatistic.AccelerationDistance = (short)car_sessions[i].BoostDistance;
+                sessionStatistic.DecelerationDistance = (short)car_sessions[i].BreakinDistance;
+                sessionStatistic.AccelerationTime = (short)car_sessions[i].BoostTime;
+                sessionStatistic.DecelerationTime = (short)car_sessions[i].BreakingTime;
+                sessionStatistic.DistanceBetweenLightTraffic = (short)car_sessions[i].FullDistance;
+                sessionStatistic.CarSpeed = (short)car_sessions[i].SpeedLimit;
+                sessionStatistic.SessionTime = (short)car_sessions[i].FullSessionTime;
+                sessionStatistic.TimeBetweenLightTraffic = (short)car_sessions[i].SiteTime;
                 car_sessions[0].Context.SessionStatistics.Add(sessionStatistic);
             }
             car_sessions[0].Context.SaveChanges();
         }
 
-        public void DetectImpossibleValuesInSession(List<CarSessions> car_sessions,int key,List<RoadInf> roads) 
+        public void DetectImpossibleValuesInSession(List<CarSessions> car_sessions,string key,List<RoadInf> roads) 
         {
             for (int iter = 0; iter < car_sessions.Count; iter++)
             {

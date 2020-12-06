@@ -20,7 +20,7 @@ namespace SoborniyProject.src.interfaces
         public Store()
         {
             
-            session.Key = "10";
+            session.Key = "jjjjj";
             context.Session.Add(session);
 
             context.SaveChanges();
@@ -28,7 +28,7 @@ namespace SoborniyProject.src.interfaces
 
         public void startProgram()
         {
-            long key = (from p in context.Session select p.Id).Max();
+            string key = "jjjjj";
    
             List<RoadInf> roads = new List<RoadInf>();
             List<CarSessions> car_sessions = new List<CarSessions>();
@@ -41,9 +41,9 @@ namespace SoborniyProject.src.interfaces
             BoostAlgorithm algoritm = new BoostAlgorithm();
             algoritm.BoostWay(car_sessions, roads, algoritm, key);
 
-            for (int i = 0; i < car_sessions.Count; i++)
+            for (int i = 0; i < car_sessions.Count; i++)    
             {
-                FullTime.Add(Convert.ToInt32(Math.Round(car_sessions[i].SiteTime)));
+                FullTime.Add(Convert.ToInt32(Math.Round(car_sessions[i].BoostTime + car_sessions[i].TimeAfterBoost)));
             }
         }
 

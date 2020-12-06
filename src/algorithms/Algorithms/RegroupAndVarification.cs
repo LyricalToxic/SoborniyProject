@@ -59,8 +59,6 @@ namespace SoborniyProject.src.algorithms.Algorithms
                 else if (full_time - (greens[iter].LightDuration - greens[iter].CurrentLightSeconds) <= 0)
                 {
                     regroup.SaveSeconds.Add((full_time - (greens[iter].LightDuration - greens[iter].CurrentLightSeconds)) * -1);
-                    //ок успели
-
                 }
             }
             else if (reds[iter].CurrentLight == 1)
@@ -74,7 +72,6 @@ namespace SoborniyProject.src.algorithms.Algorithms
                 {
                     full_time = (full_time - ((reds[iter].LightDuration - reds[iter].CurrentLightSeconds) + yellows[iter].LightDuration)) * -1;
                     regroup.Breaking(regroup, car_sessions, roads, iter, full_time);
-                    //тормаза
                 }
                 else
                 {

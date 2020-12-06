@@ -21,7 +21,7 @@ namespace SoborniyProject.src.algorithms.TrafficLights
 
         public int id { get; set; }
 
-        public abstract void DB_Inf(List<T> obj,long key);
+        public abstract void DB_Inf(List<T> obj,string key);
 
     }
 }
