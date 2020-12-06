@@ -17,12 +17,13 @@ namespace SoborniyProject.src.interfaces
     public partial class Main : Form
     {
 
-        public AnimationTrafficLight store;
+        public Store store;
         private LightTraffic lightTraffic = new LightTraffic();
+        private Car car = new Car();        
         private int countLightTraffic;
 
 
-        public Main(AnimationTrafficLight store)
+        public Main(Store store)
         {
             this.store = store;
             InitializeComponent();
@@ -31,17 +32,7 @@ namespace SoborniyProject.src.interfaces
 
        
 
-        private async void button3_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < 200; i++)
-            {
-                
-                    car.Location = new Point(i, 269);
-                    await Task.Delay(200);
-                
-                
-            }
-        }
+        
 
         private void initializeData()
         {
@@ -57,18 +48,26 @@ namespace SoborniyProject.src.interfaces
         }
 
 
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+            lightTraffic.SessionId = store.session.Id;
+            countLightTraffic = store.countLightTraffic;
+        }
+
         private void addNewTraffic_Click(object sender, EventArgs e)
         {
 
             lightTraffic.Id = countLightTraffic;
-            lightTraffic.StartColor = convertToInt(currentColor);
+            lightTraffic.StartColor = 1;//convertToInt(currentColor)
             if (lightTraffic.StartColor == 2)
             {
                 lightTraffic.NextColor = convertToInt(nextColor);
             }
-            lightTraffic.Status = convertToInt(currentTime);
-            lightTraffic.PreviousDistance = convertToInt(distance);
-            lightTraffic.RedLightDurationSec = convertToInt(redColor);
+            lightTraffic.Status = 20;// convertToInt(currentTime)
+            lightTraffic.PreviousDistance = 200;//convertToInt(distance)
+            lightTraffic.RedLightDurationSec = 30;//convertToInt(redColor)
+            lightTraffic.YellowLightDurationSec = 20;// convertToInt(yellowColor)
+            lightTraffic.GreenLightDurationSec = 30;// convertToInt(greenColor)
             store.addNewLightTraffic(lightTraffic);
 
 
@@ -78,13 +77,35 @@ namespace SoborniyProject.src.interfaces
         }
 
 
-    
-        private void tabPage2_Click(object sender, EventArgs e)
+        
+
+
+
+
+
+
+
+
+
+        private void tabControl1_Click(object sender, EventArgs e)
         {
-            lightTraffic.SessionId = store.session.Id;
-            countLightTraffic = store.countLightTraffic;
+            car.SessionId = store.session.Id;
         }
 
+
+
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            car.Id = 0;
+            car.Name ="DAWD" ; //nameCar.Text
+            car.MaxSpeed = 50;//convertToInt(speed)
+            car.Acceleration = 11 ;//convertToInt(acceleration)
+            car.Deceleration = 8;//convertToInt(deceleration)
+            store.addNewCar(car);
+          
+        }
 
 
         private int convertToInt(TextBox text)
@@ -92,5 +113,18 @@ namespace SoborniyProject.src.interfaces
             return Convert.ToInt32(text.Text);
         }
 
+        private async void button3_Click_1(object sender, EventArgs e)
+        {
+            store.startProgram();
+            for (int i = 0; i < 200; i++)
+            {
+
+                carModel.Location = new Point(i, 269);
+             
+               // await Task.Delay(200/store.FullTime[0]);
+
+
+            }
+        }
     }
 }

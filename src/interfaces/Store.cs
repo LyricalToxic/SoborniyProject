@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace SoborniyProject.src.interfaces
 {
-    public class AnimationTrafficLight
+    public class Store
     {
         public List<int> FullTime = new List<int>();
         public SoborniyContext context = new SoborniyContext();
         public Session session = new Session();
         public int countLightTraffic = 0;
-        public AnimationTrafficLight()
+        public Store()
         {
             session.Id = 1;
             session.Key = "1";
@@ -27,7 +27,7 @@ namespace SoborniyProject.src.interfaces
 
         public void startProgram()
         {
-            int key = 1;
+            long key = (from p in context.Session select p.Id).Max();
             List<RoadInf> roads = new List<RoadInf>();
             List<CarSessions> car_sessions = new List<CarSessions>();
             car_sessions.Add(new CarSessions());
@@ -48,6 +48,12 @@ namespace SoborniyProject.src.interfaces
             context.LightTraffic.Add(lightTraffic);
             context.SaveChanges();
             countLightTraffic++;
+        }
+
+        public void addNewCar(Car car)
+        {
+            context.Car.Add(car);
+            context.SaveChanges();
         }
     }
 }

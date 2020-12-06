@@ -12,7 +12,7 @@ namespace SoborniyProject.src.algorithms.TrafficLights
     public class YellowLight :TrafficLight<YellowLight>
     {
         public int Next_color { set; get; }
-        public override void DB_Inf(List<YellowLight> yellows,int key)
+        public override void DB_Inf(List<YellowLight> yellows,long key)
         {
             using (SoborniyContext db = new SoborniyContext())
             {

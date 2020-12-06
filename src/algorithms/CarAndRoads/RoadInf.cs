@@ -15,7 +15,7 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
 
         public double DistaceRoadSite;
 
-        public void Inf_from_BD(List<RoadInf> roads,int key)
+        public void Inf_from_BD(List<RoadInf> roads,long key)
         {
             using (SoborniyContext db = new SoborniyContext())
             {

@@ -254,7 +254,7 @@
         5wAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="car.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="carModel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAbwAAAB2CAYAAACztCa5AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAX
         EQAAFxEByibzPwAA/7JJREFUeF7s/QV4FUm77g+P4K4J7kGCu7s7wSEJSYiSECAOEWLE3d0TQoImQIK7

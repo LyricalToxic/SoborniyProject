@@ -11,7 +11,7 @@ namespace SoborniyProject.src.algorithms.Algorithms
     class BoostAlgorithm
     {
 
-        public void BoostWay(List<CarSessions> car_sessions, List<RoadInf> roads, BoostAlgorithm position_Braking_or_Boost, int key)//считает сколько времни надо ехать чтоб преодолеть нужное расстояние
+        public void BoostWay(List<CarSessions> car_sessions, List<RoadInf> roads, BoostAlgorithm position_Braking_or_Boost, long key)//считает сколько времни надо ехать чтоб преодолеть нужное расстояние
         {
             List<GreenLight> greens = new List<GreenLight>();
             List<RedLight> reds = new List<RedLight>();

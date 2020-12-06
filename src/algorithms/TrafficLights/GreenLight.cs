@@ -11,7 +11,7 @@ namespace SoborniyProject.src.algorithms.TrafficLights
 {
     public class GreenLight :TrafficLight<GreenLight>
     {
-        public override void DB_Inf(List<GreenLight> greens,int key)
+        public override void DB_Inf(List<GreenLight> greens,long key)
         {
             using (SoborniyContext db = new SoborniyContext())
             {
