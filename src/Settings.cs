@@ -26,12 +26,13 @@ namespace SoborniyProject
         public static string MYSQL_DATABASE { get; set; }
 
         public static string ROOT_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Application.StartupPath));
-         public  enum LightTrafficColorEnum
+        public  enum LightTrafficColorEnum
         {
             Red = 1,
             Yellow = 2,
             Green = 3
         }
         public static string envFile = Path.Combine(ROOT_PATH, ".env");
+        public static string DATA_IMPORT_PATH = Path.Combine(ROOT_PATH, "src", "data");
     }
 }

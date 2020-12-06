@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Linq;
 using SoborniyProject.database.Context;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Text;
 using CsvHelper;
-using Microsoft.EntityFrameworkCore.Internal;
 using Newtonsoft.Json;
-using SoborniyProject.database.Models;
 
 
 namespace SoborniyProject.database.helpers
@@ -50,10 +46,11 @@ namespace SoborniyProject.database.helpers
         private void WriteToCsv(string csvPath, string sessionKey)
         {
             var statistics = GetResultStatistics(sessionKey);
-            var writer = new StreamWriter(csvPath);
-            var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-            csv.WriteRecords(statistics);
-            writer.Flush();
+            using (var writer = new StreamWriter(csvPath)) 
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(statistics);
+            }
         }
 
         private dynamic GetResultStatistics(string sessionKey)
@@ -66,10 +63,13 @@ namespace SoborniyProject.database.helpers
                 {
                     sessionId = o.Id,
                     positionId = e.PositionId,
-                    lightColor = e.LightColor,
-                    nextLightColor = e.NextLightColor,
+                    AccelerationDistance = e.AccelerationDistance,
+                    AccelerationTime = e.AccelerationTime,
+                    DecelerationDistance = e.DecelerationDistance,
+                    DecelerationTime = e.DecelerationTime,
                     lightTrafficStatus = e.LightTrafficStatus,
-                    durationLeft = e.DurationLeftSec,
+                    TimeBetweenLightTraffic = e.TimeBetweenLightTraffic,
+                    DistanceBetweenLightTraffic = e.DistanceBetweenLightTraffic,
                     carSpeed = e.CarSpeed,
                     sessionTime = e.SessionTime,
                 }
@@ -80,10 +80,11 @@ namespace SoborniyProject.database.helpers
         private void WriteToJson(string jsonPath, string sessionKey)
         {
             var data = GetSessionData(sessionKey);
-            var writer = new StreamWriter(jsonPath);
-            string jsonData = JsonConvert.SerializeObject(data);
-            writer.Write(jsonData);
-            writer.Flush();
+            using (var writer = new StreamWriter(jsonPath))
+            {
+                string jsonData = JsonConvert.SerializeObject(data);
+                writer.Write(jsonData);
+            }
         }
 
         private dynamic GetSessionData(string sessionKey)
@@ -119,9 +120,9 @@ namespace SoborniyProject.database.helpers
                     LightTraffic = new Dictionary<string, dynamic>
                     {
                         {"Position id", r.PositionId},
-                        {"Red light duration", r.RedLightDurationSec},
-                        {"Yellow light duration", r.YellowLightDurationSec},
-                        {"Green light duration", r.GreenLightDurationSec},
+                        {"Red light duration", r.RedLightDuration},
+                        {"Yellow light duration", r.YellowLightDuration},
+                        {"Green light duration", r.GreenLightDuration},
                         {"Start color", r.StartColor},
                         {"Next color", r.NextColor},
                         {"Status", r.Status},
@@ -129,13 +130,13 @@ namespace SoborniyProject.database.helpers
                     }
                 }
             ).Select(o => o);
-            var finalData = new
+            var resultData = new
             {
                 sessionData,
                 lightTrafficData
             };      
                 
-            return finalData;
+            return resultData;
         }
     }
 }
