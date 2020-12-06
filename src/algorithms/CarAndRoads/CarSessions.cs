@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SoborniyProject.src.algorithms.CarAndRoads
 {
-    class CarSessions
+    public class CarSessions
     {
         public double CarMaxSpeed;
 
@@ -44,10 +44,12 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
 
         public CarInf car_inf;
 
+        public SoborniyContext Context;
+
         public void StartConvertData(List<CarSessions> car_sessions, List<RoadInf> roads,long key)//вызывает другие методы
         {
             CarInf car_Inf = new CarInf();
-            car_Inf.DB_Inf(car_Inf,key);
+            car_Inf.DB_Inf(car_Inf,key,car_sessions);
             car_sessions[0].CarMaxSpeed = car_Inf.CarMaxSpeed;
             car_sessions[0].SpeedLimit = car_Inf.CarMaxSpeed;
             car_sessions[0].AccelerationPerSecond = car_Inf.Acceleration;
@@ -84,27 +86,19 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
 
         public void SaveSessions(List<CarSessions> car_sessions,long key) 
         {
-            using (SoborniyContext context1 = new SoborniyContext())
+            Session session = new Session();
+            session.Status = car_sessions[0].SessionLose;
+            session.TotalTime = Convert.ToInt32(Math.Round(car_sessions[0].FullSessionTime));
+            for (int i = 0; i < car_sessions.Count; i++)
             {
-                Session session = new Session();
-
-                session.Status = car_sessions[0].SessionLose;
-                session.Status = Convert.ToInt32(Math.Round(car_sessions[0].FullSessionTime));
+                SessionStatistic sessionStatistic = new SessionStatistic();
+                sessionStatistic.SessionId = key;
+                sessionStatistic.CarSpeed = Convert.ToInt32(Math.Round(car_sessions[i].SpeedLimit));
+                sessionStatistic.SessionTime = Convert.ToInt32(Math.Round(car_sessions[i].FullSessionTime));
+                //add datas
+                car_sessions[0].Context.SessionStatistics.Add(sessionStatistic);
             }
-            using (SoborniyContext context = new SoborniyContext())
-            {
-
-                for (int i = 0; i < car_sessions.Count; i++)
-                {
-                    SessionStatistic sessionStatistic = new SessionStatistic();
-                    sessionStatistic.SessionId = key;
-                    sessionStatistic.CarSpeed = Convert.ToInt32(Math.Round(car_sessions[i].SpeedLimit));
-                    sessionStatistic.SessionTime = Convert.ToInt32(Math.Round(car_sessions[i].FullSessionTime));
-                    //add datas
-                    context.SessionStatistics.Add(sessionStatistic);
-                    context.SaveChanges();
-                }
-            }
+            car_sessions[0].Context.SaveChanges();
         }
 
         public void DetectImpossibleValuesInSession(List<CarSessions> car_sessions,int key,List<RoadInf> roads) 

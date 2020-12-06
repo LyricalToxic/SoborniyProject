@@ -17,41 +17,15 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
 
         public double Decelaration;
 
-        public void DB_Inf(CarInf car ,long key)
+        public SoborniyContext Context;
+
+        public void DB_Inf(CarInf car ,long key, List<CarSessions> car_sessions)
         {
-
-            
-            using (SoborniyContext db = new SoborniyContext()) 
-            {
-
-                //var inf_car = from p in db.Car where p.MaxSpeed == 50 select p;
-
-                Car car2 = new Car
-                {
-                    Id = 0,
-                    Name = "DAWD",
-                    MaxSpeed = 50,
-                    Acceleration = 11,
-                    Deceleration = 8
-                };
-
-                db.Car.Add(car2);
-                db.SaveChanges();
-
-                foreach (var item in db.Car)
-                {
-                    int a = Convert.ToInt32(item.Acceleration);
-                    int b = Convert.ToInt32(item.Deceleration);
-                }
-
-
-                //car.Acceleration = inf_car.ToArray()[0].Acceleration;
-                //car.CarMaxSpeed = inf_car.ToArray()[0].MaxSpeed;
-                //car.Decelaration = inf_car.ToArray()[0].Deceleration;
-
-
-                   
-            }
+            car.Context = car_sessions[0].Context;
+            var info = from p in car.Context.Car where p.Id == key select p;
+            car.CarMaxSpeed = info.ToArray()[0].MaxSpeed;
+            car.Acceleration = info.ToArray()[0].Acceleration;
+            car.Decelaration = info.ToArray()[0].Deceleration;
         }
 
     }
