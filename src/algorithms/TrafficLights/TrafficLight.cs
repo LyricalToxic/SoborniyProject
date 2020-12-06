@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SoborniyProject.database.Models;
+using SoborniyProject.database.Context;
+
 
 namespace SoborniyProject.src.algorithms.TrafficLights
 {
     public abstract class TrafficLight<T>
     {
+        public SoborniyContext Context;
         public int CurrentLight { get; set; }
 
         public double CurrentLightSeconds { get; set; }

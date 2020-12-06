@@ -29,14 +29,18 @@ namespace SoborniyProject.src.interfaces
         public void startProgram()
         {
             long key = (from p in context.Session select p.Id).Max();
+   
             List<RoadInf> roads = new List<RoadInf>();
             List<CarSessions> car_sessions = new List<CarSessions>();
             car_sessions.Add(new CarSessions());
             roads.Add(new RoadInf());
+            roads[0].Context = context;
+            car_sessions[0].Context = context;
             roads[0].Inf_from_BD(roads, key);
             car_sessions[0].StartConvertData(car_sessions, roads, key);
             BoostAlgorithm algoritm = new BoostAlgorithm();
             algoritm.BoostWay(car_sessions, roads, algoritm, key);
+
             for (int i = 0; i < car_sessions.Count; i++)
             {
                 FullTime.Add(Convert.ToInt32(Math.Round(car_sessions[i].SiteTime)));

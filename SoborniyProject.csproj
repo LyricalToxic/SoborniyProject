@@ -71,7 +71,6 @@
     <Compile Include="src\algorithms\CarAndRoads\CarInf.cs" />
     <Compile Include="src\algorithms\CarAndRoads\CarSessions.cs" />
     <Compile Include="src\algorithms\CarAndRoads\RoadInf.cs" />
-    <Compile Include="src\algorithms\IClasses\ChangeOfLigts.cs" />
     <Compile Include="src\algorithms\TrafficLights\GreenLight.cs" />
     <Compile Include="src\algorithms\TrafficLights\RedLight.cs" />
     <Compile Include="src\algorithms\TrafficLights\TrafficLight.cs" />
