@@ -100,6 +100,10 @@ namespace SoborniyProject.src.algorithms.Algorithms
                     else { position_Braking_or_Boost.ZeroingAndCreateNext(car_sessions, roads, iter); }
                 }
                 else { position_Braking_or_Boost.ZeroingAndCreateNext(car_sessions, roads, iter); }
+                if (iter + 1 == car_sessions.Count) 
+                {
+                    car_sessions[0].DetectImpossibleValuesInSession(car_sessions,key,roads);
+                }
             }
 
         }
@@ -208,7 +212,7 @@ namespace SoborniyProject.src.algorithms.Algorithms
                 car_sessions[iter - 1].TimeAfterBoost = car_sessions[iter - 1].DistanceAfterBoost / (car_sessions[iter - 1].SpeedLimit * 1000 / 3600);
                 car_sessions[iter - 1].FullDistance = 0;
             }
-
+           
         }
 
 
