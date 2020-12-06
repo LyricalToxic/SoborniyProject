@@ -6,14 +6,17 @@ namespace SoborniyProject.database.Models
         public Int64 Id { get; set; }
         public Int64? SessionId { get; set; }
         public int PositionId { get; set; }
-        public short LightColor { get; set; }
-        public short NextLightColor { get; set; }
+        public short AccelerationTime { get; set; }
+        public short AccelerationDistance { get; set; }
+        public short DecelerationTime { get; set; }
+        public short DecelerationDistance { get; set; }
         public short LightTrafficStatus { get; set; }
-        public int DurationLeftSec { get; set; }
+        public int DistanceBetweenLightTraffic { get; set; }
+        public int TimeBetweenLightTraffic { get; set; }
         public int CarSpeed { get; set; }
         public int SessionTime { get; set; }
         public DateTime UpdatedAt{ get; set; } 
-        
+        public DateTime CreatedAt{ get; set; } 
         public Session Session { get; set; } 
     }
 }

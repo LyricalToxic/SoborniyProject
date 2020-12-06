@@ -15,7 +15,7 @@ namespace SoborniyProject.database.Configurations
             builder.Property(c => c.Acceleration).HasColumnType("decimal(5, 2)");
             builder.Property(c => c.Deceleration).HasColumnType("decimal(5, 2)");
             builder.Property(c => c.CreatedAt)
-                .IsRowVersion().IsRequired();
+                .ValueGeneratedOnAdd().IsRequired();
             builder.Property(c => c.UpdatedAt)
                 .ValueGeneratedOnAddOrUpdate().IsRequired();
             
