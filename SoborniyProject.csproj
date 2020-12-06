@@ -154,11 +154,11 @@
     <Compile Include="src\algorithms\TrafficLights\RedLight.cs" />
     <Compile Include="src\algorithms\TrafficLights\TrafficLight.cs" />
     <Compile Include="src\algorithms\TrafficLights\YellowLight.cs" />
-    <Compile Include="src\interfaces\FullCarPath.cs">
-    <Compile Include="src\exceptions\Base.cs" />
-    <Compile Include="src\exceptions\invalid\InvalidSessionKey.cs" />
+    <Compile Include="src\interfaces\FullCarPath.cs" >
       <SubType>Form</SubType>
     </Compile>
+	<Compile Include="src\exceptions\Base.cs" />
+    <Compile Include="src\exceptions\invalid\InvalidSessionKey.cs" />
     <Compile Include="src\interfaces\FullCarPath.Designer.cs">
       <DependentUpon>FullCarPath.cs</DependentUpon>
     </Compile>
