@@ -18,9 +18,9 @@ namespace SoborniyProject.src.interfaces
     {
 
         public Store store;
-       
-        private Car car = new Car();        
-        private int countLightTraffic;
+        private Car car = new Car();
+        private const int Y_LIGHT_TRAFFIC = 50;
+        private float X_LIGHT_TRAFFIC = 0;
 
 
         public Main(Store store)
@@ -48,40 +48,75 @@ namespace SoborniyProject.src.interfaces
         }
 
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-            
-            countLightTraffic = store.countLightTraffic;
-        }
+       
 
         private void addNewTraffic_Click(object sender, EventArgs e)
         {
 
             LightTraffic lightTraffic = new LightTraffic();
             lightTraffic.SessionId = store.session.Id;
-            lightTraffic.PositionId = countLightTraffic;
-            lightTraffic.StartColor = 1;//convertToInt(currentColor)
+            lightTraffic.PositionId = store.countLightTraffic;
+            lightTraffic.StartColor = (short)convertToInt(currentColor);
 
             if (lightTraffic.StartColor == 2)
             {
-                lightTraffic.NextColor = 1;//convertToInt(nextColor)
+                lightTraffic.NextColor = (short)convertToInt(nextColor);
             }
 
-            lightTraffic.Status = 20;// convertToInt(currentTime)
-            lightTraffic.PreviousDistance = 200;//convertToInt(distance)
-            lightTraffic.RedLightDuration = 30;//convertToInt(redColor)
-            lightTraffic.YellowLightDuration = 20;// convertToInt(yellowColor)
-            lightTraffic.GreenLightDuration = 30;// convertToInt(greenColor)
+            lightTraffic.Status = (short)convertToInt(currentTime);
+            lightTraffic.PreviousDistance = convertToInt(distance);
+            lightTraffic.RedLightDuration = convertToInt(redColor);
+            lightTraffic.YellowLightDuration = convertToInt(yellowColor);
+            lightTraffic.GreenLightDuration = convertToInt(greenColor);
             store.addNewLightTraffic(lightTraffic);
-            countLightTraffic++;
 
-
-            currentLightTraffic.Items.Add($"{countLightTraffic} світлофор");
+            currentLightTraffic.Items.Add($"{lightTraffic.Id} світлофор");
             currentLightTraffic.Text = currentLightTraffic.Items[0].ToString();
+
+            string color = "";
+            switch (lightTraffic.StartColor)
+            {
+                case 1:
+                    color = "RedLight";
+                    break;
+                case 2:
+                    color = "GreenLight";
+                    break;
+                case 3:
+                    color = "YellowLight";
+                    break;
+                default:
+                    color = "RedLight";
+                    break;
+            }
+            X_LIGHT_TRAFFIC += lightTraffic.PreviousDistance;
+            createILightTraffic(color);
+           
         }
 
+        private void createILightTraffic(string color)
+        {
+            try
+            {
+                PictureBox picture = new PictureBox
+                {
+                    Name = $"lightTraffic{store.countLightTraffic}",
+                    BackColor = Color.Transparent,
+                    SizeMode = PictureBoxSizeMode.AutoSize,
+                    Location = new Point(Convert.ToInt32(X_LIGHT_TRAFFIC), Y_LIGHT_TRAFFIC),
+                    Image = Image.FromFile($"D:/Work/Универ/SoborniyProject/src/assets/img/{color}.png"),
+                    Size = new Size(33, 106),
+                };
+                tabPage1.Controls.Add(picture);
+            }
+            catch (Exception e)
+            {
 
-        
+                MessageBox.Show(e.Message);
+            }
+
+        }
+
 
 
 
@@ -96,18 +131,15 @@ namespace SoborniyProject.src.interfaces
             car.SessionId = store.session.Id;
         }
 
-
-
-
-
         private void button2_Click(object sender, EventArgs e)
         {
             
             car.Name ="DAWD" ; //nameCar.Text
-            car.MaxSpeed = 50;//convertToInt(speed)
+            car.MaxSpeed = 100;//convertToInt(speed)
             car.Acceleration = 11 ;//convertToInt(acceleration)
             car.Deceleration = 8;//convertToInt(deceleration)
             store.addNewCar(car);
+            carModel.Visible = true;
           
         }
 
@@ -123,32 +155,32 @@ namespace SoborniyProject.src.interfaces
             store.startProgram();
             float distance = 0;
             int i = 0;
-            int indexTime = 0;
+            int indexSpeed = 0;
             foreach (var item in store.context.LightTraffic.ToArray())
             {
                 distance += item.PreviousDistance;
+                if (indexSpeed == store.countLightTraffic)
+                {
+                    break;
+                }
                 for (; i < distance; i++)
                 {
-                        carModel.Location = new Point(i, 233);
-                        await Task.Delay(Convert.ToInt32(item.PreviousDistance / store.FullTime[indexTime]));
+                    carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
+                    await Task.Delay(Convert.ToInt32(item.PreviousDistance / store.Speed[indexSpeed]));
                 }
-                indexTime++;
-                
-
+                indexSpeed++;
             }
 
+            distance = Width;
 
-
-
-
-           
-
-                
-             
-              
-
-
+            for (; i < distance; i++)
+            {
+                carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
+                await Task.Delay(Convert.ToInt32(distance / store.Speed[0]));
+            }
             
         }
+
+        
     }
 }

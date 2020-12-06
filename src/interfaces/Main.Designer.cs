@@ -31,16 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.color5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.color4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.color3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.color2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.color1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.carModel = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -76,16 +66,6 @@
             this.addCar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.color5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.color4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.color3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.color2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.color1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carModel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.trafficPage.SuspendLayout();
@@ -101,22 +81,12 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1352, 679);
+            this.tabControl1.Size = new System.Drawing.Size(1444, 679);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.color5);
-            this.tabPage1.Controls.Add(this.pictureBox11);
-            this.tabPage1.Controls.Add(this.color4);
-            this.tabPage1.Controls.Add(this.pictureBox9);
-            this.tabPage1.Controls.Add(this.color3);
-            this.tabPage1.Controls.Add(this.pictureBox7);
-            this.tabPage1.Controls.Add(this.color2);
-            this.tabPage1.Controls.Add(this.pictureBox5);
-            this.tabPage1.Controls.Add(this.color1);
-            this.tabPage1.Controls.Add(this.pictureBox2);
             this.tabPage1.Controls.Add(this.carModel);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.label7);
@@ -126,122 +96,23 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1344, 647);
+            this.tabPage1.Size = new System.Drawing.Size(1436, 647);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // color5
-            // 
-            this.color5.Image = ((System.Drawing.Image)(resources.GetObject("color5.Image")));
-            this.color5.Location = new System.Drawing.Point(1159, 49);
-            this.color5.Name = "color5";
-            this.color5.Size = new System.Drawing.Size(33, 33);
-            this.color5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.color5.TabIndex = 64;
-            this.color5.TabStop = false;
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(1170, 76);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(11, 77);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox11.TabIndex = 63;
-            this.pictureBox11.TabStop = false;
-            // 
-            // color4
-            // 
-            this.color4.Image = ((System.Drawing.Image)(resources.GetObject("color4.Image")));
-            this.color4.Location = new System.Drawing.Point(921, 48);
-            this.color4.Name = "color4";
-            this.color4.Size = new System.Drawing.Size(33, 33);
-            this.color4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.color4.TabIndex = 62;
-            this.color4.TabStop = false;
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(933, 76);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(11, 77);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox9.TabIndex = 61;
-            this.pictureBox9.TabStop = false;
-            // 
-            // color3
-            // 
-            this.color3.Image = ((System.Drawing.Image)(resources.GetObject("color3.Image")));
-            this.color3.Location = new System.Drawing.Point(701, 48);
-            this.color3.Name = "color3";
-            this.color3.Size = new System.Drawing.Size(33, 33);
-            this.color3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.color3.TabIndex = 60;
-            this.color3.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(713, 76);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(11, 77);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox7.TabIndex = 59;
-            this.pictureBox7.TabStop = false;
-            // 
-            // color2
-            // 
-            this.color2.Image = ((System.Drawing.Image)(resources.GetObject("color2.Image")));
-            this.color2.Location = new System.Drawing.Point(440, 49);
-            this.color2.Name = "color2";
-            this.color2.Size = new System.Drawing.Size(32, 33);
-            this.color2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.color2.TabIndex = 58;
-            this.color2.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(451, 77);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(11, 77);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox5.TabIndex = 57;
-            this.pictureBox5.TabStop = false;
-            // 
-            // color1
-            // 
-            this.color1.Image = ((System.Drawing.Image)(resources.GetObject("color1.Image")));
-            this.color1.Location = new System.Drawing.Point(241, 48);
-            this.color1.Name = "color1";
-            this.color1.Size = new System.Drawing.Size(33, 33);
-            this.color1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.color1.TabIndex = 56;
-            this.color1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(254, 76);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(11, 77);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 55;
-            this.pictureBox2.TabStop = false;
             // 
             // carModel
             // 
             this.carModel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.carModel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.carModel.Image = ((System.Drawing.Image)(resources.GetObject("carModel.Image")));
-            this.carModel.Location = new System.Drawing.Point(0, 233);
+            this.carModel.Location = new System.Drawing.Point(0, 236);
             this.carModel.Name = "carModel";
-            this.carModel.Size = new System.Drawing.Size(229, 72);
+            this.carModel.Size = new System.Drawing.Size(164, 62);
             this.carModel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.carModel.TabIndex = 54;
             this.carModel.TabStop = false;
+            this.carModel.Visible = false;
             // 
             // button1
             // 
@@ -281,7 +152,7 @@
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 148);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1347, 157);
+            this.pictureBox1.Size = new System.Drawing.Size(1433, 157);
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
             // 
@@ -307,11 +178,10 @@
             this.trafficPage.Location = new System.Drawing.Point(4, 28);
             this.trafficPage.Name = "trafficPage";
             this.trafficPage.Padding = new System.Windows.Forms.Padding(3);
-            this.trafficPage.Size = new System.Drawing.Size(1344, 647);
+            this.trafficPage.Size = new System.Drawing.Size(1436, 647);
             this.trafficPage.TabIndex = 1;
             this.trafficPage.Text = "Light Traffic";
             this.trafficPage.UseVisualStyleBackColor = true;
-            this.trafficPage.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // label8
             // 
@@ -480,7 +350,7 @@
             this.carPage.Location = new System.Drawing.Point(4, 28);
             this.carPage.Name = "carPage";
             this.carPage.Padding = new System.Windows.Forms.Padding(3);
-            this.carPage.Size = new System.Drawing.Size(1344, 647);
+            this.carPage.Size = new System.Drawing.Size(1436, 647);
             this.carPage.TabIndex = 2;
             this.carPage.Text = "Car";
             this.carPage.UseVisualStyleBackColor = true;
@@ -563,23 +433,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1348, 610);
+            this.ClientSize = new System.Drawing.Size(1439, 610);
             this.Controls.Add(this.tabControl1);
             this.Name = "Main";
             this.Text = "Main";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.color5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.color4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.color3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.color2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.color1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.carModel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.trafficPage.ResumeLayout(false);
@@ -594,16 +454,6 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.PictureBox color5;
-        private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.PictureBox color4;
-        private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.PictureBox color3;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox color2;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox color1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox carModel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label7;
