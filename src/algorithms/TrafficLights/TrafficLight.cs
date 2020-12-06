@@ -11,7 +11,8 @@ namespace SoborniyProject.src.algorithms.TrafficLights
 {
     public abstract class TrafficLight<T>
     {
-        public SoborniyContext Context;
+
+        public SoborniyContext Context { get; set; }
         public int CurrentLight { get; set; }
 
         public double CurrentLightSeconds { get; set; }

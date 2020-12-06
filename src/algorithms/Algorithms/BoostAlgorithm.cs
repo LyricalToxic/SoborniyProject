@@ -211,10 +211,6 @@ namespace SoborniyProject.src.algorithms.Algorithms
 
         }
 
-        public void ClearCarSessionsData() 
-        {
-
-        }
 
     }
 }

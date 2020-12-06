@@ -22,7 +22,7 @@ namespace SoborniyProject.src.algorithms.Algorithms
                 }
                 for (; ; )
                 {
-                    if (roads[iter].DistaceRoadSite / waiting_time < car_sessions[0].CarMaxSpeed * 1000 / 3600)
+                    if (roads[iter].DistaceRoadSite / waiting_time <= car_sessions[0].CarMaxSpeed * 1000 / 3600)
                     {
 
 
