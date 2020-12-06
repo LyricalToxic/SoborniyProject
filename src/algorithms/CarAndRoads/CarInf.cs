@@ -23,6 +23,7 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
             
             using (SoborniyContext db = new SoborniyContext()) 
             {
+
                 //var inf_car = from p in db.Car where p.MaxSpeed == 50 select p;
 
                 Car car2 = new Car
@@ -47,6 +48,8 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
                 //car.Acceleration = inf_car.ToArray()[0].Acceleration;
                 //car.CarMaxSpeed = inf_car.ToArray()[0].MaxSpeed;
                 //car.Decelaration = inf_car.ToArray()[0].Deceleration;
+
+
                    
             }
         }
