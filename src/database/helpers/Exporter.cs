@@ -120,9 +120,9 @@ namespace SoborniyProject.database.helpers
                     LightTraffic = new Dictionary<string, dynamic>
                     {
                         {"Position id", r.PositionId},
-                        {"Red light duration", r.RedLightDuration},
-                        {"Yellow light duration", r.YellowLightDuration},
-                        {"Green light duration", r.GreenLightDuration},
+                        {"Red light duration", r.RedLightDurationSec},
+                        {"Yellow light duration", r.YellowLightDurationSec},
+                        {"Green light duration", r.GreenLightDurationSec},
                         {"Start color", r.StartColor},
                         {"Next color", r.NextColor},
                         {"Status", r.Status},

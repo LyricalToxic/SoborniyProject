@@ -63,7 +63,7 @@ namespace SoborniyProject.src.interfaces
             lightTraffic.StartColor = 1;//convertToInt(currentColor)
             if (lightTraffic.StartColor == 2)
             {
-                lightTraffic.NextColor = convertToInt(nextColor);
+                lightTraffic.NextColor = 1;//convertToInt(nextColor)
             }
             lightTraffic.Status = 20;// convertToInt(currentTime)
             lightTraffic.PreviousDistance = 200;//convertToInt(distance)
@@ -121,9 +121,9 @@ namespace SoborniyProject.src.interfaces
             for (int i = 0; i < 200; i++)
             {
 
-                carModel.Location = new Point(i, 269);
+                carModel.Location = new Point(i, 233);
              
-               // await Task.Delay(200/store.FullTime[0]);
+                await Task.Delay(13);
 
 
             }

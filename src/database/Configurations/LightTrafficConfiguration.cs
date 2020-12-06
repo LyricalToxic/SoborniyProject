@@ -12,9 +12,9 @@ namespace SoborniyProject.database.Configurations
             builder.Property(c => c.SessionId).HasColumnType("bigint").IsRequired();
             builder.Property(c => c.PositionId).HasColumnType("bigint").IsRequired();
             builder.Property(c => c.PreviousDistance).HasColumnType("decimal(6, 2)").IsRequired();
-            builder.Property(c => c.RedLightDuration);
-            builder.Property(c => c.YellowLightDuration);
-            builder.Property(c => c.GreenLightDuration);
+            builder.Property(c => c.RedLightDurationSec);
+            builder.Property(c => c.YellowLightDurationSec);
+            builder.Property(c => c.GreenLightDurationSec);
             builder.Property(c => c.Status).HasDefaultValue(0).IsRequired();
             builder.Property(c => c.StartColor);
             builder.Property(c => c.NextColor);

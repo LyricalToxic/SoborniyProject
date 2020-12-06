@@ -19,10 +19,10 @@ namespace SoborniyProject.src.interfaces
         public int countLightTraffic = 0;
         public Store()
         {
-            session.Id = 1;
-            session.Key = "1";
-            context.Session.Add(session);
             
+            session.Key = "10";
+            context.Session.Add(session);
+
             context.SaveChanges();
         }
 

@@ -236,7 +236,7 @@
             this.carModel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.carModel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.carModel.Image = ((System.Drawing.Image)(resources.GetObject("carModel.Image")));
-            this.carModel.Location = new System.Drawing.Point(-4, 233);
+            this.carModel.Location = new System.Drawing.Point(0, 233);
             this.carModel.Name = "carModel";
             this.carModel.Size = new System.Drawing.Size(229, 72);
             this.carModel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
