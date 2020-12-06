@@ -104,6 +104,7 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
                 sessionStatistic.DistanceBetweenLightTraffic = (short)car_sessions[i].FullDistance;
                 sessionStatistic.CarSpeed = (short)car_sessions[i].SpeedLimit;
                 sessionStatistic.SessionTime = (short)car_sessions[i].FullSessionTime;
+                car_sessions[i].SiteTime = car_sessions[i].BoostTime + car_sessions[i].TimeAfterBoost;
                 sessionStatistic.TimeBetweenLightTraffic = (short)car_sessions[i].SiteTime;
                 car_sessions[0].Context.SessionStatistics.Add(sessionStatistic);
             }
