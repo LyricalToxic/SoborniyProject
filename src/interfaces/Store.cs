@@ -15,6 +15,7 @@ namespace SoborniyProject.src.interfaces
         public List<int> FullTime = new List<int>();
         public SoborniyContext context = new SoborniyContext();
         public Session session = new Session();
+
         public int countLightTraffic = 0;
         public Store()
         {
