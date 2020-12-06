@@ -21,6 +21,7 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
         {
             using (SoborniyContext db = new SoborniyContext()) 
             {
+                
                 var inf_car = db.Car.FirstOrDefault(p => p.Id == key);
                 car.Acceleration = inf_car.Acceleration;
                 car.CarMaxSpeed = inf_car.MaxSpeed;

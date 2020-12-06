@@ -10,7 +10,7 @@ namespace SoborniyProject.src.algorithms.Algorithms
 {
     class BoostAlgorithm
     {
-        public void BoostWay(List<CarSessions> car_sessions, List<RoadInf> roads, BoostAlgorithm position_Braking_or_Boost,int key)//считает сколько времни надо ехать чтоб преодолеть нужное расстояние
+        public void BoostWay(List<CarSessions> car_sessions, List<RoadInf> roads, BoostAlgorithm position_Braking_or_Boost, int key)//считает сколько времни надо ехать чтоб преодолеть нужное расстояние
         {
             List<GreenLight> greens = new List<GreenLight>();
             List<RedLight> reds = new List<RedLight>();
@@ -19,9 +19,9 @@ namespace SoborniyProject.src.algorithms.Algorithms
             reds.Add(new RedLight() { });
             yellows.Add(new YellowLight() { });
 
-            yellows[0].DB_Inf(yellows,key);
-            greens[0].DB_Inf(greens,key);
-            reds[0].DB_Inf(reds,key);
+            yellows[0].DB_Inf(yellows, key);
+            greens[0].DB_Inf(greens, key);
+            reds[0].DB_Inf(reds, key);
 
             RegroupAndVarification regroup = new RegroupAndVarification();
 
@@ -61,7 +61,7 @@ namespace SoborniyProject.src.algorithms.Algorithms
                             position_Braking_or_Boost.GoBack(car_sessions, roads, iter);
                             if (car_sessions[0].SessionLose == 1)
                             {
-                                car_sessions[0].SaveSessions(car_sessions,key);
+                                car_sessions[0].SaveSessions(car_sessions, key);
                                 break;
                             }
                             if (iter - 2 > 0)
@@ -206,6 +206,10 @@ namespace SoborniyProject.src.algorithms.Algorithms
 
         }
 
+        public void ClearCarSessionsData() 
+        {
+
+        }
 
     }
 }
