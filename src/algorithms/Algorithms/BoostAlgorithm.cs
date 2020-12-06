@@ -47,6 +47,7 @@ namespace SoborniyProject.src.algorithms.Algorithms
                 }
                 car_sessions[iter].FullDistance += car_sessions[iter].DistanceAfterBoost;//полный путь
                 position_Braking_or_Boost.VerificationOnColour(car_sessions, roads, iter, greens, reds, yellows, regroup);//проверка времени относительно светофора
+                if (car_sessions[0].SessionLose == 1) { car_sessions[0].SaveSessions(car_sessions,key); break; }
                 if (iter - 1 >= 0)
                 {
                     if (car_sessions[iter - 1].SpeedLimit > car_sessions[iter].SpeedLimit)
