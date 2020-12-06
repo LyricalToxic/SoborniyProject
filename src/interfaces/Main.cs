@@ -18,7 +18,7 @@ namespace SoborniyProject.src.interfaces
     {
 
         public Store store;
-        private LightTraffic lightTraffic = new LightTraffic();
+       
         private Car car = new Car();        
         private int countLightTraffic;
 
@@ -50,14 +50,16 @@ namespace SoborniyProject.src.interfaces
 
         private void tabPage2_Click(object sender, EventArgs e)
         {
-            lightTraffic.SessionId = store.session.Id;
+            
             countLightTraffic = store.countLightTraffic;
         }
 
         private void addNewTraffic_Click(object sender, EventArgs e)
         {
 
-            lightTraffic.Id = countLightTraffic;
+            LightTraffic lightTraffic = new LightTraffic();
+            lightTraffic.SessionId = store.session.Id;
+            lightTraffic.PositionId = countLightTraffic;
             lightTraffic.StartColor = 1;//convertToInt(currentColor)
             if (lightTraffic.StartColor == 2)
             {
@@ -69,7 +71,7 @@ namespace SoborniyProject.src.interfaces
             lightTraffic.YellowLightDurationSec = 20;// convertToInt(yellowColor)
             lightTraffic.GreenLightDurationSec = 30;// convertToInt(greenColor)
             store.addNewLightTraffic(lightTraffic);
-
+            countLightTraffic++;
 
 
             currentLightTraffic.Items.Add($"{countLightTraffic} світлофор");
@@ -98,7 +100,7 @@ namespace SoborniyProject.src.interfaces
 
         private void button2_Click(object sender, EventArgs e)
         {
-            car.Id = 0;
+            
             car.Name ="DAWD" ; //nameCar.Text
             car.MaxSpeed = 50;//convertToInt(speed)
             car.Acceleration = 11 ;//convertToInt(acceleration)

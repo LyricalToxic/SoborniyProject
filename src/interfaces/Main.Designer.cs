@@ -236,7 +236,7 @@
             this.carModel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.carModel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.carModel.Image = ((System.Drawing.Image)(resources.GetObject("carModel.Image")));
-            this.carModel.Location = new System.Drawing.Point(-2, 233);
+            this.carModel.Location = new System.Drawing.Point(-4, 233);
             this.carModel.Name = "carModel";
             this.carModel.Size = new System.Drawing.Size(229, 72);
             this.carModel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -396,7 +396,7 @@
             // 
             this.addNewTraffic.BackColor = System.Drawing.Color.White;
             this.addNewTraffic.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addNewTraffic.Location = new System.Drawing.Point(563, 533);
+            this.addNewTraffic.Location = new System.Drawing.Point(554, 516);
             this.addNewTraffic.Name = "addNewTraffic";
             this.addNewTraffic.Size = new System.Drawing.Size(289, 34);
             this.addNewTraffic.TabIndex = 35;
