@@ -11,20 +11,20 @@ namespace SoborniyProject.src.algorithms.TrafficLights
 {
     public class RedLight :TrafficLight<RedLight>
     {
-        public override void DB_Inf(List<RedLight> reds,long key)
+        public override void DB_Inf(List<RedLight> reds,string key)
         {
-            var sites = reds[0].Context.LightTraffic.Where(p => p.SessionId.Value == key);
+            var sites = reds[0].Context.LightTraffic.Where(p => p.Session.Key == key);
             int local_i = 0;
             foreach (var item in sites)
             {
                 try
                 {
-                    if (item.RedLightDurationSec <= 0) { throw new Exception($"{ item.RedLightDurationSec } must be > 0"); }
+                    if (item.RedLightDuration <= 0) { throw new Exception($"{ item.RedLightDuration } must be > 0"); }
                     if (local_i == 0)
                     {
                         if (item.StartColor == 1) { reds[0].CurrentLight = 1; } else { reds[0].CurrentLight = 0; }
                         reds[0].CurrentLightSeconds = item.Status;
-                        reds[0].LightDuration = item.GreenLightDurationSec;
+                        reds[0].LightDuration = item.GreenLightDuration;
                     }
                     else
                     {
@@ -33,7 +33,7 @@ namespace SoborniyProject.src.algorithms.TrafficLights
                         reds.Add(new RedLight()
                         {
                             CurrentLight = LocalLight,
-                            LightDuration = item.GreenLightDurationSec,
+                            LightDuration = item.GreenLightDuration,
                             CurrentLightSeconds = item.Status
 
                         });

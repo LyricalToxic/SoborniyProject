@@ -28,7 +28,7 @@ namespace SoborniyProject.src.interfaces
 
         public void startProgram()
         {
-            long key = (from p in context.Session select p.Id).Max();
+            string key = "jjjjj";
    
             List<RoadInf> roads = new List<RoadInf>();
             List<CarSessions> car_sessions = new List<CarSessions>();

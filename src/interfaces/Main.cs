@@ -59,15 +59,15 @@ namespace SoborniyProject.src.interfaces
 
             lightTraffic.Id = countLightTraffic;
             lightTraffic.StartColor = 1;//convertToInt(currentColor)
-            if (lightTraffic.StartColor == 2)
-            {
-                lightTraffic.NextColor = convertToInt(nextColor);
-            }
+           // if (lightTraffic.StartColor == 2)
+            //{
+            //    lightTraffic.NextColor = convertToInt(nextColor);
+            //}
             lightTraffic.Status = 20;// convertToInt(currentTime)
             lightTraffic.PreviousDistance = 200;//convertToInt(distance)
-            lightTraffic.RedLightDurationSec = 30;//convertToInt(redColor)
-            lightTraffic.YellowLightDurationSec = 20;// convertToInt(yellowColor)
-            lightTraffic.GreenLightDurationSec = 30;// convertToInt(greenColor)
+            lightTraffic.RedLightDuration = 30;//convertToInt(redColor)
+            lightTraffic.YellowLightDuration = 20;// convertToInt(yellowColor)
+            lightTraffic.GreenLightDuration = 30;// convertToInt(greenColor)
             store.addNewLightTraffic(lightTraffic);
 
 
