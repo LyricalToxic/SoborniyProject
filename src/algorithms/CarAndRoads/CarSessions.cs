@@ -44,7 +44,7 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
 
         public CarInf car_inf;
 
-        public void StartConvertData(List<CarSessions> car_sessions, List<RoadInf> roads,int key)//вызывает другие методы
+        public void StartConvertData(List<CarSessions> car_sessions, List<RoadInf> roads,long key)//вызывает другие методы
         {
             CarInf car_Inf = new CarInf();
             car_Inf.DB_Inf(car_Inf,key);
@@ -82,7 +82,7 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
             (car_sessions[iter].AccelerationPerSecond * Math.Pow(car_sessions[iter].BoostTime, 2)) / 2;
         }
 
-        public void SaveSessions(List<CarSessions> car_sessions,int key) 
+        public void SaveSessions(List<CarSessions> car_sessions,long key) 
         {
             using (SoborniyContext context1 = new SoborniyContext())
             {

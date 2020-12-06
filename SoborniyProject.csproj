@@ -53,6 +53,18 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\database\Configurations\CarConfiguration.cs" />
+    <Compile Include="src\database\Configurations\LightTrafficConfiguration.cs" />
+    <Compile Include="src\database\Configurations\SessionConfiguration.cs" />
+    <Compile Include="src\database\Configurations\SessionStatisticConfiguration.cs" />
+    <Compile Include="src\database\Connection.cs" />
+    <Compile Include="src\database\Context\SoborniyContext.cs" />
+    <Compile Include="src\database\Models\Car.cs" />
+    <Compile Include="src\database\Models\LightTraffic.cs" />
+    <Compile Include="src\database\Models\Session.cs" />
+    <Compile Include="src\database\Models\SessionStatistic.cs" />
+    <Compile Include="src\interfaces\Store.cs" />
+    <Compile Include="src\Settings.cs" />
     <Compile Include="src\algorithms\Algorithms\BoostAlgorithm.cs" />
     <Compile Include="src\algorithms\Algorithms\BreakAlgorithm.cs" />
     <Compile Include="src\algorithms\Algorithms\RegroupAndVarification.cs" />
@@ -64,23 +76,24 @@
     <Compile Include="src\algorithms\TrafficLights\RedLight.cs" />
     <Compile Include="src\algorithms\TrafficLights\TrafficLight.cs" />
     <Compile Include="src\algorithms\TrafficLights\YellowLight.cs" />
-    <Compile Include="src\database\Configurations\CarConfiguration.cs" />
-    <Compile Include="src\database\Configurations\LightTrafficConfiguration.cs" />
-    <Compile Include="src\database\Configurations\SessionConfiguration.cs" />
-    <Compile Include="src\database\Configurations\SessionStatisticConfiguration.cs" />
-    <Compile Include="src\database\Connection.cs" />
-    <Compile Include="src\database\Context\SoborniyContext.cs" />
-    <Compile Include="src\database\Models\Car.cs" />
-    <Compile Include="src\database\Models\LightTraffic.cs" />
-    <Compile Include="src\database\Models\Session.cs" />
-    <Compile Include="src\database\Models\SessionStatistic.cs" />
-    <Compile Include="src\interfaces\Form1.cs">
+    <Compile Include="src\interfaces\FullCarPath.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\interfaces\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="src\interfaces\FullCarPath.Designer.cs">
+      <DependentUpon>FullCarPath.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Settings.cs" />
+    <Compile Include="src\interfaces\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\interfaces\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\interfaces\Options.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\interfaces\Options.Designer.cs">
+      <DependentUpon>Options.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -90,8 +103,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="src\interfaces\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="src\interfaces\FullCarPath.resx">
+      <DependentUpon>FullCarPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\interfaces\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\interfaces\Options.resx">
+      <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".env" />
     <None Include="Properties\Settings.settings">
@@ -108,7 +127,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\entities\" />
+    <PackageReference Include="DotNetEnv">
+      <Version>1.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql">
+      <Version>3.2.4</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include=".env.example" />
@@ -120,6 +144,9 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql">
       <Version>3.2.4</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
