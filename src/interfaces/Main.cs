@@ -20,6 +20,7 @@ namespace SoborniyProject.src.interfaces
 
 
         public Store store;
+        public int globalAsync = 0;
         private Car car = new Car();
         private const int Y_LIGHT_TRAFFIC = 50;
         private float X_LIGHT_TRAFFIC = 0;
@@ -41,15 +42,12 @@ namespace SoborniyProject.src.interfaces
 
         private void initializeData()
         {
-            var pictures = this.Controls.OfType<PictureBox>().Select(p => p);
-            foreach (PictureBox control in pictures)
+            var sesions = from p in store.context.Session select p;
+            foreach (var item in sesions)
             {
-                if (control.Name.Contains("color"))
-                {
-                    //control.Image = Image.FromFile($"D:/Work/Универ/SoborniyProject/src/assets/img/{currentColor}.png");
-                }
-
+                comboBox1.Items.Add(item.Key);
             }
+            comboBox1.Text = comboBox1.Items[0].ToString();
         }
 
 
@@ -81,7 +79,7 @@ namespace SoborniyProject.src.interfaces
 
 
             X_LIGHT_TRAFFIC += lightTraffic.PreviousDistance;
-            createILightTraffic(checkColor(lightTraffic));
+            createILightTraffic(checkColor(lightTraffic.StartColor));
 
         }
 
@@ -114,7 +112,7 @@ namespace SoborniyProject.src.interfaces
         {
             car.SessionId = store.session.Id;
             car.Name = "DAWD"; //nameCar.Text
-            car.MaxSpeed = 100;//convertToInt(speed)
+            car.MaxSpeed = 150;//convertToInt(speed)
             car.Acceleration = 11;//convertToInt(acceleration)
             car.Deceleration = 8;//convertToInt(deceleration)
             store.addNewCar(car);
@@ -129,53 +127,88 @@ namespace SoborniyProject.src.interfaces
 
         private async void button3_Click_1(object sender, EventArgs e)
         {
-
-            try
+            if (globalAsync == 0)
             {
-                if(string.IsNullOrEmpty(car.Name))
+                globalAsync = 1;
+                try
                 {
-                    throw new Exception("Please add car");
-                }
-                store.startProgram();
-                float distance = 0;
-                int i = 0;
-                int indexSpeed = 0;
-                foreach (var item in store.context.LightTraffic.ToArray())
-                {
-                    distance += item.PreviousDistance;
-                    if (indexSpeed == store.countLightTraffic)
+                    if (string.IsNullOrEmpty(car.Name))
                     {
-                        break;
+                        throw new Exception("Please add car");
                     }
-                    //if (allColors[indexSpeed] == "RedLight")
-                    //{
+                    store.startProgram();
+                    float distance = 0;
+                    int i = 0;
+                    int indexSpeed = 0;
+                    foreach (var item in store.context.LightTraffic.ToArray())
+                    {
+                        distance += item.PreviousDistance;
+                        if (indexSpeed == store.countLightTraffic)
+                        {
+                            break;
+                        }
 
-                    //    Task.Delay(item.RedLightDuration);
-                    //    lightTraffics[indexSpeed].Image = Image.FromFile($"{PATH_TO_IMAGE}YellowLight.png");
-                    //    lightTraffics[indexSpeed].Refresh();
+
+                        for (; i < distance; i++)
+                        {
+                            carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
+
+                            await Task.Delay(Convert.ToInt32(item.PreviousDistance / store.Speed[indexSpeed]));
+                            if (allColors[indexSpeed] == "RedLight" && i == distance - 200)
+                            {
+
+                                item.NextColor = 3;
+                                lightTraffics[indexSpeed].Image = Image.FromFile($"{PATH_TO_IMAGE}YellowLight.png");
+                                allColors[indexSpeed] = "YellowLight";
+                                lightTraffics[indexSpeed].Refresh();
+                            }
+                            else if (allColors[indexSpeed] == "YellowLight" && i == distance - 100)
+                            {
+                                allColors[indexSpeed] = "GreenLight";
+                                lightTraffics[indexSpeed].Image = Image.FromFile($"{PATH_TO_IMAGE}{"GreenLight"}.png");
+                                lightTraffics[indexSpeed].Refresh();
+                            }
+                            else if (indexSpeed != 0 && allColors[indexSpeed - 1] == "GreenLight" && i > distance - item.PreviousDistance + 100)
+                            {
+
+                                allColors[indexSpeed - 1] = "";
+                                lightTraffics[indexSpeed - 1].Image = Image.FromFile($"{PATH_TO_IMAGE}{"RedLight"}.png");
+                                lightTraffics[indexSpeed - 1].Refresh();
+
+                            }
+
+                        }
+                        indexSpeed++;
+
+                    }
+                    distance = Size.Width;
+
 
                     for (; i < distance; i++)
                     {
                         carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
-                        await Task.Delay(Convert.ToInt32(item.PreviousDistance / store.Speed[indexSpeed]));
-
+                        await Task.Delay(Convert.ToInt32(distance / store.Speed[0]));
+                        if (allColors[indexSpeed - 1] == "GreenLight" && i > distance - 300)
+                        {
+                            allColors[indexSpeed - 1] = "";
+                            lightTraffics[indexSpeed - 1].Image = Image.FromFile($"{PATH_TO_IMAGE}{"RedLight"}.png");
+                            lightTraffics[indexSpeed - 1].Refresh();
+                        }
                     }
-                    indexSpeed++;
-
                 }
-                distance = Size.Width;
-
-
-                for (; i < distance; i++)
+                catch (Exception ex)
                 {
-                    carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
-                    await Task.Delay(Convert.ToInt32(distance / store.Speed[0]));
+                    MessageBox.Show(ex.Message);
+
                 }
-            }
-            catch (Exception ex)
+                finally
+                {
+                    globalAsync = 0;
+                }
+
+            }else
             {
-                MessageBox.Show(ex.Message);
-                
+                MessageBox.Show("Please wait to end the algorithms");
             }
 
         }
@@ -183,7 +216,18 @@ namespace SoborniyProject.src.interfaces
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            store.importLightTraffic("import_exmaple");
+            
+            OpenFileDialog open = new OpenFileDialog();
+            open.InitialDirectory = @"D:\Work\Универ\SoborniyProject\src\data";
+            if (open.ShowDialog() == DialogResult.Cancel)
+            {
+                return;
+            }
+            else
+            {
+                store.importLightTraffic(open.FileName);
+            }
+            
 
             lightTraffics.Clear();
 
@@ -192,7 +236,7 @@ namespace SoborniyProject.src.interfaces
             {
                 X_LIGHT_TRAFFIC += item.PreviousDistance;
 
-                createILightTraffic(checkColor(item));
+                createILightTraffic(checkColor(item.StartColor));
 
                 currentLightTraffic.Items.Add($"{item.PositionId} світлофор");
             }
@@ -203,10 +247,10 @@ namespace SoborniyProject.src.interfaces
 
 
 
-        private string checkColor(LightTraffic light)
+        private string checkColor(int light)
         {
             string color = "";
-            switch (light.StartColor)
+            switch (light)
             {
                 case 1:
                     color = "RedLight";
@@ -222,6 +266,40 @@ namespace SoborniyProject.src.interfaces
                     break;
             }
             return color;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            store.exportLightTraffic();
+        }
+
+      
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            spawnSessions(comboBox1.Text);
+        }
+
+    
+        private void spawnSessions(string key)
+        {
+            var sesions = from p in store.context.SessionStatistics where p.Session.Key == key select p;
+            foreach (var item in sesions)
+            {
+                ListViewItem listItem = new ListViewItem(item.Id.ToString());
+                listItem.SubItems.Add(item.SessionId.ToString());
+                listItem.SubItems.Add(item.PositionId.ToString());
+                listItem.SubItems.Add(item.AccelerationTime.ToString());
+                listItem.SubItems.Add(item.AccelerationDistance.ToString());
+                listItem.SubItems.Add(item.DecelerationTime.ToString());
+                listItem.SubItems.Add(item.DecelerationDistance.ToString());
+                listItem.SubItems.Add(item.LightTrafficStatus.ToString());
+                listItem.SubItems.Add(item.DistanceBetweenLightTraffic.ToString());
+                listItem.SubItems.Add(item.TimeBetweenLightTraffic.ToString());
+                listItem.SubItems.Add(item.CarSpeed.ToString());
+                listView1.Items.Add(listItem);
+
+            }
         }
     }
 

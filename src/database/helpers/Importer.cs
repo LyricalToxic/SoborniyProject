@@ -17,7 +17,7 @@ namespace SoborniyProject.database.helpers
         private static dynamic ReadFromCsv(string csvPath)
         {
             List<LightTraffic> lightTraffics = new List<LightTraffic>();
-            using (var reader = new StreamReader($"D:/Work/Универ/SoborniyProject/src/data/{csvPath}.csv"))
+            using (var reader = new StreamReader(csvPath))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 csv.Configuration.RegisterClassMap<LightTrafficsMap>();
