@@ -81,7 +81,7 @@ namespace SoborniyProject.database.helpers
             return lightTrafficStatistics;
         }
 
-        private void WriteToJson(string jsonPath, string data)
+        private void WriteToJson(string jsonPath, dynamic data)
         {
             using (var writer = new StreamWriter(jsonPath))
             {
@@ -125,17 +125,14 @@ namespace SoborniyProject.database.helpers
                 r => r.Session.Id,
                 (l, r) => new
                 {
-                    LightTraffic = new Dictionary<string, dynamic>
-                    {
-                        {"Position id", r.PositionId},
-                        {"Red light duration", r.RedLightDuration},
-                        {"Yellow light duration", r.YellowLightDuration},
-                        {"Green light duration", r.GreenLightDuration},
-                        {"Start color", r.StartColor},
-                        {"Next color", r.NextColor},
-                        {"Status", r.Status},
-                        {"Previous distance", r.PreviousDistance}
-                    }
+                    PositionId = r.PositionId,
+                    RedLightDuration =  r.RedLightDuration,
+                    YellowLightDuration =  r.YellowLightDuration,
+                    GreenLightDuration =  r.GreenLightDuration,
+                    StartColor = r.StartColor,
+                    NextColor =  r.NextColor,
+                    Status =  r.Status,
+                    PreviousDistance = r.PreviousDistance
                 }
             ).Select(o => o);
             return lightTrafficData;
