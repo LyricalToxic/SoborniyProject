@@ -46,10 +46,12 @@ namespace SoborniyProject.database.helpers
         private void WriteToCsv(string csvPath, string sessionKey)
         {
             var statistics = GetResultStatistics(sessionKey);
+            var lighttraffics = GetLightTrafficsData(sessionKey);
             using (var writer = new StreamWriter(csvPath)) 
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
                 csv.WriteRecords(statistics);
+                csv.WriteRecords(lighttraffics);
             }
         }
 
@@ -111,6 +113,11 @@ namespace SoborniyProject.database.helpers
                     },
                 }
             ).Select(o => o);
+            return sessionData;
+        }
+
+        private dynamic GetLightTrafficsData(string sessionKey)
+        {
             var lightTrafficData = Context.Session.Where(o => o.Key == sessionKey).Join(
                 Context.LightTraffic,
                 l => l.Id,
@@ -130,13 +137,7 @@ namespace SoborniyProject.database.helpers
                     }
                 }
             ).Select(o => o);
-            var resultData = new
-            {
-                sessionData,
-                lightTrafficData
-            };      
-                
-            return resultData;
+            return lightTrafficData;
         }
     }
 }
