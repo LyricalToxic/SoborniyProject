@@ -19,17 +19,22 @@ namespace SoborniyProject.database.helpers
         }
         public void Run(string sessionKey, string directory="")
         {
-            string csvPath = ResolvePath(directory, sessionKey, "csv");
-            string jsonPath = ResolvePath(directory, sessionKey, "json");
-            WriteToCsv(csvPath, sessionKey);
-            WriteToJson(jsonPath, sessionKey);
+            string csvStatisticsPath = ResolvePath(directory, sessionKey,"SessionStatistics", "csv");
+            string csvLightTrafficsPath = ResolvePath(directory, sessionKey, "LightTraffics", "csv");
+            string jsonSessionDataPath = ResolvePath(directory, sessionKey, "SessionData", "json");
+            var statistics = GetResultStatistics(sessionKey);
+            var lightTraffics = GetLightTrafficsData(sessionKey);
+            var sessionData = GetSessionData(sessionKey);
+            WriteToCsv(csvStatisticsPath, statistics);
+            WriteToCsv(csvLightTrafficsPath, lightTraffics);
+            WriteToJson(jsonSessionDataPath, sessionData);
         }
 
-        protected string ResolvePath(string directory, string sessionKey, string extension)
+        protected string ResolvePath(string directory, string sessionKey, string fileName, string extension)
         {
             string resolvedPath;
             string resolvedPathDir;
-            string resolvedName = String.Format("{0}.{1}", sessionKey, extension);
+            string resolvedName = String.Format("{0}.{1}", fileName, extension);
             if (Directory.Exists(directory))
             {
                 resolvedPath = Path.Combine(directory, resolvedName);
@@ -43,15 +48,12 @@ namespace SoborniyProject.database.helpers
 
             return resolvedPath;
         }
-        private void WriteToCsv(string csvPath, string sessionKey)
+        private void WriteToCsv(string csvPath, dynamic data)
         {
-            var statistics = GetResultStatistics(sessionKey);
-            var lighttraffics = GetLightTrafficsData(sessionKey);
             using (var writer = new StreamWriter(csvPath)) 
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
-                csv.WriteRecords(statistics);
-                csv.WriteRecords(lighttraffics);
+                csv.WriteRecords(data);
             }
         }
 
@@ -79,9 +81,8 @@ namespace SoborniyProject.database.helpers
             return lightTrafficStatistics;
         }
 
-        private void WriteToJson(string jsonPath, string sessionKey)
+        private void WriteToJson(string jsonPath, string data)
         {
-            var data = GetSessionData(sessionKey);
             using (var writer = new StreamWriter(jsonPath))
             {
                 string jsonData = JsonConvert.SerializeObject(data);
