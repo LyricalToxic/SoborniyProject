@@ -17,10 +17,15 @@ namespace SoborniyProject.src.interfaces
     public partial class Main : Form
     {
 
+
+
         public Store store;
         private Car car = new Car();
         private const int Y_LIGHT_TRAFFIC = 50;
         private float X_LIGHT_TRAFFIC = 0;
+        private const string PATH_TO_IMAGE = "D:/Work/Универ/SoborniyProject/src/assets/img/";
+        private List<PictureBox> lightTraffics = new List<PictureBox>();
+        private List<string> allColors = new List<string>();
 
 
         public Main(Store store)
@@ -30,9 +35,9 @@ namespace SoborniyProject.src.interfaces
             initializeData();
         }
 
-       
 
-        
+
+
 
         private void initializeData()
         {
@@ -48,11 +53,12 @@ namespace SoborniyProject.src.interfaces
         }
 
 
-       
+
 
         private void addNewTraffic_Click(object sender, EventArgs e)
         {
 
+            store.countLightTraffic++;
             LightTraffic lightTraffic = new LightTraffic();
             lightTraffic.SessionId = store.session.Id;
             lightTraffic.PositionId = store.countLightTraffic;
@@ -73,25 +79,10 @@ namespace SoborniyProject.src.interfaces
             currentLightTraffic.Items.Add($"{lightTraffic.Id} світлофор");
             currentLightTraffic.Text = currentLightTraffic.Items[0].ToString();
 
-            string color = "";
-            switch (lightTraffic.StartColor)
-            {
-                case 1:
-                    color = "RedLight";
-                    break;
-                case 2:
-                    color = "GreenLight";
-                    break;
-                case 3:
-                    color = "YellowLight";
-                    break;
-                default:
-                    color = "RedLight";
-                    break;
-            }
+
             X_LIGHT_TRAFFIC += lightTraffic.PreviousDistance;
-            createILightTraffic(color);
-           
+            createILightTraffic(checkColor(lightTraffic));
+
         }
 
         private void createILightTraffic(string color)
@@ -100,47 +91,34 @@ namespace SoborniyProject.src.interfaces
             {
                 PictureBox picture = new PictureBox
                 {
-                    Name = $"lightTraffic{store.countLightTraffic}",
+                    Name = $"lightTraffic{color}{store.countLightTraffic}",
                     BackColor = Color.Transparent,
                     SizeMode = PictureBoxSizeMode.AutoSize,
                     Location = new Point(Convert.ToInt32(X_LIGHT_TRAFFIC), Y_LIGHT_TRAFFIC),
-                    Image = Image.FromFile($"D:/Work/Универ/SoborniyProject/src/assets/img/{color}.png"),
+                    Image = Image.FromFile($"{PATH_TO_IMAGE}{color}.png"),
                     Size = new Size(33, 106),
                 };
                 tabPage1.Controls.Add(picture);
+                tabPage1.Refresh();
+                lightTraffics.Add(picture);
+                allColors.Add(color);
             }
             catch (Exception e)
             {
-
                 MessageBox.Show(e.Message);
             }
 
         }
 
-
-
-
-
-
-
-
-
-
-        private void tabControl1_Click(object sender, EventArgs e)
-        {
-            car.SessionId = store.session.Id;
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            
-            car.Name ="DAWD" ; //nameCar.Text
+            car.SessionId = store.session.Id;
+            car.Name = "DAWD"; //nameCar.Text
             car.MaxSpeed = 100;//convertToInt(speed)
-            car.Acceleration = 11 ;//convertToInt(acceleration)
+            car.Acceleration = 11;//convertToInt(acceleration)
             car.Deceleration = 8;//convertToInt(deceleration)
             store.addNewCar(car);
             carModel.Visible = true;
-          
         }
 
 
@@ -151,36 +129,112 @@ namespace SoborniyProject.src.interfaces
 
         private async void button3_Click_1(object sender, EventArgs e)
         {
-            
-            store.startProgram();
-            float distance = 0;
-            int i = 0;
-            int indexSpeed = 0;
-            foreach (var item in store.context.LightTraffic.ToArray())
+
+            try
             {
-                distance += item.PreviousDistance;
-                if (indexSpeed == store.countLightTraffic)
+                if(string.IsNullOrEmpty(car.Name))
                 {
-                    break;
+                    throw new Exception("Please add car");
                 }
+                store.startProgram();
+                float distance = 0;
+                int i = 0;
+                int indexSpeed = 0;
+                foreach (var item in store.context.LightTraffic.ToArray())
+                {
+                    distance += item.PreviousDistance;
+                    if (indexSpeed == store.countLightTraffic)
+                    {
+                        break;
+                    }
+                    //if (allColors[indexSpeed] == "RedLight")
+                    //{
+
+                    //    Task.Delay(item.RedLightDuration);
+                    //    lightTraffics[indexSpeed].Image = Image.FromFile($"{PATH_TO_IMAGE}YellowLight.png");
+                    //    lightTraffics[indexSpeed].Refresh();
+
+                    for (; i < distance; i++)
+                    {
+                        carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
+                        await Task.Delay(Convert.ToInt32(item.PreviousDistance / store.Speed[indexSpeed]));
+
+                    }
+                    indexSpeed++;
+
+                }
+                distance = Size.Width;
+
+
                 for (; i < distance; i++)
                 {
                     carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
-                    await Task.Delay(Convert.ToInt32(item.PreviousDistance / store.Speed[indexSpeed]));
+                    await Task.Delay(Convert.ToInt32(distance / store.Speed[0]));
                 }
-                indexSpeed++;
             }
-
-            distance = Width;
-
-            for (; i < distance; i++)
+            catch (Exception ex)
             {
-                carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
-                await Task.Delay(Convert.ToInt32(distance / store.Speed[0]));
+                MessageBox.Show(ex.Message);
+                
             }
-            
+
         }
 
-        
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            store.importLightTraffic("import_exmaple");
+
+            lightTraffics.Clear();
+
+            X_LIGHT_TRAFFIC = 0;
+            foreach (var item in store.lightTraffics)
+            {
+                X_LIGHT_TRAFFIC += item.PreviousDistance;
+
+                createILightTraffic(checkColor(item));
+
+                currentLightTraffic.Items.Add($"{item.PositionId} світлофор");
+            }
+            currentLightTraffic.Text = currentLightTraffic.Items[0].ToString();
+
+
+        }
+
+
+
+        private string checkColor(LightTraffic light)
+        {
+            string color = "";
+            switch (light.StartColor)
+            {
+                case 1:
+                    color = "RedLight";
+                    break;
+                case 3:
+                    color = "GreenLight";
+                    break;
+                case 2:
+                    color = "YellowLight";
+                    break;
+                default:
+                    color = "RedLight";
+                    break;
+            }
+            return color;
+        }
     }
+
 }
+
+            
+
+            
+      
+
+       
+            
+
+
+        
+    
