@@ -36,7 +36,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.BStartAlgorithm = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.trafficPage = new System.Windows.Forms.TabPage();
+            this.BStop = new System.Windows.Forms.TabPage();
             this.BOpenFileLightTraffic = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.greenColor = new System.Windows.Forms.TextBox();
@@ -79,18 +79,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nameCar = new System.Windows.Forms.TextBox();
             this.BAddCar = new System.Windows.Forms.Button();
+            this.BStopAlgorithm = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carModel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.trafficPage.SuspendLayout();
+            this.BStop.SuspendLayout();
             this.carPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.trafficPage);
+            this.tabControl1.Controls.Add(this.BStop);
             this.tabControl1.Controls.Add(this.carPage);
             this.tabControl1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabControl1.Location = new System.Drawing.Point(2, 2);
@@ -101,6 +102,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.BStopAlgorithm);
             this.tabPage1.Controls.Add(this.BSaveSessions);
             this.tabPage1.Controls.Add(this.carModel);
             this.tabPage1.Controls.Add(this.label7);
@@ -170,33 +172,33 @@
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
             // 
-            // trafficPage
+            // BStop
             // 
-            this.trafficPage.Controls.Add(this.BOpenFileLightTraffic);
-            this.trafficPage.Controls.Add(this.label8);
-            this.trafficPage.Controls.Add(this.greenColor);
-            this.trafficPage.Controls.Add(this.yellowColor);
-            this.trafficPage.Controls.Add(this.label1);
-            this.trafficPage.Controls.Add(this.label9);
-            this.trafficPage.Controls.Add(this.currentLightTraffic);
-            this.trafficPage.Controls.Add(this.nextColor);
-            this.trafficPage.Controls.Add(this.label10);
-            this.trafficPage.Controls.Add(this.redColor);
-            this.trafficPage.Controls.Add(this.BAddNewTraffic);
-            this.trafficPage.Controls.Add(this.currentColor);
-            this.trafficPage.Controls.Add(this.label11);
-            this.trafficPage.Controls.Add(this.distance);
-            this.trafficPage.Controls.Add(this.label12);
-            this.trafficPage.Controls.Add(this.currentTime);
-            this.trafficPage.Controls.Add(this.label13);
-            this.trafficPage.Controls.Add(this.label14);
-            this.trafficPage.Location = new System.Drawing.Point(4, 28);
-            this.trafficPage.Name = "trafficPage";
-            this.trafficPage.Padding = new System.Windows.Forms.Padding(3);
-            this.trafficPage.Size = new System.Drawing.Size(1378, 579);
-            this.trafficPage.TabIndex = 1;
-            this.trafficPage.Text = "Light Traffic";
-            this.trafficPage.UseVisualStyleBackColor = true;
+            this.BStop.Controls.Add(this.BOpenFileLightTraffic);
+            this.BStop.Controls.Add(this.label8);
+            this.BStop.Controls.Add(this.greenColor);
+            this.BStop.Controls.Add(this.yellowColor);
+            this.BStop.Controls.Add(this.label1);
+            this.BStop.Controls.Add(this.label9);
+            this.BStop.Controls.Add(this.currentLightTraffic);
+            this.BStop.Controls.Add(this.nextColor);
+            this.BStop.Controls.Add(this.label10);
+            this.BStop.Controls.Add(this.redColor);
+            this.BStop.Controls.Add(this.BAddNewTraffic);
+            this.BStop.Controls.Add(this.currentColor);
+            this.BStop.Controls.Add(this.label11);
+            this.BStop.Controls.Add(this.distance);
+            this.BStop.Controls.Add(this.label12);
+            this.BStop.Controls.Add(this.currentTime);
+            this.BStop.Controls.Add(this.label13);
+            this.BStop.Controls.Add(this.label14);
+            this.BStop.Location = new System.Drawing.Point(4, 28);
+            this.BStop.Name = "BStop";
+            this.BStop.Padding = new System.Windows.Forms.Padding(3);
+            this.BStop.Size = new System.Drawing.Size(1378, 579);
+            this.BStop.TabIndex = 1;
+            this.BStop.Text = "Light Traffic";
+            this.BStop.UseVisualStyleBackColor = true;
             // 
             // BOpenFileLightTraffic
             // 
@@ -292,7 +294,7 @@
             // 
             this.BAddNewTraffic.BackColor = System.Drawing.Color.White;
             this.BAddNewTraffic.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BAddNewTraffic.Location = new System.Drawing.Point(563, 470);
+            this.BAddNewTraffic.Location = new System.Drawing.Point(510, 470);
             this.BAddNewTraffic.Name = "BAddNewTraffic";
             this.BAddNewTraffic.Size = new System.Drawing.Size(289, 34);
             this.BAddNewTraffic.TabIndex = 35;
@@ -558,6 +560,17 @@
             this.BAddCar.UseVisualStyleBackColor = true;
             this.BAddCar.Click += new System.EventHandler(this.BAddCar_Click);
             // 
+            // BStopAlgorithm
+            // 
+            this.BStopAlgorithm.BackColor = System.Drawing.Color.White;
+            this.BStopAlgorithm.Location = new System.Drawing.Point(843, 406);
+            this.BStopAlgorithm.Name = "BStopAlgorithm";
+            this.BStopAlgorithm.Size = new System.Drawing.Size(245, 91);
+            this.BStopAlgorithm.TabIndex = 58;
+            this.BStopAlgorithm.Text = "Зупинити програму";
+            this.BStopAlgorithm.UseVisualStyleBackColor = false;
+            this.BStopAlgorithm.Click += new System.EventHandler(this.BStopAlgorithm_Click_1);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -571,8 +584,8 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carModel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.trafficPage.ResumeLayout(false);
-            this.trafficPage.PerformLayout();
+            this.BStop.ResumeLayout(false);
+            this.BStop.PerformLayout();
             this.carPage.ResumeLayout(false);
             this.carPage.PerformLayout();
             this.ResumeLayout(false);
@@ -587,7 +600,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button BStartAlgorithm;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TabPage trafficPage;
+        private System.Windows.Forms.TabPage BStop;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox greenColor;
         private System.Windows.Forms.TextBox yellowColor;
@@ -631,5 +644,6 @@
         private System.Windows.Forms.ComboBox CBKeySessions;
         private System.Windows.Forms.Button BOpenFileLightTraffic;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button BStopAlgorithm;
     }
 }

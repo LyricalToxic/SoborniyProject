@@ -27,6 +27,7 @@ namespace SoborniyProject.src.interfaces
         private const string PATH_TO_IMAGE = "D:/Work/Универ/SoborniyProject/src/assets/img/";
         private List<PictureBox> lightTraffics = new List<PictureBox>();
         private List<string> allColors = new List<string>();
+        private bool stoped = false;
 
 
         public Main(Store store)
@@ -166,8 +167,10 @@ namespace SoborniyProject.src.interfaces
 
         private async void BStartAlgorithm_Click(object sender, EventArgs e)
         {
+            
             if (globalAsync == 0)
             {
+                stoped = false;
                 globalAsync = 1;
                 try
                 {
@@ -175,7 +178,7 @@ namespace SoborniyProject.src.interfaces
                     {
                         throw new Exception("Please add car");
                     }
-                    store.startProgram();
+                    
                     float distance = 0;
                     int i = 0;
                     int indexSpeed = 0;
@@ -191,8 +194,13 @@ namespace SoborniyProject.src.interfaces
                         for (; i < distance; i++)
                         {
                             carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
-
+                            if (stoped)
+                            {
+                                carModel.Location = new Point(0, carModel.Location.Y);
+                                break;
+                            }
                             await Task.Delay(Convert.ToInt32(item.PreviousDistance / store.Speed[indexSpeed]));
+                            
                             if (allColors[indexSpeed] == "RedLight" && i == distance - 200)
                             {
 
@@ -226,6 +234,11 @@ namespace SoborniyProject.src.interfaces
                     for (; i < distance; i++)
                     {
                         carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
+                        if (stoped)
+                        {
+                            carModel.Location = new Point(0, carModel.Location.Y);
+                            break;
+                        }
                         await Task.Delay(Convert.ToInt32(distance / store.Speed[0]));
                         if (allColors[indexSpeed - 1] == "GreenLight" && i > distance - 300)
                         {
@@ -240,10 +253,8 @@ namespace SoborniyProject.src.interfaces
                     MessageBox.Show(ex.Message);
 
                 }
-                finally
-                {
-                    globalAsync = 0;
-                }
+                
+                globalAsync = 0;
 
             }
             else
@@ -255,6 +266,25 @@ namespace SoborniyProject.src.interfaces
         private void BSaveSessions_Click(object sender, EventArgs e)
         {
             store.exportLightTraffic();
+        }
+
+      
+
+        private void BAddCar_Click(object sender, EventArgs e)
+        {
+            car.SessionId = store.session.Id;
+            car.Name = "DAWD"; //nameCar.Text
+            car.MaxSpeed = 150;//convertToInt(speed)
+            car.Acceleration = 11;//convertToInt(acceleration)
+            car.Deceleration = 8;//convertToInt(deceleration)
+            store.addNewCar(car);
+            carModel.Visible = true;
+            store.startProgram();
+        }
+
+        private void CBKeySessions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            spawnSessions(CBKeySessions.Text);
         }
 
         private void BOpenFileLightTraffic_Click(object sender, EventArgs e)
@@ -285,20 +315,19 @@ namespace SoborniyProject.src.interfaces
             currentLightTraffic.Text = currentLightTraffic.Items[0].ToString();
         }
 
-        private void BAddCar_Click(object sender, EventArgs e)
-        {
-            car.SessionId = store.session.Id;
-            car.Name = "DAWD"; //nameCar.Text
-            car.MaxSpeed = 150;//convertToInt(speed)
-            car.Acceleration = 11;//convertToInt(acceleration)
-            car.Deceleration = 8;//convertToInt(deceleration)
-            store.addNewCar(car);
-            carModel.Visible = true;
-        }
+        
 
-        private void CBKeySessions_SelectedIndexChanged(object sender, EventArgs e)
+        private void BStopAlgorithm_Click_1(object sender, EventArgs e)
         {
-            spawnSessions(CBKeySessions.Text);
+            int i = 0;
+            var pbxes = this.Controls.OfType<PictureBox>().Select(p => p);
+            foreach (var p in pbxes)
+            {
+                p.Image = Image.FromFile($"{PATH_TO_IMAGE}{checkColor(store.lightTraffics[i].StartColor)}");
+                p.Refresh();
+                i++;
+            }
+            stoped = true;
         }
     }
 
