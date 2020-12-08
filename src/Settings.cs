@@ -34,5 +34,6 @@ namespace SoborniyProject
         }
         public static string envFile = Path.Combine(ROOT_PATH, ".env");
         public static string DATA_IMPORT_PATH = Path.Combine(ROOT_PATH, "src", "data");
+        public static string IMAGE_PATH = Path.Combine(ROOT_PATH, "src", "assets", "img");
     }
 }

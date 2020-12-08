@@ -18,6 +18,7 @@ namespace SoborniyProject.database.Configurations
                 .ValueGeneratedOnAddOrUpdate().IsRequired();
             builder.HasIndex(c => c.Key).IsUnique();
             builder.HasIndex(c => c.UpdatedAt);
+            builder.Metadata.SetSchema("Sessions");
         }
     }
 }
