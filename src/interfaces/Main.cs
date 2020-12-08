@@ -45,15 +45,15 @@ namespace SoborniyProject.src.interfaces
             var sesions = from p in store.context.Session select p;
             foreach (var item in sesions)
             {
-                comboBox1.Items.Add(item.Key);
+                CBKeySessions.Items.Add(item.Key);
             }
-            comboBox1.Text = comboBox1.Items[0].ToString();
+            CBKeySessions.Text = CBKeySessions.Items[0].ToString();
         }
 
 
 
 
-        private void addNewTraffic_Click(object sender, EventArgs e)
+        private void BAddNewTraffic_Click(object sender, EventArgs e)
         {
 
             store.countLightTraffic++;
@@ -108,24 +108,63 @@ namespace SoborniyProject.src.interfaces
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            car.SessionId = store.session.Id;
-            car.Name = "DAWD"; //nameCar.Text
-            car.MaxSpeed = 150;//convertToInt(speed)
-            car.Acceleration = 11;//convertToInt(acceleration)
-            car.Deceleration = 8;//convertToInt(deceleration)
-            store.addNewCar(car);
-            carModel.Visible = true;
-        }
-
+        
 
         private int convertToInt(TextBox text)
         {
             return Convert.ToInt32(text.Text);
         }
 
-        private async void button3_Click_1(object sender, EventArgs e)
+        private string checkColor(int light)
+        {
+            string color = "";
+            switch (light)
+            {
+                case 1:
+                    color = "RedLight";
+                    break;
+                case 3:
+                    color = "GreenLight";
+                    break;
+                case 2:
+                    color = "YellowLight";
+                    break;
+                default:
+                    color = "RedLight";
+                    break;
+            }
+            return color;
+        }
+
+        
+
+      
+
+        
+
+    
+        private void spawnSessions(string key)
+        {
+            var sesions = from p in store.context.SessionStatistics where p.Session.Key == key select p;
+            foreach (var item in sesions)
+            {
+                ListViewItem listItem = new ListViewItem(item.Id.ToString());
+                listItem.SubItems.Add(item.SessionId.ToString());
+                listItem.SubItems.Add(item.PositionId.ToString());
+                listItem.SubItems.Add(item.AccelerationTime.ToString());
+                listItem.SubItems.Add(item.AccelerationDistance.ToString());
+                listItem.SubItems.Add(item.DecelerationTime.ToString());
+                listItem.SubItems.Add(item.DecelerationDistance.ToString());
+                listItem.SubItems.Add(item.LightTrafficStatus.ToString());
+                listItem.SubItems.Add(item.DistanceBetweenLightTraffic.ToString());
+                listItem.SubItems.Add(item.TimeBetweenLightTraffic.ToString());
+                listItem.SubItems.Add(item.CarSpeed.ToString());
+                listView1.Items.Add(listItem);
+
+            }
+        }
+
+        private async void BStartAlgorithm_Click(object sender, EventArgs e)
         {
             if (globalAsync == 0)
             {
@@ -206,17 +245,20 @@ namespace SoborniyProject.src.interfaces
                     globalAsync = 0;
                 }
 
-            }else
+            }
+            else
             {
                 MessageBox.Show("Please wait to end the algorithms");
             }
-
         }
 
-
-        private void button2_Click_1(object sender, EventArgs e)
+        private void BSaveSessions_Click(object sender, EventArgs e)
         {
-            
+            store.exportLightTraffic();
+        }
+
+        private void BOpenFileLightTraffic_Click(object sender, EventArgs e)
+        {
             OpenFileDialog open = new OpenFileDialog();
             open.InitialDirectory = @"D:\Work\Универ\SoborniyProject\src\data";
             if (open.ShowDialog() == DialogResult.Cancel)
@@ -227,7 +269,7 @@ namespace SoborniyProject.src.interfaces
             {
                 store.importLightTraffic(open.FileName);
             }
-            
+
 
             lightTraffics.Clear();
 
@@ -241,65 +283,22 @@ namespace SoborniyProject.src.interfaces
                 currentLightTraffic.Items.Add($"{item.PositionId} світлофор");
             }
             currentLightTraffic.Text = currentLightTraffic.Items[0].ToString();
-
-
         }
 
-
-
-        private string checkColor(int light)
+        private void BAddCar_Click(object sender, EventArgs e)
         {
-            string color = "";
-            switch (light)
-            {
-                case 1:
-                    color = "RedLight";
-                    break;
-                case 3:
-                    color = "GreenLight";
-                    break;
-                case 2:
-                    color = "YellowLight";
-                    break;
-                default:
-                    color = "RedLight";
-                    break;
-            }
-            return color;
+            car.SessionId = store.session.Id;
+            car.Name = "DAWD"; //nameCar.Text
+            car.MaxSpeed = 150;//convertToInt(speed)
+            car.Acceleration = 11;//convertToInt(acceleration)
+            car.Deceleration = 8;//convertToInt(deceleration)
+            store.addNewCar(car);
+            carModel.Visible = true;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void CBKeySessions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            store.exportLightTraffic();
-        }
-
-      
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            spawnSessions(comboBox1.Text);
-        }
-
-    
-        private void spawnSessions(string key)
-        {
-            var sesions = from p in store.context.SessionStatistics where p.Session.Key == key select p;
-            foreach (var item in sesions)
-            {
-                ListViewItem listItem = new ListViewItem(item.Id.ToString());
-                listItem.SubItems.Add(item.SessionId.ToString());
-                listItem.SubItems.Add(item.PositionId.ToString());
-                listItem.SubItems.Add(item.AccelerationTime.ToString());
-                listItem.SubItems.Add(item.AccelerationDistance.ToString());
-                listItem.SubItems.Add(item.DecelerationTime.ToString());
-                listItem.SubItems.Add(item.DecelerationDistance.ToString());
-                listItem.SubItems.Add(item.LightTrafficStatus.ToString());
-                listItem.SubItems.Add(item.DistanceBetweenLightTraffic.ToString());
-                listItem.SubItems.Add(item.TimeBetweenLightTraffic.ToString());
-                listItem.SubItems.Add(item.CarSpeed.ToString());
-                listView1.Items.Add(listItem);
-
-            }
+            spawnSessions(CBKeySessions.Text);
         }
     }
 

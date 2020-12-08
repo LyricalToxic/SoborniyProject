@@ -31,12 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
+            this.BSaveSessions = new System.Windows.Forms.Button();
             this.carModel = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.BStartAlgorithm = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.trafficPage = new System.Windows.Forms.TabPage();
+            this.BOpenFileLightTraffic = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.greenColor = new System.Windows.Forms.TextBox();
             this.yellowColor = new System.Windows.Forms.TextBox();
@@ -46,7 +47,7 @@
             this.nextColor = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.redColor = new System.Windows.Forms.TextBox();
-            this.addNewTraffic = new System.Windows.Forms.Button();
+            this.BAddNewTraffic = new System.Windows.Forms.Button();
             this.currentColor = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.distance = new System.Windows.Forms.TextBox();
@@ -55,7 +56,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.carPage = new System.Windows.Forms.TabPage();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.CBKeySessions = new System.Windows.Forms.ComboBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SessionId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -76,9 +78,7 @@
             this.speed = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.nameCar = new System.Windows.Forms.TextBox();
-            this.addCar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.BAddCar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carModel)).BeginInit();
@@ -101,10 +101,10 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Controls.Add(this.BSaveSessions);
             this.tabPage1.Controls.Add(this.carModel);
             this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.BStartAlgorithm);
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
@@ -115,16 +115,16 @@
             this.tabPage1.Text = "Main";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // BSaveSessions
             // 
-            this.button4.BackColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(43, 406);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(265, 91);
-            this.button4.TabIndex = 56;
-            this.button4.Text = "Зберегти сесію";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.BSaveSessions.BackColor = System.Drawing.Color.White;
+            this.BSaveSessions.Location = new System.Drawing.Point(43, 406);
+            this.BSaveSessions.Name = "BSaveSessions";
+            this.BSaveSessions.Size = new System.Drawing.Size(265, 91);
+            this.BSaveSessions.TabIndex = 56;
+            this.BSaveSessions.Text = "Зберегти сесію";
+            this.BSaveSessions.UseVisualStyleBackColor = false;
+            this.BSaveSessions.Click += new System.EventHandler(this.BSaveSessions_Click);
             // 
             // carModel
             // 
@@ -149,17 +149,17 @@
             this.label7.TabIndex = 52;
             this.label7.Text = "Керівництво програмою";
             // 
-            // button3
+            // BStartAlgorithm
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(441, 406);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(311, 91);
-            this.button3.TabIndex = 51;
-            this.button3.Text = "Запуск програми\r\n";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            this.BStartAlgorithm.BackColor = System.Drawing.Color.White;
+            this.BStartAlgorithm.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BStartAlgorithm.Location = new System.Drawing.Point(441, 406);
+            this.BStartAlgorithm.Name = "BStartAlgorithm";
+            this.BStartAlgorithm.Size = new System.Drawing.Size(311, 91);
+            this.BStartAlgorithm.TabIndex = 51;
+            this.BStartAlgorithm.Text = "Запуск програми\r\n";
+            this.BStartAlgorithm.UseVisualStyleBackColor = false;
+            this.BStartAlgorithm.Click += new System.EventHandler(this.BStartAlgorithm_Click);
             // 
             // pictureBox1
             // 
@@ -172,7 +172,7 @@
             // 
             // trafficPage
             // 
-            this.trafficPage.Controls.Add(this.button2);
+            this.trafficPage.Controls.Add(this.BOpenFileLightTraffic);
             this.trafficPage.Controls.Add(this.label8);
             this.trafficPage.Controls.Add(this.greenColor);
             this.trafficPage.Controls.Add(this.yellowColor);
@@ -182,7 +182,7 @@
             this.trafficPage.Controls.Add(this.nextColor);
             this.trafficPage.Controls.Add(this.label10);
             this.trafficPage.Controls.Add(this.redColor);
-            this.trafficPage.Controls.Add(this.addNewTraffic);
+            this.trafficPage.Controls.Add(this.BAddNewTraffic);
             this.trafficPage.Controls.Add(this.currentColor);
             this.trafficPage.Controls.Add(this.label11);
             this.trafficPage.Controls.Add(this.distance);
@@ -197,6 +197,17 @@
             this.trafficPage.TabIndex = 1;
             this.trafficPage.Text = "Light Traffic";
             this.trafficPage.UseVisualStyleBackColor = true;
+            // 
+            // BOpenFileLightTraffic
+            // 
+            this.BOpenFileLightTraffic.BackColor = System.Drawing.Color.White;
+            this.BOpenFileLightTraffic.Location = new System.Drawing.Point(90, 442);
+            this.BOpenFileLightTraffic.Name = "BOpenFileLightTraffic";
+            this.BOpenFileLightTraffic.Size = new System.Drawing.Size(245, 91);
+            this.BOpenFileLightTraffic.TabIndex = 56;
+            this.BOpenFileLightTraffic.Text = "Відкрити файл з світлофорами";
+            this.BOpenFileLightTraffic.UseVisualStyleBackColor = false;
+            this.BOpenFileLightTraffic.Click += new System.EventHandler(this.BOpenFileLightTraffic_Click);
             // 
             // label8
             // 
@@ -277,17 +288,17 @@
             this.redColor.Size = new System.Drawing.Size(137, 26);
             this.redColor.TabIndex = 36;
             // 
-            // addNewTraffic
+            // BAddNewTraffic
             // 
-            this.addNewTraffic.BackColor = System.Drawing.Color.White;
-            this.addNewTraffic.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.addNewTraffic.Location = new System.Drawing.Point(554, 516);
-            this.addNewTraffic.Name = "addNewTraffic";
-            this.addNewTraffic.Size = new System.Drawing.Size(289, 34);
-            this.addNewTraffic.TabIndex = 35;
-            this.addNewTraffic.Text = "Додати новий світлофор";
-            this.addNewTraffic.UseVisualStyleBackColor = false;
-            this.addNewTraffic.Click += new System.EventHandler(this.addNewTraffic_Click);
+            this.BAddNewTraffic.BackColor = System.Drawing.Color.White;
+            this.BAddNewTraffic.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BAddNewTraffic.Location = new System.Drawing.Point(563, 470);
+            this.BAddNewTraffic.Name = "BAddNewTraffic";
+            this.BAddNewTraffic.Size = new System.Drawing.Size(289, 34);
+            this.BAddNewTraffic.TabIndex = 35;
+            this.BAddNewTraffic.Text = "Додати новий світлофор";
+            this.BAddNewTraffic.UseVisualStyleBackColor = false;
+            this.BAddNewTraffic.Click += new System.EventHandler(this.BAddNewTraffic_Click);
             // 
             // currentColor
             // 
@@ -354,7 +365,7 @@
             // carPage
             // 
             this.carPage.Controls.Add(this.label6);
-            this.carPage.Controls.Add(this.comboBox1);
+            this.carPage.Controls.Add(this.CBKeySessions);
             this.carPage.Controls.Add(this.listView1);
             this.carPage.Controls.Add(this.label5);
             this.carPage.Controls.Add(this.deceleration);
@@ -364,7 +375,7 @@
             this.carPage.Controls.Add(this.speed);
             this.carPage.Controls.Add(this.label2);
             this.carPage.Controls.Add(this.nameCar);
-            this.carPage.Controls.Add(this.addCar);
+            this.carPage.Controls.Add(this.BAddCar);
             this.carPage.Location = new System.Drawing.Point(4, 28);
             this.carPage.Name = "carPage";
             this.carPage.Padding = new System.Windows.Forms.Padding(3);
@@ -373,14 +384,23 @@
             this.carPage.Text = "Car";
             this.carPage.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // label6
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(644, 264);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(201, 27);
-            this.comboBox1.TabIndex = 11;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(512, 269);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 19);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Ключи сесій";
+            // 
+            // CBKeySessions
+            // 
+            this.CBKeySessions.FormattingEnabled = true;
+            this.CBKeySessions.Location = new System.Drawing.Point(644, 264);
+            this.CBKeySessions.Name = "CBKeySessions";
+            this.CBKeySessions.Size = new System.Drawing.Size(201, 27);
+            this.CBKeySessions.TabIndex = 11;
+            this.CBKeySessions.SelectedIndexChanged += new System.EventHandler(this.CBKeySessions_SelectedIndexChanged);
             // 
             // listView1
             // 
@@ -528,34 +548,15 @@
             this.nameCar.Size = new System.Drawing.Size(100, 26);
             this.nameCar.TabIndex = 1;
             // 
-            // addCar
+            // BAddCar
             // 
-            this.addCar.Location = new System.Drawing.Point(49, 508);
-            this.addCar.Name = "addCar";
-            this.addCar.Size = new System.Drawing.Size(234, 62);
-            this.addCar.TabIndex = 0;
-            this.addCar.Text = "Додати автомобіль";
-            this.addCar.UseVisualStyleBackColor = true;
-            this.addCar.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(90, 442);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(245, 91);
-            this.button2.TabIndex = 56;
-            this.button2.Text = "Відкрити файл з світлофорами";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(512, 269);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 19);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Ключи сесій";
+            this.BAddCar.Location = new System.Drawing.Point(49, 508);
+            this.BAddCar.Name = "BAddCar";
+            this.BAddCar.Size = new System.Drawing.Size(234, 62);
+            this.BAddCar.TabIndex = 0;
+            this.BAddCar.Text = "Додати автомобіль";
+            this.BAddCar.UseVisualStyleBackColor = true;
+            this.BAddCar.Click += new System.EventHandler(this.BAddCar_Click);
             // 
             // Main
             // 
@@ -584,7 +585,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.PictureBox carModel;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button BStartAlgorithm;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TabPage trafficPage;
         private System.Windows.Forms.Label label8;
@@ -596,7 +597,7 @@
         private System.Windows.Forms.TextBox nextColor;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox redColor;
-        private System.Windows.Forms.Button addNewTraffic;
+        private System.Windows.Forms.Button BAddNewTraffic;
         private System.Windows.Forms.TextBox currentColor;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox distance;
@@ -605,7 +606,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TabPage carPage;
-        private System.Windows.Forms.Button addCar;
+        private System.Windows.Forms.Button BAddCar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox deceleration;
         private System.Windows.Forms.Label label4;
@@ -614,7 +615,7 @@
         private System.Windows.Forms.TextBox speed;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox nameCar;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button BSaveSessions;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader id;
         private System.Windows.Forms.ColumnHeader SessionId;
@@ -627,8 +628,8 @@
         private System.Windows.Forms.ColumnHeader TimeBetweenLightTraffic;
         private System.Windows.Forms.ColumnHeader CarSpeed;
         private System.Windows.Forms.ColumnHeader DecelerationTime;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox CBKeySessions;
+        private System.Windows.Forms.Button BOpenFileLightTraffic;
         private System.Windows.Forms.Label label6;
     }
 }
