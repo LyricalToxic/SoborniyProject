@@ -22,7 +22,9 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
         public void DB_Inf(CarInf car ,string key, List<CarSessions> car_sessions)
         {
             car.Context = car_sessions[0].Context;
+
             var info = from p in car.Context.Car where p.Session.Key == key select p;
+
             car.CarMaxSpeed = info.ToArray()[0].MaxSpeed;
             car.Acceleration = info.ToArray()[0].Acceleration;
             car.Decelaration = info.ToArray()[0].Deceleration;

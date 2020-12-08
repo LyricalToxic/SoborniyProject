@@ -20,22 +20,24 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
         {
 
             var sites = roads[0].Context.LightTraffic.Where(p => p.Session.Key == key);
+
             int local_i = 0;
             foreach (var item in sites)
-            {
-                if (local_i == 0)
                 {
+                  if (local_i == 0)
+                    {
                     roads[0].DistaceRoadSite = item.PreviousDistance;
-                }
-                else
-                {
+                    }
+                    else
+                    {
                     roads.Add(new RoadInf()
                     {
                         DistaceRoadSite = item.PreviousDistance,
                     });
+                    }
+                    local_i = 1;
                 }
-                local_i = 1;
-            }
+            
         }
     }
 }

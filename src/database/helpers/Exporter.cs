@@ -13,9 +13,9 @@ namespace SoborniyProject.database.helpers
     public class Exporter
     {
         private SoborniyContext Context;
-        public Exporter()
+        public Exporter(SoborniyContext context)
         {
-            Context = new SoborniyContext();
+            Context = context;
         }
         public void Run(string sessionKey, string directory="")
         {
@@ -48,7 +48,8 @@ namespace SoborniyProject.database.helpers
 
             return resolvedPath;
         }
-        private void WriteToCsv(string csvPath, dynamic data)
+
+        private  void WriteToCsv(string csvPath, dynamic data)
         {
             using (var writer = new StreamWriter(csvPath)) 
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))

@@ -40,7 +40,8 @@ namespace SoborniyProject.src.algorithms.Algorithms
                 }
                 car_sessions[iter].FullDistance = car_sessions[iter].BoostDistance;//в полный путь занес результат разгона
                 if (car_sessions[iter].FullDistance > roads[iter].DistaceRoadSite) { position_Braking_or_Boost.BelowSpeed(car_sessions, roads, iter); iter--; continue; }
-                if (car_sessions[iter].DistanceAfterBoost + car_sessions[iter].BoostDistance < roads[iter].DistaceRoadSite) //если мы достигли нужного расстояния завершаем 
+
+                if (car_sessions[iter].DistanceAfterBoost  < roads[iter].DistaceRoadSite - car_sessions[iter].BoostDistance) //если мы достигли нужного расстояния завершаем 
                 {
                     car_sessions[iter].TimeAfterBoost = (roads[iter].DistaceRoadSite - car_sessions[iter].BoostDistance) / car_sessions[iter].CurrentSpeed;
                     car_sessions[iter].DistanceAfterBoost = roads[iter].DistaceRoadSite - car_sessions[iter].BoostDistance;
