@@ -20,7 +20,7 @@ namespace SoborniyProject.database.Configurations
                 .ValueGeneratedOnAddOrUpdate().IsRequired();
             
             builder.HasIndex(c => c.UpdatedAt);
-            builder.Metadata.SetSchema("Cars");
+            builder.ToTable("Cars");
         }
     }
 }

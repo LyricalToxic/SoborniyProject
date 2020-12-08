@@ -13,9 +13,9 @@ namespace SoborniyProject.database.helpers
     public class Exporter
     {
         private SoborniyContext Context;
-        public Exporter()
+        public Exporter(SoborniyContext context)
         {
-            Context = new SoborniyContext();
+            Context = context;
         }
         public void Run(string sessionKey, string directory="")
         {

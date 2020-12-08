@@ -24,7 +24,7 @@ namespace SoborniyProject.database.Configurations
                 .ValueGeneratedOnAddOrUpdate().IsRequired();
             builder.HasIndex(c => c.UpdatedAt);
             builder.HasIndex(c => new {c.SessionId, c.PositionId}).IsUnique();
-            builder.Metadata.SetSchema("LightTraffics");
+            builder.ToTable("LightTraffics");
         }
     }
 }
