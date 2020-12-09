@@ -273,10 +273,10 @@ namespace SoborniyProject.src.interfaces
         private void BAddCar_Click(object sender, EventArgs e)
         {
             car.SessionId = store.session.Id;
-            car.Name = "DAWD"; //nameCar.Text
-            car.MaxSpeed = 150;//convertToInt(speed)
-            car.Acceleration = 11;//convertToInt(acceleration)
-            car.Deceleration = 8;//convertToInt(deceleration)
+            car.Name = nameCar.Text;
+            car.MaxSpeed = convertToInt(speed);
+            car.Acceleration = convertToInt(acceleration);
+            car.Deceleration = convertToInt(deceleration);
             store.addNewCar(car);
             carModel.Visible = true;
             store.startProgram();
