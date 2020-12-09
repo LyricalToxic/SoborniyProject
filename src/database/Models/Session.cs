@@ -9,7 +9,7 @@ namespace SoborniyProject.database.Models
         public Int64 Id { get; set; }
         public string Key { get; set; }
         public int Status { get; set; }
-        public int TotalTime { get; set; }
+        public double  TotalTime { get; set; }
         public DateTime CreatedAt{ get; set; } 
         public DateTime UpdatedAt{ get; set; } 
         

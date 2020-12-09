@@ -26,6 +26,7 @@ namespace SoborniyProject.database.Configurations
             builder.HasIndex(c => c.CarSpeed);
             builder.HasIndex(c => c.UpdatedAt);
             builder.HasIndex(c => new {c.SessionId, c.PositionId}).IsUnique();
+            builder.ToTable("SessionStatistics");
         }
     }
 }

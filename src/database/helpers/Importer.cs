@@ -22,8 +22,6 @@ namespace SoborniyProject.database.helpers
             {
                 csv.Configuration.RegisterClassMap<LightTrafficsMap>();
                 lightTraffics = csv.GetRecords<LightTraffic>().ToList();
-                
-                
             }
             return lightTraffics; 
         }

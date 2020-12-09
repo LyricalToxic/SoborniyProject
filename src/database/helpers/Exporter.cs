@@ -19,17 +19,22 @@ namespace SoborniyProject.database.helpers
         }
         public void Run(string sessionKey, string directory="")
         {
-            string csvPath = ResolvePath(directory, sessionKey, "csv");
-            string jsonPath = ResolvePath(directory, sessionKey, "json");
-            WriteToCsv(csvPath, sessionKey);
-            WriteToJson(jsonPath, sessionKey);
+            string csvStatisticsPath = ResolvePath(directory, sessionKey,"SessionStatistics", "csv");
+            string csvLightTrafficsPath = ResolvePath(directory, sessionKey, "LightTraffics", "csv");
+            string jsonSessionDataPath = ResolvePath(directory, sessionKey, "SessionData", "json");
+            var statistics = GetResultStatistics(sessionKey);
+            var lightTraffics = GetLightTrafficsData(sessionKey);
+            var sessionData = GetSessionData(sessionKey);
+            WriteToCsv(csvStatisticsPath, statistics);
+            WriteToCsv(csvLightTrafficsPath, lightTraffics);
+            WriteToJson(jsonSessionDataPath, sessionData);
         }
 
-        protected string ResolvePath(string directory, string sessionKey, string extension)
+        protected string ResolvePath(string directory, string sessionKey, string fileName, string extension)
         {
             string resolvedPath;
             string resolvedPathDir;
-            string resolvedName = String.Format("{0}.{1}", sessionKey, extension);
+            string resolvedName = String.Format("{0}.{1}", fileName, extension);
             if (Directory.Exists(directory))
             {
                 resolvedPath = Path.Combine(directory, resolvedName);
@@ -43,13 +48,12 @@ namespace SoborniyProject.database.helpers
 
             return resolvedPath;
         }
-        private  void WriteToCsv(string csvPath, string sessionKey)
+        private void WriteToCsv(string csvPath, dynamic data)
         {
-            var statistics = GetResultStatistics(sessionKey);
             using (var writer = new StreamWriter(csvPath)) 
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
-                csv.WriteRecords(statistics);
+                csv.WriteRecords(data);
             }
         }
 
@@ -77,9 +81,8 @@ namespace SoborniyProject.database.helpers
             return lightTrafficStatistics;
         }
 
-        private void WriteToJson(string jsonPath, string sessionKey)
+        private void WriteToJson(string jsonPath, dynamic data)
         {
-            var data = GetSessionData(sessionKey);
             using (var writer = new StreamWriter(jsonPath))
             {
                 string jsonData = JsonConvert.SerializeObject(data);
@@ -111,32 +114,28 @@ namespace SoborniyProject.database.helpers
                     },
                 }
             ).Select(o => o);
+            return sessionData;
+        }
+
+        private dynamic GetLightTrafficsData(string sessionKey)
+        {
             var lightTrafficData = Context.Session.Where(o => o.Key == sessionKey).Join(
                 Context.LightTraffic,
                 l => l.Id,
                 r => r.Session.Id,
                 (l, r) => new
                 {
-                    LightTraffic = new Dictionary<string, dynamic>
-                    {
-                        {"Position id", r.PositionId},
-                        {"Red light duration", r.RedLightDuration},
-                        {"Yellow light duration", r.YellowLightDuration},
-                        {"Green light duration", r.GreenLightDuration},
-                        {"Start color", r.StartColor},
-                        {"Next color", r.NextColor},
-                        {"Status", r.Status},
-                        {"Previous distance", r.PreviousDistance}
-                    }
+                    PositionId = r.PositionId,
+                    RedLightDuration =  r.RedLightDuration,
+                    YellowLightDuration =  r.YellowLightDuration,
+                    GreenLightDuration =  r.GreenLightDuration,
+                    StartColor = r.StartColor,
+                    NextColor =  r.NextColor,
+                    Status =  r.Status,
+                    PreviousDistance = r.PreviousDistance
                 }
             ).Select(o => o);
-            var resultData = new
-            {
-                sessionData,
-                lightTrafficData
-            };      
-                
-            return resultData;
+            return lightTrafficData;
         }
     }
 }
