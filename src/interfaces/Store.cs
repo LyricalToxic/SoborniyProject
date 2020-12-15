@@ -89,7 +89,7 @@ namespace SoborniyProject.src.interfaces
 
         private string getHashKey()
         {
-            return session.Id.GetHashCode().ToString();
+            return DateTime.Now.GetHashCode().ToString();
         }
     }
 }

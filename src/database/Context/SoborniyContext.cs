@@ -12,7 +12,7 @@ namespace SoborniyProject.database.Context
         }
         public SoborniyContext()
         {
-            Database.EnsureDeleted();
+           // Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
