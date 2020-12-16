@@ -186,11 +186,15 @@ namespace SoborniyProject.src.interfaces
                     int indexSpeed = 0;
                     foreach (var item in store.context.LightTraffic.ToArray())
                     {
+                       
+
                         distance += item.PreviousDistance;
                         if (indexSpeed == store.countLightTraffic)
                         {
                             break;
                         }
+
+                      
 
 
                         for (; i < distance; i++)
@@ -291,11 +295,7 @@ namespace SoborniyProject.src.interfaces
             } 
         }
 
-        private void CBKeySessions_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            spawnSessions(CBKeySessions.Text);
-        }
-
+       
         private void BOpenFileLightTraffic_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
@@ -375,10 +375,10 @@ namespace SoborniyProject.src.interfaces
             greenColor.Text = store.session.LightTraffics[index].GreenLightDuration.ToString();
         }
 
-       
-
-   
-       
+        private void CBKeySessions_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            spawnSessions(CBKeySessions.Text);
+        }
     }
           
 }

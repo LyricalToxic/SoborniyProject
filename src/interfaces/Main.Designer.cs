@@ -303,7 +303,6 @@
             this.greenColor.Name = "greenColor";
             this.greenColor.Size = new System.Drawing.Size(137, 26);
             this.greenColor.TabIndex = 43;
-           
             // 
             // yellowColor
             // 
@@ -311,7 +310,6 @@
             this.yellowColor.Name = "yellowColor";
             this.yellowColor.Size = new System.Drawing.Size(137, 26);
             this.yellowColor.TabIndex = 42;
-            
             // 
             // label1
             // 
@@ -350,7 +348,6 @@
             this.nextColor.Name = "nextColor";
             this.nextColor.Size = new System.Drawing.Size(137, 26);
             this.nextColor.TabIndex = 38;
-            
             // 
             // label10
             // 
@@ -368,7 +365,6 @@
             this.redColor.Name = "redColor";
             this.redColor.Size = new System.Drawing.Size(137, 26);
             this.redColor.TabIndex = 36;
-           
             // 
             // BAddNewTraffic
             // 
@@ -388,7 +384,6 @@
             this.currentColor.Name = "currentColor";
             this.currentColor.Size = new System.Drawing.Size(137, 26);
             this.currentColor.TabIndex = 34;
-           
             // 
             // label11
             // 
@@ -407,7 +402,6 @@
             this.distance.Name = "distance";
             this.distance.Size = new System.Drawing.Size(137, 26);
             this.distance.TabIndex = 32;
-           
             // 
             // label12
             // 
@@ -425,7 +419,6 @@
             this.currentTime.Name = "currentTime";
             this.currentTime.Size = new System.Drawing.Size(137, 26);
             this.currentTime.TabIndex = 30;
-            
             // 
             // label13
             // 
@@ -614,6 +607,7 @@
             this.CBKeySessions.Name = "CBKeySessions";
             this.CBKeySessions.Size = new System.Drawing.Size(220, 41);
             this.CBKeySessions.TabIndex = 14;
+            this.CBKeySessions.SelectedIndexChanged += new System.EventHandler(this.CBKeySessions_SelectedIndexChanged_1);
             // 
             // listView1
             // 
