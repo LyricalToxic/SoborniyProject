@@ -35,6 +35,7 @@ namespace SoborniyProject.src.interfaces
             this.store = store;
             InitializeComponent();
             initializeData();
+            information.Text = "На головній формі ви побачите моделювання руху авто і кнопки, якими ви керуєте програмою. Кнопка «Зберегти світлофори» зберігає світлофори і дані про них в файли формату csv. Для запуску програми потрібно перейти на вкладку «Car» і додати автомобіль і на вкладку «Light Traffic», щоб додати світлофори, якщо не буде цих об'єктів, то алгоритм немає від працює. Після того як всі дані введені, ви натискайте на кнопку Запуск, щоб побачити результат алгоритму. Остання кнопка потрібна для зупинки моделювання.";
         }
 
 
@@ -43,6 +44,7 @@ namespace SoborniyProject.src.interfaces
 
         private void initializeData()
         {
+            car.SessionId = store.session.Id;
             var sesions = from p in store.context.Session select p;
             foreach (var item in sesions)
             {
@@ -184,11 +186,15 @@ namespace SoborniyProject.src.interfaces
                     int indexSpeed = 0;
                     foreach (var item in store.context.LightTraffic.ToArray())
                     {
+                       
+
                         distance += item.PreviousDistance;
                         if (indexSpeed == store.countLightTraffic)
                         {
                             break;
                         }
+
+                      
 
 
                         for (; i < distance; i++)
@@ -272,21 +278,27 @@ namespace SoborniyProject.src.interfaces
 
         private void BAddCar_Click(object sender, EventArgs e)
         {
-            car.SessionId = store.session.Id;
-            car.Name = "DAWD"; //nameCar.Text
-            car.MaxSpeed = 150;//convertToInt(speed)
-            car.Acceleration = 11;//convertToInt(acceleration)
-            car.Deceleration = 8;//convertToInt(deceleration)
-            store.addNewCar(car);
-            carModel.Visible = true;
-            store.startProgram();
+            try
+            {
+                if (store.session.LightTraffics == null)
+                {
+                    throw new Exception("Please enter information for Light Traffic");
+                }
+                car.Name = nameCar.Text;
+                car.MaxSpeed = convertToInt(speed);
+                car.Acceleration = convertToInt(acceleration);
+                car.Deceleration = convertToInt(deceleration);
+                store.addNewCar(car);
+                carModel.Visible = true;
+                store.startProgram();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } 
         }
 
-        private void CBKeySessions_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            spawnSessions(CBKeySessions.Text);
-        }
-
+       
         private void BOpenFileLightTraffic_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
@@ -320,17 +332,58 @@ namespace SoborniyProject.src.interfaces
         private void BStopAlgorithm_Click_1(object sender, EventArgs e)
         {
             int i = 0;
-            var pbxes = this.Controls.OfType<PictureBox>().Select(p => p);
-            foreach (var p in pbxes)
+            
+            foreach (var p in lightTraffics)
             {
-                p.Image = Image.FromFile($"{PATH_TO_IMAGE}{checkColor(store.lightTraffics[i].StartColor)}");
+                p.Image = Image.FromFile($"{PATH_TO_IMAGE}{checkColor(store.lightTraffics[i].StartColor)}.png");
                 p.Refresh();
+                allColors[i] = checkColor(store.lightTraffics[i].StartColor);
                 i++;
+              
             }
             stoped = true;
         }
-    }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            information.Text = "На головній формі ви побачите моделювання руху авто і кнопки, якими ви керуєте програмою. Кнопка «Зберегти світлофори» зберігає світлофори і дані про них в файли формату csv. Для запуску програми потрібно перейти на вкладку «Car» і додати автомобіль і на вкладку «Light Traffic», щоб додати світлофори, якщо не буде цих об'єктів, то алгоритм немає від працює. Після того як всі дані введені, ви натискайте на кнопку Запуск, щоб побачити результат алгоритму. Остання кнопка потрібна для зупинки моделювання.";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            information.Text = "На сторінці світлофорів можна додати світлофор або змінити його. При натискані на кнопку відкрити файл на робочому столі з'являється діологове вікно файлів, де ви відкриваєте файл зі збереженими раніше світлофорами.";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            information.Text = "На сторінці автомобіля можна додати авто. Після введення даних авто натисніть кнопку додати, тоді ваш автомобіль додається в базу. Він потрібен для роботи програми";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            information.Text = "На сторінці статистика ви побачите інформацію про сесію, яку ви вибираєте завдяки ComboBox"; 
+        }
+
+        private void currentLightTraffic_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            var index = Convert.ToInt32(currentLightTraffic.Text[0])-49 ;
+
+            currentColor.Text = store.session.LightTraffics[index].StartColor.ToString();
+            distance.Text = store.session.LightTraffics[index].PreviousDistance.ToString();
+            currentTime.Text = store.session.LightTraffics[index].StartColor.ToString();
+            nextColor.Text = store.session.LightTraffics[index].NextColor.ToString();
+            redColor.Text = store.session.LightTraffics[index].RedLightDuration.ToString();
+            yellowColor.Text = store.session.LightTraffics[index].YellowLightDuration.ToString();
+            greenColor.Text = store.session.LightTraffics[index].GreenLightDuration.ToString();
+        }
+
+        private void CBKeySessions_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            spawnSessions(CBKeySessions.Text);
+        }
+    }
+          
 }
 
             

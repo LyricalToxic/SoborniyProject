@@ -89,7 +89,12 @@ namespace SoborniyProject.src.interfaces
 
         private string getHashKey()
         {
-            return GetHashCode().ToString();
+            var key = DateTime.Now.GetHashCode();
+            if (key < 0)
+            {
+                key *= -1;
+            }
+            return key.ToString();
         }
     }
 }
