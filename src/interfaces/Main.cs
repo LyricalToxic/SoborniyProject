@@ -280,7 +280,10 @@ namespace SoborniyProject.src.interfaces
         {
             try
             {
-                
+                if (store.session.LightTraffics == null)
+                {
+                    throw new Exception("Please enter information for Light Traffic");
+                }
                 car.Name = nameCar.Text;
                 car.MaxSpeed = convertToInt(speed);
                 car.Acceleration = convertToInt(acceleration);
@@ -291,7 +294,7 @@ namespace SoborniyProject.src.interfaces
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             } 
         }
 
