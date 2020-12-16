@@ -714,7 +714,7 @@
             this.groupBox11.Size = new System.Drawing.Size(1082, 241);
             this.groupBox11.TabIndex = 6;
             this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Новости версии 1.0";
+            this.groupBox11.Text = "Новини версії 1.0";
             // 
             // version
             // 
@@ -725,6 +725,7 @@
             this.version.Name = "version";
             this.version.Size = new System.Drawing.Size(1082, 213);
             this.version.TabIndex = 4;
+            this.version.Text = "Це початкова версія  програми.";
             // 
             // groupBox10
             // 
@@ -740,7 +741,7 @@
             this.groupBox10.Size = new System.Drawing.Size(1082, 266);
             this.groupBox10.TabIndex = 5;
             this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Инструкции";
+            this.groupBox10.Text = "Інструкції";
             // 
             // button4
             // 
