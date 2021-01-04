@@ -22,10 +22,10 @@ namespace SoborniyProject.database.Configurations
             builder.Property(c => c.DistanceBetweenLightTraffic).IsRequired();
             builder.Property(c => c.TimeBetweenLightTraffic);
             builder.Property(c => c.LightTrafficStatus).HasDefaultValue(0).IsRequired();
-            builder.Property(c => c.UpdatedAt)
-                .ValueGeneratedOnAddOrUpdate().IsRequired();
             builder.Property(c => c.CreatedAt)
-                .ValueGeneratedOnAdd().IsRequired();
+                .IsRequired().IsRowVersion().HasDefaultValueSql("CURRENT_TIMESTAMP");
+            builder.Property(c => c.UpdatedAt)
+                .IsRequired().IsRowVersion().HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.HasIndex(c => c.CarSpeed);
             builder.HasIndex(c => c.UpdatedAt);
             builder.HasIndex(c => new {c.SessionId, c.PositionId}).IsUnique();

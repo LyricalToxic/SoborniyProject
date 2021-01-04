@@ -21,9 +21,9 @@ namespace SoborniyProject.database.Configurations
             builder.Property(c => c.StartColor);
             builder.Property(c => c.NextColor);
             builder.Property(c => c.CreatedAt)
-                .ValueGeneratedOnAdd().IsRequired();
+                .IsRequired().IsRowVersion().HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.Property(c => c.UpdatedAt)
-                .ValueGeneratedOnAddOrUpdate().IsRequired();
+                .IsRequired().IsRowVersion().HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.HasIndex(c => c.UpdatedAt);
             builder.HasIndex(c => new {c.SessionId, c.PositionId}).IsUnique();
             builder.ToTable("LightTraffics");

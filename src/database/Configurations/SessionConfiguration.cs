@@ -12,9 +12,10 @@ namespace SoborniyProject.database.Configurations
             builder.Property(c => c.Key).IsRequired().HasMaxLength(64);
             builder.Property(c => c.TotalTime).HasDefaultValue(0).IsRequired();
             builder.Property(c => c.Status).HasDefaultValue(0).IsRequired();
-            builder.Property(c => c.CreatedAt).IsRequired().ValueGeneratedOnAdd();
+            builder.Property(c => c.CreatedAt)
+                .IsRequired().IsRowVersion().HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.Property(c => c.UpdatedAt)
-               .ValueGeneratedOnAddOrUpdate().IsRequired();
+               .IsRequired().IsRowVersion().HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.HasIndex(c => c.Key).IsUnique();
             builder.HasIndex(c => c.UpdatedAt);
             builder.ToTable("Sessions");

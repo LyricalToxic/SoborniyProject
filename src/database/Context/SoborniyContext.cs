@@ -13,10 +13,10 @@ namespace SoborniyProject.database.Context
             optionsBuilder.UseSqlite(Connection.GetSqliteString());
             
         }
-        private static bool _recreated = true;
+        private static bool _recreated = false;
         public SoborniyContext()
         {
-            if (!_recreated) {
+            if (_recreated) {
                 Database.EnsureDeleted();
             }
             Database.EnsureCreated();

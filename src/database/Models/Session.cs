@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace SoborniyProject.database.Models
@@ -11,7 +12,7 @@ namespace SoborniyProject.database.Models
         public int Status { get; set; }
         public double  TotalTime { get; set; }
         //public DateTime CreatedAt{ get; set; } 
-        public byte[] CreatedAt{ get; set; } 
+         public byte[]  CreatedAt{ get; set; } 
         //public DateTime UpdatedAt{ get; set; } 
         public byte[] UpdatedAt{ get; set; } 
         

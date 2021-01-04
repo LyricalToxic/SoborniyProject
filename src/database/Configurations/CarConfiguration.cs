@@ -15,10 +15,9 @@ namespace SoborniyProject.database.Configurations
             builder.Property(c => c.Acceleration).HasColumnType("decimal(5, 2)");
             builder.Property(c => c.Deceleration).HasColumnType("decimal(5, 2)");
             builder.Property(c => c.CreatedAt)
-                .ValueGeneratedOnAdd().IsRequired();
+                .IsRequired().IsRowVersion().HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.Property(c => c.UpdatedAt)
-                .ValueGeneratedOnAddOrUpdate().IsRequired();
-            
+                .IsRequired().IsRowVersion().HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.HasIndex(c => c.UpdatedAt);
             builder.ToTable("Cars");
         }

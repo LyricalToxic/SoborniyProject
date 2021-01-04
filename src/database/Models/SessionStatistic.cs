@@ -20,6 +20,6 @@ namespace SoborniyProject.database.Models
         public byte[] CreatedAt{ get; set; } 
         //public DateTime UpdatedAt{ get; set; } 
         public byte[] UpdatedAt{ get; set; } 
-        public Session Session { get; set; } 
+        public Session Session { get; set; }
     }
 }
