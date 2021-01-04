@@ -7,9 +7,12 @@ namespace SoborniyProject.database.Configurations
     {
         public void Configure(EntityTypeBuilder<SessionStatistic> builder)
         {
-            builder.Property(c => c.Id).HasColumnType("bigint").IsRequired();
-            builder.Property(c => c.SessionId).HasColumnType("bigint").IsRequired();
-            builder.Property(c => c.PositionId).HasColumnType("bigint").IsRequired();
+            //builder.Property(c => c.Id).HasColumnType("bigint").IsRequired();
+            builder.Property(c => c.Id).IsRequired();
+            //builder.Property(c => c.SessionId).HasColumnType("bigint").IsRequired();
+            builder.Property(c => c.SessionId).IsRequired();
+            //builder.Property(c => c.PositionId).HasColumnType("bigint").IsRequired();
+            builder.Property(c => c.PositionId).IsRequired();
             builder.Property(c => c.CarSpeed).IsRequired().HasColumnType("decimal(5, 2)");
             builder.Property(c => c.SessionTime).IsRequired();
             builder.Property(c => c.AccelerationTime);

@@ -8,9 +8,11 @@ namespace SoborniyProject.database.Configurations
     {
         public void Configure(EntityTypeBuilder<LightTraffic> builder)
         {
-            builder.Property(c => c.Id).HasColumnType("bigint");
-            builder.Property(c => c.SessionId).HasColumnType("bigint").IsRequired();
-            builder.Property(c => c.PositionId).HasColumnType("bigint").IsRequired();
+            // builder.Property(c => c.Id).HasColumnType("bigint");
+            // builder.Property(c => c.SessionId).HasColumnType("bigint").IsRequired();
+            builder.Property(c => c.SessionId).IsRequired();
+            //builder.Property(c => c.PositionId).HasColumnType("bigint").IsRequired();
+            builder.Property(c => c.PositionId).IsRequired();
             builder.Property(c => c.PreviousDistance).HasColumnType("decimal(6, 2)").IsRequired();
             builder.Property(c => c.RedLightDuration);
             builder.Property(c => c.YellowLightDuration);

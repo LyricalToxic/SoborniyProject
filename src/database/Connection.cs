@@ -7,7 +7,7 @@ namespace SoborniyProject.database
     public class Connection: DbConnectionStringBuilder
     {
 
-        public static string GetString()
+        public static string GetMysqlString()
         {
             Settings.Load();
             return String.Format(
@@ -17,6 +17,14 @@ namespace SoborniyProject.database
                 Settings.MYSQL_USER,
                 Settings.MYSQL_PASSWORD,
                 Settings.MYSQL_DATABASE
+            );
+        }
+        public static string GetSqliteString()
+        {
+            Settings.Load();
+            return String.Format(
+                "Data Source={0}",
+                Settings.SQLITE_DB
             );
         }
     }
