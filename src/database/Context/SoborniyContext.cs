@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using SoborniyProject.database.Configurations;
 using SoborniyProject.database.Models;
 
@@ -8,11 +9,18 @@ namespace SoborniyProject.database.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql(Connection.GetString());
+            //optionsBuilder.UseMySql(Connection.GetMysqlString());
+            optionsBuilder.UseSqlite(Connection.GetSqliteString());
+            
         }
+        private static bool _recreated = true;
         public SoborniyContext()
         {
-            Database.EnsureDeleted();
+
+            if (_recreated) {
+                Database.EnsureDeleted();
+            }
+
             Database.EnsureCreated();
         }
 

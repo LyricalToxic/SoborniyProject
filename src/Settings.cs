@@ -17,6 +17,7 @@ namespace SoborniyProject
             MYSQL_USER = Env.GetString("MYSQL_USER", "root");
             MYSQL_PASSWORD = Env.GetString("MYSQL_PASSWORD", "1234");
             MYSQL_DATABASE = Env.GetString("MYSQL_DATABASE", "soborniy");
+            SQLITE_DB = Env.GetString("SQLITE_DB", "default.db");
         }
 
         public static string MYSQL_HOST { get; set; }
@@ -24,6 +25,7 @@ namespace SoborniyProject
         public static string MYSQL_USER { get; set; }
         public static string MYSQL_PASSWORD { get; set; }
         public static string MYSQL_DATABASE { get; set; }
+        public static string SQLITE_DB { get; set; }
 
         public static string ROOT_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Application.StartupPath));
         public  enum LightTrafficColorEnum

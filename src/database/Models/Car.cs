@@ -10,8 +10,10 @@ namespace SoborniyProject.database.Models
         public float MaxSpeed { get; set; }
         public double Acceleration { get; set; }
         public double  Deceleration { get; set; }
-        public DateTime CreatedAt{ get; set; } 
-        public DateTime UpdatedAt{ get; set; } 
+        //public DateTime CreatedAt{ get; set; } 
+        public byte[] CreatedAt{ get; set; } 
+        //public DateTime UpdatedAt{ get; set; } 
+        public byte[] UpdatedAt{ get; set; } 
         
         public Session Session { get; set; } 
     }

@@ -14,8 +14,10 @@ namespace SoborniyProject.database.Models
         public short NextColor { get; set; }
         public short Status { get; set; }
         public float PreviousDistance  { get; set; }
-        public DateTime CreatedAt{ get; set; } 
-        public DateTime UpdatedAt{ get; set; } 
+        //public DateTime CreatedAt{ get; set; } 
+        public byte[] CreatedAt{ get; set; } 
+        //public DateTime UpdatedAt{ get; set; } 
+        public byte[] UpdatedAt{ get; set; } 
         
         public Session Session { get; set; } 
     }
