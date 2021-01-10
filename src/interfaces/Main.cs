@@ -11,6 +11,7 @@ using SoborniyProject.database.Models;
 using SoborniyProject.database.Context;
 using System.Threading;
 using SoborniyProject.src.algorithms.CarAndRoads;
+using System.IO;
 
 namespace SoborniyProject.src.interfaces
 {
@@ -24,7 +25,7 @@ namespace SoborniyProject.src.interfaces
         private Car car = new Car();
         private const int Y_LIGHT_TRAFFIC = 50;
         private float X_LIGHT_TRAFFIC = 0;
-        private const string PATH_TO_IMAGE = "D:/Work/Универ/SoborniyProject/src/assets/img/";
+        private string PATH_TO_IMAGE = Settings.IMAGE_PATH;
         private List<PictureBox> lightTraffics = new List<PictureBox>();
         private List<string> allColors = new List<string>();
         private bool stoped = false;
@@ -88,6 +89,7 @@ namespace SoborniyProject.src.interfaces
 
         private void createILightTraffic(string color)
         {
+            
             try
             {
                 PictureBox picture = new PictureBox
@@ -96,7 +98,8 @@ namespace SoborniyProject.src.interfaces
                     BackColor = Color.Transparent,
                     SizeMode = PictureBoxSizeMode.AutoSize,
                     Location = new Point(Convert.ToInt32(X_LIGHT_TRAFFIC), Y_LIGHT_TRAFFIC),
-                    Image = Image.FromFile($"{PATH_TO_IMAGE}{color}.png"),
+                   
+                    Image = Image.FromFile(Path.Combine(PATH_TO_IMAGE, $"{color}.png")),
                     Size = new Size(33, 106),
                 };
                 tabPage1.Controls.Add(picture);
@@ -194,9 +197,9 @@ namespace SoborniyProject.src.interfaces
                             break;
                         }
 
-                      
 
 
+                       
                         for (; i < distance; i++)
                         {
                             carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
@@ -211,21 +214,21 @@ namespace SoborniyProject.src.interfaces
                             {
 
                                 item.NextColor = 3;
-                                lightTraffics[indexSpeed].Image = Image.FromFile($"{PATH_TO_IMAGE}YellowLight.png");
+                                lightTraffics[indexSpeed].Image = Image.FromFile(Path.Combine(PATH_TO_IMAGE, "YellowLight.png"));
                                 allColors[indexSpeed] = "YellowLight";
                                 lightTraffics[indexSpeed].Refresh();
                             }
                             else if (allColors[indexSpeed] == "YellowLight" && i == distance - 100)
                             {
                                 allColors[indexSpeed] = "GreenLight";
-                                lightTraffics[indexSpeed].Image = Image.FromFile($"{PATH_TO_IMAGE}{"GreenLight"}.png");
+                                lightTraffics[indexSpeed].Image = Image.FromFile(Path.Combine(PATH_TO_IMAGE, "GreenLight.png"));
                                 lightTraffics[indexSpeed].Refresh();
                             }
                             else if (indexSpeed != 0 && allColors[indexSpeed - 1] == "GreenLight" && i > distance - item.PreviousDistance + 100)
                             {
 
                                 allColors[indexSpeed - 1] = "";
-                                lightTraffics[indexSpeed - 1].Image = Image.FromFile($"{PATH_TO_IMAGE}{"RedLight"}.png");
+                                lightTraffics[indexSpeed - 1].Image = Image.FromFile(Path.Combine(PATH_TO_IMAGE, "RedLight.png"));
                                 lightTraffics[indexSpeed - 1].Refresh();
 
                             }
@@ -249,7 +252,7 @@ namespace SoborniyProject.src.interfaces
                         if (allColors[indexSpeed - 1] == "GreenLight" && i > distance - 300)
                         {
                             allColors[indexSpeed - 1] = "";
-                            lightTraffics[indexSpeed - 1].Image = Image.FromFile($"{PATH_TO_IMAGE}{"RedLight"}.png");
+                            lightTraffics[indexSpeed - 1].Image = Image.FromFile(Path.Combine(PATH_TO_IMAGE, "RedLight.png"));
                             lightTraffics[indexSpeed - 1].Refresh();
                         }
                     }
@@ -332,10 +335,12 @@ namespace SoborniyProject.src.interfaces
         private void BStopAlgorithm_Click_1(object sender, EventArgs e)
         {
             int i = 0;
-            
+
+            Path.Combine(PATH_TO_IMAGE, $"{checkColor(store.lightTraffics[i].StartColor)}.png");
+
             foreach (var p in lightTraffics)
             {
-                p.Image = Image.FromFile($"{PATH_TO_IMAGE}{checkColor(store.lightTraffics[i].StartColor)}.png");
+                p.Image = Image.FromFile(Path.Combine(PATH_TO_IMAGE, $"{checkColor(store.lightTraffics[i].StartColor)}.png"));
                 p.Refresh();
                 allColors[i] = checkColor(store.lightTraffics[i].StartColor);
                 i++;

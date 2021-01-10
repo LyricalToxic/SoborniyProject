@@ -96,7 +96,7 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
             for (int i = 0; i < car_sessions.Count; i++)
             {
                 SessionStatistic sessionStatistic = new SessionStatistic();
-                sessionStatistic.SessionId = 1;
+                 //GG
                 sessionStatistic.PositionId = i+1;
                 sessionStatistic.AccelerationDistance = (short)car_sessions[i].BoostDistance;
                 sessionStatistic.DecelerationDistance = (short)car_sessions[i].BreakinDistance;

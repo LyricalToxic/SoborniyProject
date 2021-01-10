@@ -103,7 +103,7 @@ namespace SoborniyProject.src.algorithms.Algorithms
                 else { position_Braking_or_Boost.ZeroingAndCreateNext(car_sessions, roads, iter); }
                 if (iter + 1 == car_sessions.Count) 
                 {
-                    car_sessions[0].DetectImpossibleValuesInSession(car_sessions,key,roads);
+                    car_sessions[0].DetectImpossibleValuesInSession(car_sessions,key,roads); 
                 }
             }
 
