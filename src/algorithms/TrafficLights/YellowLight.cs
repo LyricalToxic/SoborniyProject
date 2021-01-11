@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using SoborniyProject.database.Context;
-using SoborniyProject.database.Models;
+using System.Windows.Forms;
 
 namespace SoborniyProject.src.algorithms.TrafficLights
 {
@@ -14,7 +10,8 @@ namespace SoborniyProject.src.algorithms.TrafficLights
         public int Next_color { set; get; }
         public override void DB_Inf(List<YellowLight> yellows,string key)
         {
-            var sites = yellows[0].Context.LightTraffic.Where(p => p.Session.Key == key);
+            //var sites = yellows[0].Context.LightTraffic.Where(p => p.Session.Key == key);
+            var sites = from p in yellows[0].Context.LightTraffic orderby p.PositionId where p.Session.Key == key select p;
             int local_i = 0;
             foreach (var item in sites)
             {
@@ -26,6 +23,8 @@ namespace SoborniyProject.src.algorithms.TrafficLights
                         if (item.StartColor == 2) { yellows[0].CurrentLight = 1; } else { yellows[0].CurrentLight = 0; }
                         yellows[0].CurrentLightSeconds = item.Status;
                         yellows[0].LightDuration = item.GreenLightDuration;
+                        yellows[0].PositionId = item.PositionId;
+                        yellows[0].SessionId = (int)item.SessionId;
                     }
                     else
                     {
@@ -35,15 +34,16 @@ namespace SoborniyProject.src.algorithms.TrafficLights
                         {
                             CurrentLight = LocalLight,
                             LightDuration = item.GreenLightDuration,
-                            CurrentLightSeconds = item.Status
-
+                            CurrentLightSeconds = item.Status,
+                            PositionId =item.PositionId,
+                            SessionId = (int)item.SessionId,
                         });
                     }
                     local_i = 1;
                 }
                 catch (Exception ex)
                 {
-                    //($"Erorr :{ex.Message}");
+                    MessageBox.Show($"Erorr :{ex.Message}");
                 }
             }
 

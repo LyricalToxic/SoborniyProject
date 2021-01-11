@@ -28,6 +28,7 @@ namespace SoborniyProject
         public static string SQLITE_DB { get; set; }
 
         public static string ROOT_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Application.StartupPath));
+        
         public  enum LightTrafficColorEnum
         {
             Red = 1,

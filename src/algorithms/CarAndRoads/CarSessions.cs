@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SoborniyProject.src.algorithms.TrafficLights;
 
 namespace SoborniyProject.src.algorithms.CarAndRoads
 {
@@ -58,9 +59,9 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
             car_sessions[0].CountBoosTimeToCurrentSpeed(car_sessions, 0, roads);//время ускорения и после ускорения
             car_sessions[0].CountBoostDistanceOnCurrentSpeed(car_sessions, 0);//расстояние которое пройдет во время ускорения
         }
-        public void RecountBoostSpeed(List<CarSessions> car_sessions, int tter, CarInf car) //ускорение вс еккунду принимает правильное значение ,переделывая значение 11,2
+        public void RecountBoostSpeed(List<CarSessions> car_sessions, int iter, CarInf car) //ускорение вс еккунду принимает правильное значение ,переделывая значение 11,2
         {
-            car_sessions[tter].AccelerationPerSecond = (100 * 1000) / (60 * 60) / car.Acceleration;
+            car_sessions[iter].AccelerationPerSecond = (100 * 1000) / (60 * 60) / car.Acceleration;
         }
 
         public void CountBoosTimeToCurrentSpeed(List<CarSessions> car_sessions, int iter, List<RoadInf> roads)
@@ -84,7 +85,7 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
             (car_sessions[iter].AccelerationPerSecond * Math.Pow(car_sessions[iter].BoostTime, 2)) / 2;
         }
 
-        public void SaveSessions(List<CarSessions> car_sessions,string key)           
+        public void SaveSessions(List<CarSessions> car_sessions,string key,List<GreenLight> greens)           
         {
             car_sessions[0].FullSessionTime = 0;
             for (int i = 0; i < car_sessions.Count; i++)
@@ -103,8 +104,8 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
             for (int i = 0; i < car_sessions.Count; i++)
             {
                 SessionStatistic sessionStatistic = new SessionStatistic();
-                sessionStatistic.SessionId = 1;
-                sessionStatistic.PositionId = i+1;
+                sessionStatistic.SessionId = greens[i].SessionId;
+                sessionStatistic.PositionId = (int)greens[i].PositionId;
                 sessionStatistic.AccelerationDistance = car_sessions[i].BoostDistance;
                 sessionStatistic.DecelerationDistance =car_sessions[i].BreakinDistance;
                 sessionStatistic.AccelerationTime =car_sessions[i].BoostTime;
@@ -124,7 +125,7 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
             car_sessions[0].Context.SaveChanges();
         }
 
-        public void DetectImpossibleValuesInSession(List<CarSessions> car_sessions,string key,List<RoadInf> roads) 
+        public void DetectImpossibleValuesInSession(List<CarSessions> car_sessions,string key,List<RoadInf> roads,List<GreenLight> greens) 
         {
             for (int iter = 0; iter < car_sessions.Count; iter++)
             {
@@ -135,7 +136,7 @@ namespace SoborniyProject.src.algorithms.CarAndRoads
                     car_sessions[0].SessionLose = 1;
                 }
             }
-            car_sessions[0].SaveSessions(car_sessions, key);
+            car_sessions[0].SaveSessions(car_sessions, key,greens);
         }
     }
 

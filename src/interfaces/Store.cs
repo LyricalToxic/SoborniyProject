@@ -62,6 +62,7 @@ namespace SoborniyProject.src.interfaces
         {
             if (!isCar)
             {
+                car.Id = DateTime.Now.GetHashCode();
                 context.Car.Add(car);
                 context.SaveChanges();
                 isCar = true;
