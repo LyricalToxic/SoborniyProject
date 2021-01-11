@@ -18,6 +18,7 @@ namespace SoborniyProject.src.interfaces
         public Session session = new Session();
         public List<LightTraffic> lightTraffics = new List<LightTraffic>();
         public int countLightTraffic = 0;
+        public bool isCar = false;
         public Store()
         {
             session.Key = getHashKey();
@@ -59,8 +60,13 @@ namespace SoborniyProject.src.interfaces
 
         public void addNewCar(Car car)
         {
-            context.Car.Add(car);
-            context.SaveChanges();
+            if (!isCar)
+            {
+                context.Car.Add(car);
+                context.SaveChanges();
+                isCar = true;
+            }
+           
         }
 
 
@@ -89,7 +95,12 @@ namespace SoborniyProject.src.interfaces
 
         private string getHashKey()
         {
-            return GetHashCode().ToString();
+            var key = DateTime.Now.GetHashCode();
+            if (key < 0)
+            {
+                key *= -1;
+            }
+            return key.ToString();
         }
     }
 }

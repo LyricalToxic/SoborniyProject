@@ -15,8 +15,11 @@ namespace SoborniyProject.database.Models
         public double  TimeBetweenLightTraffic { get; set; }
         public int CarSpeed { get; set; }
         public double  SessionTime { get; set; }
-        public DateTime UpdatedAt{ get; set; } 
-        public DateTime CreatedAt{ get; set; } 
-        public Session Session { get; set; } 
+
+        //public DateTime CreatedAt{ get; set; } 
+        public byte[] CreatedAt{ get; set; } 
+        //public DateTime UpdatedAt{ get; set; } 
+        public byte[] UpdatedAt{ get; set; } 
+        public Session Session { get; set; }
     }
 }

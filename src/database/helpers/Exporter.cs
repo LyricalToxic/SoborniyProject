@@ -49,7 +49,7 @@ namespace SoborniyProject.database.helpers
             return resolvedPath;
         }
 
-        private  void WriteToCsv(string csvPath, dynamic data)
+        private void WriteToCsv(string csvPath, dynamic data)
         {
             using (var writer = new StreamWriter(csvPath)) 
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))

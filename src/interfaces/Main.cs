@@ -27,6 +27,7 @@ namespace SoborniyProject.src.interfaces
         private const string PATH_TO_IMAGE = "D:/Work/Универ/SoborniyProject/src/assets/img/";
         private List<PictureBox> lightTraffics = new List<PictureBox>();
         private List<string> allColors = new List<string>();
+        private bool stoped = false;
 
 
         public Main(Store store)
@@ -34,6 +35,7 @@ namespace SoborniyProject.src.interfaces
             this.store = store;
             InitializeComponent();
             initializeData();
+            information.Text = "На головній формі ви побачите моделювання руху авто і кнопки, якими ви керуєте програмою. Кнопка «Зберегти світлофори» зберігає світлофори і дані про них в файли формату csv. Для запуску програми потрібно перейти на вкладку «Car» і додати автомобіль і на вкладку «Light Traffic», щоб додати світлофори, якщо не буде цих об'єктів, то алгоритм немає від працює. Після того як всі дані введені, ви натискайте на кнопку Запуск, щоб побачити результат алгоритму. Остання кнопка потрібна для зупинки моделювання.";
         }
 
 
@@ -42,18 +44,19 @@ namespace SoborniyProject.src.interfaces
 
         private void initializeData()
         {
+            car.SessionId = store.session.Id;
             var sesions = from p in store.context.Session select p;
             foreach (var item in sesions)
             {
-                comboBox1.Items.Add(item.Key);
+                CBKeySessions.Items.Add(item.Key);
             }
-            comboBox1.Text = comboBox1.Items[0].ToString();
+            CBKeySessions.Text = CBKeySessions.Items[0].ToString();
         }
 
 
 
 
-        private void addNewTraffic_Click(object sender, EventArgs e)
+        private void BAddNewTraffic_Click(object sender, EventArgs e)
         {
 
             store.countLightTraffic++;
@@ -108,27 +111,68 @@ namespace SoborniyProject.src.interfaces
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            car.SessionId = store.session.Id;
-            car.Name = "DAWD"; //nameCar.Text
-            car.MaxSpeed = 150;//convertToInt(speed)
-            car.Acceleration = 11;//convertToInt(acceleration)
-            car.Deceleration = 8;//convertToInt(deceleration)
-            store.addNewCar(car);
-            carModel.Visible = true;
-        }
-
+        
 
         private int convertToInt(TextBox text)
         {
             return Convert.ToInt32(text.Text);
         }
 
-        private async void button3_Click_1(object sender, EventArgs e)
+        private string checkColor(int light)
         {
+            string color = "";
+            switch (light)
+            {
+                case 1:
+                    color = "RedLight";
+                    break;
+                case 3:
+                    color = "GreenLight";
+                    break;
+                case 2:
+                    color = "YellowLight";
+                    break;
+                default:
+                    color = "RedLight";
+                    break;
+            }
+            return color;
+        }
+
+        
+
+      
+
+        
+
+    
+        private void spawnSessions(string key)
+        {
+            var sesions = from p in store.context.SessionStatistics where p.Session.Key == key select p;
+            foreach (var item in sesions)
+            {
+                ListViewItem listItem = new ListViewItem(item.Id.ToString());
+                listItem.SubItems.Add(item.SessionId.ToString());
+                listItem.SubItems.Add(item.PositionId.ToString());
+                listItem.SubItems.Add(item.AccelerationTime.ToString());
+                listItem.SubItems.Add(item.AccelerationDistance.ToString());
+                listItem.SubItems.Add(item.DecelerationTime.ToString());
+                listItem.SubItems.Add(item.DecelerationDistance.ToString());
+                listItem.SubItems.Add(item.LightTrafficStatus.ToString());
+                listItem.SubItems.Add(item.DistanceBetweenLightTraffic.ToString());
+                listItem.SubItems.Add(item.TimeBetweenLightTraffic.ToString());
+                listItem.SubItems.Add(item.CarSpeed.ToString());
+                listView1.Items.Add(listItem);
+
+            }
+        }
+
+        private async void BStartAlgorithm_Click(object sender, EventArgs e)
+        {
+            
             if (globalAsync == 0)
             {
+                stoped = false;
                 globalAsync = 1;
                 try
                 {
@@ -136,24 +180,33 @@ namespace SoborniyProject.src.interfaces
                     {
                         throw new Exception("Please add car");
                     }
-                    store.startProgram();
+                    
                     float distance = 0;
                     int i = 0;
                     int indexSpeed = 0;
                     foreach (var item in store.context.LightTraffic.ToArray())
                     {
+                       
+
                         distance += item.PreviousDistance;
                         if (indexSpeed == store.countLightTraffic)
                         {
                             break;
                         }
 
+                      
+
 
                         for (; i < distance; i++)
                         {
                             carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
-
+                            if (stoped)
+                            {
+                                carModel.Location = new Point(0, carModel.Location.Y);
+                                break;
+                            }
                             await Task.Delay(Convert.ToInt32(item.PreviousDistance / store.Speed[indexSpeed]));
+                            
                             if (allColors[indexSpeed] == "RedLight" && i == distance - 200)
                             {
 
@@ -187,6 +240,11 @@ namespace SoborniyProject.src.interfaces
                     for (; i < distance; i++)
                     {
                         carModel.Location = new Point(i - carModel.Width, carModel.Location.Y);
+                        if (stoped)
+                        {
+                            carModel.Location = new Point(0, carModel.Location.Y);
+                            break;
+                        }
                         await Task.Delay(Convert.ToInt32(distance / store.Speed[0]));
                         if (allColors[indexSpeed - 1] == "GreenLight" && i > distance - 300)
                         {
@@ -201,22 +259,48 @@ namespace SoborniyProject.src.interfaces
                     MessageBox.Show(ex.Message);
 
                 }
-                finally
-                {
-                    globalAsync = 0;
-                }
+                
+                globalAsync = 0;
 
-            }else
+            }
+            else
             {
                 MessageBox.Show("Please wait to end the algorithms");
             }
-
         }
 
-
-        private void button2_Click_1(object sender, EventArgs e)
+        private void BSaveSessions_Click(object sender, EventArgs e)
         {
-            
+            store.exportLightTraffic();
+        }
+
+      
+
+        private void BAddCar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (store.session.LightTraffics == null)
+                {
+                    throw new Exception("Please enter information for Light Traffic");
+                }
+                car.Name = nameCar.Text;
+                car.MaxSpeed = convertToInt(speed);
+                car.Acceleration = convertToInt(acceleration);
+                car.Deceleration = convertToInt(deceleration);
+                store.addNewCar(car);
+                carModel.Visible = true;
+                store.startProgram();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } 
+        }
+
+       
+        private void BOpenFileLightTraffic_Click(object sender, EventArgs e)
+        {
             OpenFileDialog open = new OpenFileDialog();
             open.InitialDirectory = @"D:\Work\Универ\SoborniyProject\src\data";
             if (open.ShowDialog() == DialogResult.Cancel)
@@ -227,7 +311,7 @@ namespace SoborniyProject.src.interfaces
             {
                 store.importLightTraffic(open.FileName);
             }
-            
+
 
             lightTraffics.Clear();
 
@@ -241,68 +325,65 @@ namespace SoborniyProject.src.interfaces
                 currentLightTraffic.Items.Add($"{item.PositionId} світлофор");
             }
             currentLightTraffic.Text = currentLightTraffic.Items[0].ToString();
-
-
         }
 
+        
 
-
-        private string checkColor(int light)
+        private void BStopAlgorithm_Click_1(object sender, EventArgs e)
         {
-            string color = "";
-            switch (light)
+            int i = 0;
+            
+            foreach (var p in lightTraffics)
             {
-                case 1:
-                    color = "RedLight";
-                    break;
-                case 3:
-                    color = "GreenLight";
-                    break;
-                case 2:
-                    color = "YellowLight";
-                    break;
-                default:
-                    color = "RedLight";
-                    break;
+                p.Image = Image.FromFile($"{PATH_TO_IMAGE}{checkColor(store.lightTraffics[i].StartColor)}.png");
+                p.Refresh();
+                allColors[i] = checkColor(store.lightTraffics[i].StartColor);
+                i++;
+              
             }
-            return color;
+            stoped = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            information.Text = "На головній формі ви побачите моделювання руху авто і кнопки, якими ви керуєте програмою. Кнопка «Зберегти світлофори» зберігає світлофори і дані про них в файли формату csv. Для запуску програми потрібно перейти на вкладку «Car» і додати автомобіль і на вкладку «Light Traffic», щоб додати світлофори, якщо не буде цих об'єктів, то алгоритм немає від працює. Після того як всі дані введені, ви натискайте на кнопку Запуск, щоб побачити результат алгоритму. Остання кнопка потрібна для зупинки моделювання.";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            information.Text = "На сторінці світлофорів можна додати світлофор або змінити його. При натискані на кнопку відкрити файл на робочому столі з'являється діологове вікно файлів, де ви відкриваєте файл зі збереженими раніше світлофорами.";
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            store.exportLightTraffic();
+            information.Text = "На сторінці автомобіля можна додати авто. Після введення даних авто натисніть кнопку додати, тоді ваш автомобіль додається в базу. Він потрібен для роботи програми";
         }
 
-      
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            spawnSessions(comboBox1.Text);
+            information.Text = "На сторінці статистика ви побачите інформацію про сесію, яку ви вибираєте завдяки ComboBox"; 
         }
 
-    
-        private void spawnSessions(string key)
+        private void currentLightTraffic_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var sesions = from p in store.context.SessionStatistics where p.Session.Key == key select p;
-            foreach (var item in sesions)
-            {
-                ListViewItem listItem = new ListViewItem(item.Id.ToString());
-                listItem.SubItems.Add(item.SessionId.ToString());
-                listItem.SubItems.Add(item.PositionId.ToString());
-                listItem.SubItems.Add(item.AccelerationTime.ToString());
-                listItem.SubItems.Add(item.AccelerationDistance.ToString());
-                listItem.SubItems.Add(item.DecelerationTime.ToString());
-                listItem.SubItems.Add(item.DecelerationDistance.ToString());
-                listItem.SubItems.Add(item.LightTrafficStatus.ToString());
-                listItem.SubItems.Add(item.DistanceBetweenLightTraffic.ToString());
-                listItem.SubItems.Add(item.TimeBetweenLightTraffic.ToString());
-                listItem.SubItems.Add(item.CarSpeed.ToString());
-                listView1.Items.Add(listItem);
 
-            }
+            var index = Convert.ToInt32(currentLightTraffic.Text[0])-49 ;
+
+            currentColor.Text = store.session.LightTraffics[index].StartColor.ToString();
+            distance.Text = store.session.LightTraffics[index].PreviousDistance.ToString();
+            currentTime.Text = store.session.LightTraffics[index].StartColor.ToString();
+            nextColor.Text = store.session.LightTraffics[index].NextColor.ToString();
+            redColor.Text = store.session.LightTraffics[index].RedLightDuration.ToString();
+            yellowColor.Text = store.session.LightTraffics[index].YellowLightDuration.ToString();
+            greenColor.Text = store.session.LightTraffics[index].GreenLightDuration.ToString();
+        }
+
+        private void CBKeySessions_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            spawnSessions(CBKeySessions.Text);
         }
     }
-
+          
 }
 
             

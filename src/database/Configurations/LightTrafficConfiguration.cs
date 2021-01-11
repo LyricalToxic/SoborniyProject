@@ -8,9 +8,11 @@ namespace SoborniyProject.database.Configurations
     {
         public void Configure(EntityTypeBuilder<LightTraffic> builder)
         {
-            builder.Property(c => c.Id).HasColumnType("bigint");
-            builder.Property(c => c.SessionId).HasColumnType("bigint").IsRequired();
-            builder.Property(c => c.PositionId).HasColumnType("bigint").IsRequired();
+            // builder.Property(c => c.Id).HasColumnType("bigint");
+            // builder.Property(c => c.SessionId).HasColumnType("bigint").IsRequired();
+            builder.Property(c => c.SessionId).IsRequired();
+            //builder.Property(c => c.PositionId).HasColumnType("bigint").IsRequired();
+            builder.Property(c => c.PositionId).IsRequired();
             builder.Property(c => c.PreviousDistance).HasColumnType("decimal(6, 2)").IsRequired();
             builder.Property(c => c.RedLightDuration);
             builder.Property(c => c.YellowLightDuration);
@@ -19,11 +21,12 @@ namespace SoborniyProject.database.Configurations
             builder.Property(c => c.StartColor);
             builder.Property(c => c.NextColor);
             builder.Property(c => c.CreatedAt)
-                .ValueGeneratedOnAdd().IsRequired();
+                .IsRequired().IsRowVersion().HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.Property(c => c.UpdatedAt)
-                .ValueGeneratedOnAddOrUpdate().IsRequired();
+                .IsRequired().IsRowVersion().HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.HasIndex(c => c.UpdatedAt);
             builder.HasIndex(c => new {c.SessionId, c.PositionId}).IsUnique();
+            builder.ToTable("LightTraffics");
         }
     }
 }

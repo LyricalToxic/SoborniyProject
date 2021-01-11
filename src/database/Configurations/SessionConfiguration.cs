@@ -8,16 +8,17 @@ namespace SoborniyProject.database.Configurations
     {
         public void Configure(EntityTypeBuilder<Session> builder)
         {
-            builder.Property(c => c.Id).HasColumnType("bigint");
+            //builder.Property(c => c.Id).HasColumnType("bigint");
             builder.Property(c => c.Key).IsRequired().HasMaxLength(64);
             builder.Property(c => c.TotalTime).HasDefaultValue(0).IsRequired();
             builder.Property(c => c.Status).HasDefaultValue(0).IsRequired();
             builder.Property(c => c.CreatedAt)
-                .ValueGeneratedOnAdd().IsRequired();
+                .IsRequired().IsRowVersion().HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.Property(c => c.UpdatedAt)
-                .ValueGeneratedOnAddOrUpdate().IsRequired();
+               .IsRequired().IsRowVersion().HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.HasIndex(c => c.Key).IsUnique();
             builder.HasIndex(c => c.UpdatedAt);
+            builder.ToTable("Sessions");
         }
     }
 }
