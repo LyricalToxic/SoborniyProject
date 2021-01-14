@@ -40,6 +40,7 @@ namespace SoborniyProject.src.algorithms.Algorithms
                 }
                 car_sessions[iter].FullDistance = car_sessions[iter].BoostDistance;//в полный путь занес результат разгона
                 if (car_sessions[iter].FullDistance > roads[iter].DistaceRoadSite) { position_Braking_or_Boost.BelowSpeed(car_sessions, roads, iter); iter--; continue; }
+
                 if (car_sessions[iter].DistanceAfterBoost  < roads[iter].DistaceRoadSite - car_sessions[iter].BoostDistance) //если мы достигли нужного расстояния завершаем 
                 {
                     car_sessions[iter].TimeAfterBoost = (roads[iter].DistaceRoadSite - car_sessions[iter].BoostDistance) / car_sessions[iter].CurrentSpeed;
@@ -47,7 +48,7 @@ namespace SoborniyProject.src.algorithms.Algorithms
                 }
                 car_sessions[iter].FullDistance += car_sessions[iter].DistanceAfterBoost;//полный путь
                 position_Braking_or_Boost.VerificationOnColour(car_sessions, roads, iter, greens, reds, yellows, regroup);//проверка времени относительно светофора
-                if (car_sessions[0].SessionLose == 1) { car_sessions[0].SaveSessions(car_sessions,key); break; }
+                if (car_sessions[0].SessionLose == 1) { car_sessions[0].SaveSessions(car_sessions,key, greens); break; }
                 if (iter - 1 >= 0)
                 {
                     if (car_sessions[iter - 1].SpeedLimit > car_sessions[iter].SpeedLimit)
@@ -67,7 +68,7 @@ namespace SoborniyProject.src.algorithms.Algorithms
                             position_Braking_or_Boost.GoBack(car_sessions, roads, iter);
                             if (car_sessions[0].SessionLose == 1)
                             {
-                                car_sessions[0].SaveSessions(car_sessions, key);
+                                car_sessions[0].SaveSessions(car_sessions, key,greens);
                                 break;
                             }
                             if (iter - 2 > 0)
@@ -103,7 +104,7 @@ namespace SoborniyProject.src.algorithms.Algorithms
                 else { position_Braking_or_Boost.ZeroingAndCreateNext(car_sessions, roads, iter); }
                 if (iter + 1 == car_sessions.Count) 
                 {
-                    car_sessions[0].DetectImpossibleValuesInSession(car_sessions,key,roads); 
+                    car_sessions[0].DetectImpossibleValuesInSession(car_sessions,key,roads,greens); 
                 }
             }
 

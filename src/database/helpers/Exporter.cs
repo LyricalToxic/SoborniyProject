@@ -48,6 +48,7 @@ namespace SoborniyProject.database.helpers
 
             return resolvedPath;
         }
+
         private void WriteToCsv(string csvPath, dynamic data)
         {
             using (var writer = new StreamWriter(csvPath)) 

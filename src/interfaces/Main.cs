@@ -371,6 +371,9 @@ namespace SoborniyProject.src.interfaces
 
         private void currentLightTraffic_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+         
+
 
             var index = Convert.ToInt32(currentLightTraffic.Text[0])-48 ;
 
@@ -387,7 +390,7 @@ namespace SoborniyProject.src.interfaces
                     greenColor.Text = item.GreenLightDuration.ToString();
                 }
             }
-  
+
         }
 
         private void CBKeySessions_SelectedIndexChanged_1(object sender, EventArgs e)

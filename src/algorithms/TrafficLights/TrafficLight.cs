@@ -19,7 +19,8 @@ namespace SoborniyProject.src.algorithms.TrafficLights
 
         public double LightDuration { get; set; }
 
-        public int id { get; set; }
+        public int SessionId { get; set; }
+        public Int64 PositionId { get; set; }
 
         public abstract void DB_Inf(List<T> obj,string key);
 
