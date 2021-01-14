@@ -325,7 +325,7 @@ namespace SoborniyProject.src.interfaces
 
                 createILightTraffic(checkColor(item.StartColor));
 
-                currentLightTraffic.Items.Add($"{item.PositionId} світлофор");
+                currentLightTraffic.Items.Add($"{item.Id} світлофор");
             }
             currentLightTraffic.Text = currentLightTraffic.Items[0].ToString();
         }
@@ -372,15 +372,22 @@ namespace SoborniyProject.src.interfaces
         private void currentLightTraffic_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            var index = Convert.ToInt32(currentLightTraffic.Text[0])-49 ;
+            var index = Convert.ToInt32(currentLightTraffic.Text[0])-48 ;
 
-            currentColor.Text = store.session.LightTraffics[index].StartColor.ToString();
-            distance.Text = store.session.LightTraffics[index].PreviousDistance.ToString();
-            currentTime.Text = store.session.LightTraffics[index].StartColor.ToString();
-            nextColor.Text = store.session.LightTraffics[index].NextColor.ToString();
-            redColor.Text = store.session.LightTraffics[index].RedLightDuration.ToString();
-            yellowColor.Text = store.session.LightTraffics[index].YellowLightDuration.ToString();
-            greenColor.Text = store.session.LightTraffics[index].GreenLightDuration.ToString();
+            foreach (var item  in store.session.LightTraffics)
+            {
+                if(index == item.Id)
+                {
+                    currentColor.Text = item.StartColor.ToString();
+                    distance.Text = item.PreviousDistance.ToString();
+                    currentTime.Text = item.StartColor.ToString();
+                    nextColor.Text = item.NextColor.ToString();
+                    redColor.Text = item.RedLightDuration.ToString();
+                    yellowColor.Text = item.YellowLightDuration.ToString();
+                    greenColor.Text = item.GreenLightDuration.ToString();
+                }
+            }
+  
         }
 
         private void CBKeySessions_SelectedIndexChanged_1(object sender, EventArgs e)
