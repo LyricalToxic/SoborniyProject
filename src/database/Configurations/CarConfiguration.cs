@@ -9,7 +9,7 @@ namespace SoborniyProject.database.Configurations
         public void Configure(EntityTypeBuilder<Car> builder)
         {
            // builder.Property(c => c.Id).HasColumnType("bigint");
-           // builder.Property(c => c.SessionId).HasColumnType("bigint");
+            builder.Property(c => c.SessionId).IsRequired();
             builder.Property(c => c.Name).HasMaxLength(128).IsRequired();
             builder.Property(c => c.MaxSpeed).HasColumnType("decimal(5, 2)");
             builder.Property(c => c.Acceleration).HasColumnType("decimal(5, 2)");
