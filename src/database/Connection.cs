@@ -1,6 +1,7 @@
 ﻿using SoborniyProject;
 using System;
 using System.Data.Common;
+using System.IO;
 
 namespace SoborniyProject.database
 {
@@ -22,9 +23,17 @@ namespace SoborniyProject.database
         public static string GetSqliteString()
         {
             Settings.Load();
+            string dbPath;
+            if (Directory.Exists(Settings.SQLITE_DB))
+            {
+                dbPath = Settings.SQLITE_DB;
+            }else
+            {
+                dbPath = Path.Combine(Settings.ROOT_PATH, "default.db");
+            }
             return String.Format(
                 "Data Source={0}",
-                Settings.SQLITE_DB
+                dbPath
             );
         }
     }
