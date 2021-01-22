@@ -71,7 +71,7 @@ namespace SoborniyProject.src.algorithms.Algorithms
                                 car_sessions[0].SaveSessions(car_sessions, key,greens);
                                 break;
                             }
-                            if (iter - 2 > 0)
+                            if (iter - 2 >= 0)
                             {
                                 iter = iter - 2;
                             }

@@ -33,6 +33,7 @@ namespace SoborniyProject.src.interfaces
 
         public Main(Store store)
         {
+            StartPosition = FormStartPosition.WindowsDefaultBounds;
             this.store = store;
             InitializeComponent();
             initializeData();
@@ -65,12 +66,7 @@ namespace SoborniyProject.src.interfaces
             lightTraffic.SessionId = store.session.Id;
             lightTraffic.PositionId = store.countLightTraffic;
             lightTraffic.StartColor = (short)convertToInt(currentColor);
-
-            if (lightTraffic.StartColor == 2)
-            {
-                lightTraffic.NextColor = (short)convertToInt(nextColor);
-            }
-
+            lightTraffic.NextColor = (short)convertToInt(nextColor);
             lightTraffic.Status = (short)convertToInt(currentTime);
             lightTraffic.PreviousDistance = convertToInt(distance);
             lightTraffic.RedLightDuration = convertToInt(redColor);
@@ -151,9 +147,14 @@ namespace SoborniyProject.src.interfaces
     
         private void spawnSessions(string key)
         {
-            var sesions = from p in store.context.SessionStatistics where p.Session.Key == key select p;
+            listView1.Items.Clear();
+            var sesions = store.context.SessionStatistics.Where(p=>p.Session.Key==key);
             foreach (var item in sesions)
             {
+                foreach (ListViewItem listComponent in listView1.Items)
+                {
+                    
+                }
                 ListViewItem listItem = new ListViewItem(item.Id.ToString());
                 listItem.SubItems.Add(item.SessionId.ToString());
                 listItem.SubItems.Add(item.PositionId.ToString());
@@ -294,6 +295,7 @@ namespace SoborniyProject.src.interfaces
                 store.addNewCar(car);
                 carModel.Visible = true;
                 store.startProgram();
+                spawnSessions(CBKeySessions.Text);
             }
             catch (Exception ex)
             {
@@ -371,10 +373,6 @@ namespace SoborniyProject.src.interfaces
 
         private void currentLightTraffic_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-         
-
-
             var index = Convert.ToInt32(currentLightTraffic.Text[0])-48 ;
 
             foreach (var item  in store.session.LightTraffics)
@@ -397,6 +395,13 @@ namespace SoborniyProject.src.interfaces
         {
             spawnSessions(CBKeySessions.Text);
         }
+
+        private void CBKeySessions_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        
     }
           
 }

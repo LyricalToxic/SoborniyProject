@@ -608,6 +608,7 @@
             this.CBKeySessions.Size = new System.Drawing.Size(220, 41);
             this.CBKeySessions.TabIndex = 14;
             this.CBKeySessions.SelectedIndexChanged += new System.EventHandler(this.CBKeySessions_SelectedIndexChanged_1);
+            this.CBKeySessions.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CBKeySessions_KeyPress);
             // 
             // listView1
             // 
@@ -818,6 +819,8 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Main";
             this.Text = "Main";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

@@ -13,7 +13,7 @@ namespace SoborniyProject.database.Context
             optionsBuilder.UseSqlite(Connection.GetSqliteString());
             
         }
-        private static bool _recreated = false;
+        private static bool _recreated = true;
         public SoborniyContext()
         {
 
