@@ -61,27 +61,71 @@ namespace SoborniyProject.src.interfaces
         private void BAddNewTraffic_Click(object sender, EventArgs e)
         {
 
-            store.countLightTraffic++;
-            LightTraffic lightTraffic = new LightTraffic();
-            lightTraffic.SessionId = store.session.Id;
-            lightTraffic.PositionId = store.countLightTraffic;
-            lightTraffic.StartColor = (short)convertToInt(currentColor);
-            lightTraffic.NextColor = (short)convertToInt(nextColor);
-            lightTraffic.Status = (short)convertToInt(currentTime);
-            lightTraffic.PreviousDistance = convertToInt(distance);
-            lightTraffic.RedLightDuration = convertToInt(redColor);
-            lightTraffic.YellowLightDuration = convertToInt(yellowColor);
-            lightTraffic.GreenLightDuration = convertToInt(greenColor);
-            store.addNewLightTraffic(lightTraffic);
+            try
+            {
+                store.countLightTraffic++;
+                LightTraffic lightTraffic = new LightTraffic();
+                lightTraffic.SessionId = store.session.Id;
+                lightTraffic.PositionId = store.countLightTraffic;
+                lightTraffic.StartColor = createNameLightTrafficNumber(currentColor.Text);
+                lightTraffic.NextColor = validateNextColor();
+                lightTraffic.Status = (short)convertToInt(currentTime);
+                lightTraffic.PreviousDistance = validateDistance(convertToInt(distance));
+                lightTraffic.RedLightDuration = validateDuration(convertToInt(redColor));
+                lightTraffic.YellowLightDuration = validateDuration(convertToInt(yellowColor));
+                lightTraffic.GreenLightDuration = validateDuration(convertToInt(greenColor));
+                store.addNewLightTraffic(lightTraffic);
 
-            currentLightTraffic.Items.Add($"{lightTraffic.Id} світлофор");
-            currentLightTraffic.Text = currentLightTraffic.Items[0].ToString();
+                currentLightTraffic.Items.Add($"{lightTraffic.Id} світлофор");
+                currentLightTraffic.Text = currentLightTraffic.Items[0].ToString();
 
 
-            X_LIGHT_TRAFFIC += lightTraffic.PreviousDistance;
-            createILightTraffic(checkColor(lightTraffic.StartColor));
+                X_LIGHT_TRAFFIC += lightTraffic.PreviousDistance;
+                createILightTraffic(checkColor(lightTraffic.StartColor));
+            }
+            catch (Exception error)
+            {
+
+                MessageBox.Show(error.Message, "Warning!");
+            }
 
         }
+
+
+        private int validateDuration(int duration)
+        {
+            if (duration < 0)
+            {
+                throw (new Exception("Невірно введено час роботи світлофора"));
+            }
+
+            return duration;
+        }
+
+
+        private short validateNextColor()
+        {
+            if (createNameLightTrafficNumber(nextColor.Text) == createNameLightTrafficNumber(currentColor.Text))
+            {
+                throw (new Exception("Наступний колір світлофара відмінний від кольору на даний момент часу"));
+
+            }
+            return createNameLightTrafficNumber(nextColor.Text);
+
+        }
+
+        private int validateDistance(int distance)
+        {
+            if (distance <= 0)
+            {
+                throw (new Exception("Невірно введено  відстань"));
+            }
+
+            return distance;
+        }
+
+
+
 
         private void createILightTraffic(string color)
         {
@@ -156,11 +200,12 @@ namespace SoborniyProject.src.interfaces
                     
                 }
                 ListViewItem listItem = new ListViewItem(item.Id.ToString());
+               
                 listItem.SubItems.Add(item.SessionId.ToString());
                 listItem.SubItems.Add(item.PositionId.ToString());
                 listItem.SubItems.Add(item.AccelerationTime.ToString());
-                listItem.SubItems.Add(item.AccelerationDistance.ToString());
                 listItem.SubItems.Add(item.DecelerationTime.ToString());
+                listItem.SubItems.Add(item.AccelerationDistance.ToString());
                 listItem.SubItems.Add(item.DecelerationDistance.ToString());
                 listItem.SubItems.Add(item.LightTrafficStatus.ToString());
                 listItem.SubItems.Add(item.DistanceBetweenLightTraffic.ToString());
@@ -279,6 +324,23 @@ namespace SoborniyProject.src.interfaces
         }
 
       
+        private int validateCarValue(int value)
+        {
+            if (value <1)
+            {
+                throw(new Exception("Гальмування і прискорення повинно бути більше за одиницю"));
+            }
+            return value;
+        }
+
+        private int validateSpeed (int speed)
+        {
+            if(speed <= 5)
+            {
+                throw (new Exception("Швидкість повинна бути більше 5"));
+            }
+            return validateCarValue(speed);        
+        }
 
         private void BAddCar_Click(object sender, EventArgs e)
         {
@@ -289,9 +351,9 @@ namespace SoborniyProject.src.interfaces
                     throw new Exception("Please enter information for Light Traffic");
                 }
                 car.Name = nameCar.Text;
-                car.MaxSpeed = convertToInt(speed);
-                car.Acceleration = convertToInt(acceleration);
-                car.Deceleration = convertToInt(deceleration);
+                car.MaxSpeed = validateSpeed(convertToInt(speed));
+                car.Acceleration = validateCarValue(convertToInt(acceleration));
+                car.Deceleration = validateCarValue(convertToInt(deceleration));
                 store.addNewCar(car);
                 carModel.Visible = true;
                 store.startProgram();
@@ -379,10 +441,10 @@ namespace SoborniyProject.src.interfaces
             {
                 if(index == item.Id)
                 {
-                    currentColor.Text = item.StartColor.ToString();
+                    currentColor.Text = createNameLightTrafficString(item.StartColor);
                     distance.Text = item.PreviousDistance.ToString();
-                    currentTime.Text = item.StartColor.ToString();
-                    nextColor.Text = item.NextColor.ToString();
+                    currentTime.Text = item.Status.ToString();
+                    nextColor.Text = createNameLightTrafficString(item.NextColor);
                     redColor.Text = item.RedLightDuration.ToString();
                     yellowColor.Text = item.YellowLightDuration.ToString();
                     greenColor.Text = item.GreenLightDuration.ToString();
@@ -401,7 +463,51 @@ namespace SoborniyProject.src.interfaces
             e.Handled = true;
         }
 
-        
+
+        private short createNameLightTrafficNumber(string title)
+        {
+            switch (title.ToLower())
+            {
+                case "червоний":
+                    return 1;
+                    break;
+                case "жовтий":
+                    return 2;
+                    break;
+                case "зелений":
+                    return 3;
+                    break;
+
+                default:
+                    throw (new Exception("Невірно введено колір"));
+                    break;
+
+            }
+        }
+
+
+        private string createNameLightTrafficString(int number)
+        {
+            switch (number)
+            {
+                case 1:
+                    return "Червоний";
+                    break;
+                case 2:
+                    return "Жовтий";
+                    break;
+                case 3:
+                    return "Зелений";
+                    break;
+
+                default:
+                    throw (new Exception("Error"));
+                    break;
+
+            }
+        }
+
+
     }
           
 }

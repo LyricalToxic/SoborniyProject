@@ -143,7 +143,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1378, 579);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Main";
+            this.tabPage1.Text = "Головна";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // statusStrip1
@@ -256,7 +256,7 @@
             this.BStop.Padding = new System.Windows.Forms.Padding(3);
             this.BStop.Size = new System.Drawing.Size(1378, 579);
             this.BStop.TabIndex = 1;
-            this.BStop.Text = "Light Traffic";
+            this.BStop.Text = "Світлофор";
             this.BStop.UseVisualStyleBackColor = true;
             // 
             // statusStrip2
@@ -457,7 +457,7 @@
             this.carPage.Padding = new System.Windows.Forms.Padding(3);
             this.carPage.Size = new System.Drawing.Size(1378, 579);
             this.carPage.TabIndex = 2;
-            this.carPage.Text = "Car";
+            this.carPage.Text = "Автомобіль";
             this.carPage.UseVisualStyleBackColor = true;
             // 
             // statusStrip3
@@ -570,7 +570,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1378, 579);
             this.tabPage2.TabIndex = 3;
-            this.tabPage2.Text = "Statistic";
+            this.tabPage2.Text = "Статистика";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // statusStrip4
@@ -625,9 +625,9 @@
             this.TimeBetweenLightTraffic,
             this.CarSpeed});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(22, 121);
+            this.listView1.Location = new System.Drawing.Point(6, 121);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1317, 359);
+            this.listView1.Size = new System.Drawing.Size(1351, 359);
             this.listView1.TabIndex = 13;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -659,7 +659,7 @@
             // 
             // DecelerationTime
             // 
-            this.DecelerationTime.DisplayIndex = 10;
+            this.DecelerationTime.DisplayIndex = 4;
             this.DecelerationTime.Text = "DecelerationTime";
             this.DecelerationTime.Width = 120;
             // 
@@ -702,7 +702,7 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(1378, 579);
             this.tabPage3.TabIndex = 4;
-            this.tabPage3.Text = "Info";
+            this.tabPage3.Text = "Інформація";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // groupBox11
@@ -754,7 +754,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(136, 37);
             this.button4.TabIndex = 4;
-            this.button4.Text = "Car";
+            this.button4.Text = "Автомобіль";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -779,7 +779,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(136, 37);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Statistic";
+            this.button3.Text = "Статистика";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -793,7 +793,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(136, 37);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Light Traffic";
+            this.button2.Text = "Світлофор";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -807,7 +807,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(136, 37);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Main";
+            this.button1.Text = "Головна";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -820,7 +820,6 @@
             this.Name = "Main";
             this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
-            
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
