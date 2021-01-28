@@ -291,15 +291,15 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(778, 337);
+            this.label8.Location = new System.Drawing.Point(761, 339);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(199, 23);
+            this.label8.Size = new System.Drawing.Size(222, 23);
             this.label8.TabIndex = 44;
-            this.label8.Text = "Час зеленого кольору";
+            this.label8.Text = "Час зеленого кольору(с)";
             // 
             // greenColor
             // 
-            this.greenColor.Location = new System.Drawing.Point(989, 340);
+            this.greenColor.Location = new System.Drawing.Point(989, 337);
             this.greenColor.Name = "greenColor";
             this.greenColor.Size = new System.Drawing.Size(137, 26);
             this.greenColor.TabIndex = 43;
@@ -316,22 +316,22 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(778, 272);
+            this.label1.Location = new System.Drawing.Point(766, 271);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(194, 23);
+            this.label1.Size = new System.Drawing.Size(217, 23);
             this.label1.TabIndex = 41;
-            this.label1.Text = "Час жовтого кольору";
+            this.label1.Text = "Час жовтого кольору(с)";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(769, 213);
+            this.label9.Location = new System.Drawing.Point(757, 211);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(203, 23);
+            this.label9.Size = new System.Drawing.Size(226, 23);
             this.label9.TabIndex = 40;
-            this.label9.Text = "Час червного кольору\r\n";
+            this.label9.Text = "Час червного кольору(с)\r\n";
             // 
             // currentLightTraffic
             // 
@@ -344,7 +344,7 @@
             // 
             // nextColor
             // 
-            this.nextColor.Location = new System.Drawing.Point(333, 340);
+            this.nextColor.Location = new System.Drawing.Point(365, 339);
             this.nextColor.Name = "nextColor";
             this.nextColor.Size = new System.Drawing.Size(137, 26);
             this.nextColor.TabIndex = 38;
@@ -353,7 +353,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(171, 340);
+            this.label10.Location = new System.Drawing.Point(203, 340);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(156, 23);
             this.label10.TabIndex = 37;
@@ -380,7 +380,7 @@
             // 
             // currentColor
             // 
-            this.currentColor.Location = new System.Drawing.Point(333, 208);
+            this.currentColor.Location = new System.Drawing.Point(365, 207);
             this.currentColor.Name = "currentColor";
             this.currentColor.Size = new System.Drawing.Size(137, 26);
             this.currentColor.TabIndex = 34;
@@ -390,7 +390,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label11.Location = new System.Drawing.Point(23, 204);
+            this.label11.Location = new System.Drawing.Point(55, 207);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(304, 23);
             this.label11.TabIndex = 33;
@@ -398,7 +398,7 @@
             // 
             // distance
             // 
-            this.distance.Location = new System.Drawing.Point(333, 250);
+            this.distance.Location = new System.Drawing.Point(365, 249);
             this.distance.Name = "distance";
             this.distance.Size = new System.Drawing.Size(137, 26);
             this.distance.TabIndex = 32;
@@ -407,15 +407,15 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(101, 247);
+            this.label12.Location = new System.Drawing.Point(113, 249);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(224, 23);
+            this.label12.Size = new System.Drawing.Size(246, 23);
             this.label12.TabIndex = 31;
-            this.label12.Text = "Відстань до  світлофора";
+            this.label12.Text = "Відстань до світлофора(м)\r\n";
             // 
             // currentTime
             // 
-            this.currentTime.Location = new System.Drawing.Point(331, 294);
+            this.currentTime.Location = new System.Drawing.Point(365, 293);
             this.currentTime.Name = "currentTime";
             this.currentTime.Size = new System.Drawing.Size(137, 26);
             this.currentTime.TabIndex = 30;
@@ -424,11 +424,11 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(86, 293);
+            this.label13.Location = new System.Drawing.Point(97, 293);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(239, 23);
+            this.label13.Size = new System.Drawing.Size(262, 23);
             this.label13.TabIndex = 29;
-            this.label13.Text = "Час роботи теперешнього";
+            this.label13.Text = "Час роботи теперешнього(с)";
             // 
             // label14
             // 
@@ -547,13 +547,14 @@
             this.nameCar.Name = "nameCar";
             this.nameCar.Size = new System.Drawing.Size(245, 39);
             this.nameCar.TabIndex = 1;
+            
             // 
             // BAddCar
             // 
             this.BAddCar.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BAddCar.Location = new System.Drawing.Point(229, 402);
+            this.BAddCar.Location = new System.Drawing.Point(442, 400);
             this.BAddCar.Name = "BAddCar";
-            this.BAddCar.Size = new System.Drawing.Size(323, 85);
+            this.BAddCar.Size = new System.Drawing.Size(457, 85);
             this.BAddCar.TabIndex = 0;
             this.BAddCar.Text = "Додати автомобіль";
             this.BAddCar.UseVisualStyleBackColor = true;
@@ -625,9 +626,9 @@
             this.TimeBetweenLightTraffic,
             this.CarSpeed});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(6, 121);
+            this.listView1.Location = new System.Drawing.Point(30, 115);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1351, 359);
+            this.listView1.Size = new System.Drawing.Size(1320, 359);
             this.listView1.TabIndex = 13;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -659,37 +660,31 @@
             // 
             // DecelerationTime
             // 
-            this.DecelerationTime.DisplayIndex = 4;
             this.DecelerationTime.Text = "DecelerationTime";
             this.DecelerationTime.Width = 120;
             // 
             // DecelerationDistance
             // 
-            this.DecelerationDistance.DisplayIndex = 5;
             this.DecelerationDistance.Text = "DecelerationDistance";
             this.DecelerationDistance.Width = 148;
             // 
             // LightTrafficStatus
             // 
-            this.LightTrafficStatus.DisplayIndex = 6;
             this.LightTrafficStatus.Text = "LightTrafficStatus";
             this.LightTrafficStatus.Width = 129;
             // 
             // DistanceBetweenLightTraffic
             // 
-            this.DistanceBetweenLightTraffic.DisplayIndex = 7;
             this.DistanceBetweenLightTraffic.Text = "DistanceBetweenLightTraffic";
             this.DistanceBetweenLightTraffic.Width = 192;
             // 
             // TimeBetweenLightTraffic
             // 
-            this.TimeBetweenLightTraffic.DisplayIndex = 8;
             this.TimeBetweenLightTraffic.Text = "TimeBetweenLightTraffic";
             this.TimeBetweenLightTraffic.Width = 168;
             // 
             // CarSpeed
             // 
-            this.CarSpeed.DisplayIndex = 9;
             this.CarSpeed.Text = "CarSpeed";
             this.CarSpeed.Width = 81;
             // 

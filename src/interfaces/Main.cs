@@ -507,7 +507,7 @@ namespace SoborniyProject.src.interfaces
             }
         }
 
-
+        
     }
           
 }
